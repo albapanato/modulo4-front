@@ -1,0 +1,64 @@
+body{
+  background-color: rgb(164, 189, 189);
+
+}
+.App {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+  height: 90vh;
+  justify-content: center;
+}
+.wrapper{
+  padding:10px;
+  width: 300px;
+  height: 350px;
+  margin:auto;
+  background-color: rgb(148, 206, 240);
+  box-shadow: 8px 8px 32px rgb(20, 19, 19);
+}
+.formulario{
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding:20px;
+  
+}
+
+h1{
+  color: white;
+  text-shadow: 2px 4px 4px rgb(24, 22, 22);
+  font-size: 45px;
+}
+
+label{
+font-weight: 600;
+}
+
+input{
+border: none;
+padding:5px;
+max-width: 250px;
+margin: auto;
+}
+
+button{
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  padding:10px;
+  background-color: rgb(68, 87, 94);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 2px 4px 4px rgb(20, 19, 19);
+  margin:20px;
+  align-self: center;
+  width: 180px;
+
+  
+}
+.mensaje{
+
+  font-size: 20px;
+}
