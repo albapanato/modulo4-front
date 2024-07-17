@@ -1,0 +1,187 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  border-radius: 6px;
+  text-align: center;
+
+}
+body{
+  background-color: rgb(23, 24, 31);
+}
+.fondo{
+  width: 100%;
+  opacity: 85%;
+  overflow:hidden;
+  position:absolute;
+  top:0;
+  left:0;
+  object-fit: cover;
+ z-index: -999;
+ 
+}
+.fondo2{
+  width: 100%;
+  height: 140vh;
+  opacity: 85%;
+  overflow:hidden;
+  position:absolute;
+  top:180vh;
+  left:0;
+  object-fit: cover;
+ z-index: -999;
+
+}
+
+.fondo3{
+  width: 100%;
+  height: 140vh;
+  opacity: 45%;
+  overflow:hidden;
+  position:absolute;
+  top:360vh;
+  left:0;
+  object-fit:contain;
+ z-index: -999;
+
+}
+.App {
+  margin: 40px;
+}
+
+.error{
+  color:#f0975b;
+}
+h2{
+  background: linear-gradient(to right, rgb(10, 150, 155), #63d109);
+  background-clip:text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 100px;
+  font-weight: 600;
+  
+}
+.Formulario{
+  text-align: center;
+  padding: 20px;
+  line-height: 2;
+  color:rgb(231, 226, 226);
+  font-size: 25px;
+  background-color: rgba(18, 47, 61, 0.6); 
+
+ 
+  .perfil{
+    width: 200px;
+    border-radius: 50%;
+    margin: auto;
+  }
+  h3{
+    font-size: 38px;
+    color: #75ff04;
+    text-shadow: 2px 4px 16px black;
+  }
+  .form{
+    padding:60px;
+    padding-top: 30px;
+    margin: auto;
+    width: 300px;
+    background-color: rgba(3, 41, 59, 0.6);
+
+    .caja{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;    
+    }
+  }
+  label{
+    text-shadow: 2px 4px 16px black;
+    margin-top: 10px;
+  }
+  input{
+    background-color: #d4d9dd;
+    padding:6px;
+    height: 30px;
+    color:rgb(90, 84, 84);
+    font-size: 24px;
+  }
+  select{
+    background-color: #d4d9dd;
+    font-size: 24px;
+    text-align: center;
+    color: rgb(90, 84, 84);
+    padding:6px;
+    height: 50px;
+
+  }
+  button{
+    margin-top: 15px;
+    cursor: pointer;
+    border: solid 4px white;
+    width: 200px;
+    padding:8px;
+    background-color:hsla(200, 56%, 15%);
+    color:white;
+    font-size: 30px;
+
+  }
+}
+
+
+.ContenedorActividades{
+padding-top: 30px;
+ text-align: center;
+ background-color: hsla(200, 57%, 22%, 0.6);
+height: 100vh;
+
+.tituloActividad{
+  font-size: 38px;
+  color: #5ecf03;
+  text-shadow: 2px 4px 16px black;
+  
+}
+.fantasma{
+  height: 0;
+}
+.infoActividad{
+  color:white;
+  text-shadow:2px 6px 8px black; ;
+  margin: auto;
+  padding-top: 10px;
+  align-content: center;
+  width: 350px;
+  height: 75px;
+  border-radius: 0%;
+  background-color: hsla(195, 64%, 11%, 0.842);
+  font-size: 30px;
+  position: relative;
+  left: 0;
+  top:-210px;
+  
+  z-index: 1;
+}
+
+
+}
+.BotonActividades{
+  margin-top: 15px;
+  cursor: pointer;
+  border: solid 4px white;
+  width: 550px;
+  padding:8px;
+  background-color:hsla(200, 56%, 15%);
+  color:white;
+  font-size: 30px;
+
+
+}
+
+.Actividades{
+ justify-content: center;
+  width:100%;
+  display:flex;
+  flex-wrap: wrap;
+  
+  
+}
