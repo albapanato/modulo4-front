@@ -1,5 +1,5 @@
 const enviarDatos = async (values) => {
-  console.log("VALORES DEL COMPONENTE PADRE", values);
+  console.log("Recibimos la info del componente padre:", values);
   const respuesta = await fetch("https://jsonplaceholder.typicode.com/posts", {
     method: "POST",
     headers: {
@@ -10,11 +10,14 @@ const enviarDatos = async (values) => {
 
   if (respuesta.ok) {
     alert("Enhorabuena, te has registrado con exito");
+
     console.log("Usuario registrado correctamente");
-    console.log("RANDOM API", respuesta); // respuesta de la api https://jsonplaceholder.typicode.com/posts
+    console.log(
+      "Aqui simulamos que mandamos los datos del formulario al backend para que lo incluya en una API"
+    ); // respuesta de la api https://jsonplaceholder.typicode.com/posts
   } else {
-    alert("Ha habido un error");
-    console.log("Error al registrar usuario");
+    alert("Ha habido un error con el registro");
+    console.log("Error al enviar los datos a la API");
   }
 };
 

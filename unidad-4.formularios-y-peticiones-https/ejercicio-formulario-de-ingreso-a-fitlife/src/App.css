@@ -55,7 +55,7 @@ body{
   color:#f0975b;
 }
 h2{
-  background: linear-gradient(to right, rgb(10, 150, 155), #63d109);
+  background: linear-gradient(to right, #0a969b, #63d109);
   background-clip:text;
   -webkit-background-clip: text;
   color: transparent;
@@ -92,9 +92,22 @@ h2{
     .caja{
       display: flex;
       flex-direction: column;
-      margin-bottom: 15px;    
+      margin-bottom: 15px; 
+      
     }
   }
+
+  .flex{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto;
+    input{    
+      margin-top: 5px; 
+      margin-right: 8px; 
+      width: 20px;
+    }
+  } 
   label{
     text-shadow: 2px 4px 16px black;
     margin-top: 10px;
@@ -146,7 +159,7 @@ height: 100vh;
 }
 .infoActividad{
   color:white;
-  text-shadow:2px 6px 8px black; ;
+  text-shadow:2px 6px 8px black; 
   margin: auto;
   padding-top: 10px;
   align-content: center;
@@ -154,26 +167,24 @@ height: 100vh;
   height: 75px;
   border-radius: 0%;
   background-color: hsla(195, 64%, 11%, 0.842);
-  font-size: 30px;
+  font-size: 35px;
   position: relative;
   left: 0;
   top:-210px;
   
   z-index: 1;
 }
-
-
 }
+
 .BotonActividades{
   margin-top: 15px;
   cursor: pointer;
   border: solid 4px white;
   width: 550px;
   padding:8px;
-  background-color:hsla(200, 56%, 15%);
+  background-color:#112d3c;
   color:white;
   font-size: 30px;
-
 
 }
 
@@ -183,5 +194,16 @@ height: 100vh;
   display:flex;
   flex-wrap: wrap;
   
-  
+}
+
+.pregunta{
+  font-size: 38px;
+  color: #5ecf03;
+  text-shadow: 2px 4px 16px black;
+}
+
+.infoProfesor{
+  font-size: 50px;
+  text-shadow:2px 6px 8px black; 
+  background-color: #0a252ed7;
 }

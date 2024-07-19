@@ -1,180 +1,3 @@
-// // import React from "react";
-// // import { useFormik } from "formik";
-// // import * as Yup from "yup";
-// // import HandleGET from "./ListaEntrenadores";
-
-// // function PlanEjercicios() {
-// //   const formik = useFormik({
-// //     initialValues: {
-// //       tipoEntrenamiento: "",
-// //       edad: "",
-// //       peso: "",
-// //       objetivo: "",
-// //       dias: "",
-// //     },
-// //     validationSchema: Yup.object({
-// //       tipoEntrenamiento: Yup.string().required("⚠️ Este campo es necesario"),
-// //       edad: Yup.number().required("⚠️ Este campo es necesario"),
-// //       peso: Yup.number().required("⚠️ Este campo es necesario"),
-// //       objetivo: Yup.string().required("⚠️ Este campo es necesario"),
-// //       dias: Yup.array().required("⚠️ Este campo es necesario"),
-// //     }),
-
-// //     onSubmit: (values) => {
-// //       HandleGET();
-// //       console.log(values);
-// //       alert("Solicitud enviada");
-// //       //meter aqui las actividades
-// //     },
-// //   });
-
-// //   return (
-// //     <>
-// //       <div>
-// //         <form onSubmit={formik.handleSubmit}>
-// //           <div className="caja">
-// //             <label htmlFor="tipoEntrenamiento">Tipo de entrenamiento: </label>
-// //             <select name="tipoEntrenamiento">
-// //               <option value="" label="Seleccione una opcion" />
-// //               <option value="cardio">cardio</option>
-// //               <option value="funcional">funcional</option>
-// //               <option value="fuerza">fuerza</option>
-// //               <option value="flexibilidad y movilidad">
-// //                 flexibilidad y movilidad
-// //               </option>
-// //             </select>
-// //           </div>
-
-// //           <div className="caja">
-// //             <label htmlFor="edad">Edad: </label>
-// //             <input type="range" min="18" max="100" step="1" />
-// //           </div>
-// //           <div className="caja">
-// //             <label htmlFor="peso">Peso: </label>
-// //             <input type="range" min="50kg" max="180kg" step="1" />
-// //           </div>
-// //           <div className="caja">
-// //             <label htmlFor="objetivo">Cual es tu objetivo</label>
-// //             <input
-// //               type="radio"
-// //               name="objetivo"
-// //               id="prueba-ruta"
-// //               value="Prepararme para una ruta o prueba"
-// //             />
-// //             <label htmlFor="prueba-ruta">
-// //               Prepararme para una ruta o prueba
-// //             </label>
-// //             <input
-// //               type="radio"
-// //               name="objetivo"
-// //               id="forma-fisica"
-// //               values="Mejorar mi forma física"
-// //             />
-// //             <label htmlFor="forma-fisica">Mejorar mi forma física</label>
-// //             <input
-// //               type="radio"
-// //               name="objetivo"
-// //               id="peso-musculo"
-// //               value="Perder peso y/o tonificar"
-// //             />
-// //             <label htmlFor="peso-musculo">Perder peso y/o tonificar</label>
-// //           </div>
-// <div>
-//               <label htmlFor="dias">Cuantos dias te gustaria entrenar</label>
-//               <input
-//                 type="checkbox"
-//                 name="dias"
-//                 id="Lunes"
-//                 value="Lunes"
-//                 checked={formik.values.dias === "Lunes"}
-//                 onChange={formik.handleChange}
-//               />
-//               <label htmlFor="Lunes">Lunes</label>
-//               <input
-//                 type="checkbox"
-//                 name="dias"
-//                 id="Martes"
-//                 value="Martes"
-//                 checked={formik.values.dias === "Martes"}
-//                 onChange={formik.handleChange}
-//               />
-//               <label htmlFor="Martes">Martes</label>
-//               <input
-//                 type="checkbox"
-//                 name="dias"
-//                 id="Miercoles"
-//                 value="Miercoles"
-//                 checked={formik.values.dias === "Miercoles"}
-//                 onChange={formik.handleChange}
-//               />
-//               <label htmlFor="Miercoles">Miercoles</label>
-//               <input
-//                 type="checkbox"
-//                 name="dias"
-//                 id="Jueves"
-//                 value="Jueves"
-//                 checked={formik.values.dias === "Jueves"}
-//                 onChange={formik.handleChange}
-//               />
-//               <label htmlFor="Jueves">Jueves</label>
-//               <input
-//                 type="checkbox"
-//                 name="dias"
-//                 id="Viernes"
-//                 value="Viernes"
-//                 checked={formik.values.dias === "Viernes"}
-//                 onChange={formik.handleChange}
-//               />
-//               <label htmlFor="Viernes">Viernes</label>
-//               <input
-//                 type="checkbox"
-//                 name="dias"
-//                 id="Sabado"
-//                 value="Sabado"
-//                 checked={formik.values.dias === "Sabado"}
-//                 onChange={formik.handleChange}
-//               />
-//               <label htmlFor="Sabado">Sabado</label>
-//               <input
-//                 type="checkbox"
-//                 name="dias"
-//                 id="Domingo"
-//                 value="Domingo"
-//                 checked={formik.values.dias === "Domingo"}
-//                 onChange={formik.handleChange}
-//               />
-//               <label htmlFor="Domingo">Domingo</label>
-// //           <div>
-// //             <label htmlFor="dias">Cuantos dias te gustaria entrenar</label>
-// //             <input type="checkbox" name="dias" id="Lunes" value="Lunes" />
-// //             <label htmlFor="Lunes">Lunes</label>
-// //             <input type="checkbox" name="dias" id="Martes" value="Martes" />
-// //             <label htmlFor="Martes">Martes</label>
-// //             <input
-// //               type="checkbox"
-// //               name="dias"
-// //               id="Miercoles"
-// //               value="Miercoles"
-// //             />
-// //             <label htmlFor="Miercoles">Miercoles</label>
-// //             <input type="checkbox" name="dias" id="Jueves" value="Jueves" />
-// //             <label htmlFor="Jueves">Jueves</label>
-// //             <input type="checkbox" name="dias" id="Viernes" value="Viernes" />
-// //             <label htmlFor="Viernes">Viernes</label>
-// //             <input type="checkbox" name="dias" id="Sabado" value="Sabado" />
-// //             <label htmlFor="Sabado">Sabado</label>
-// //             <input type="checkbox" name="dias" id="Domingo" value="Domingo" />
-// //             <label htmlFor="Domingo">Domingo</label>
-// //           </div>
-// //           <button type="submit">Crear mi plan</button>
-// //         </form>
-// //       </div>
-// //     </>
-// //   );
-// // }
-
-// export default PlanEjercicios;
-
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -200,7 +23,9 @@ function PlanEjercicios() {
       edad: Yup.number().required("⚠️ Este campo es necesario"),
       peso: Yup.number().required("⚠️ Este campo es necesario"),
       objetivo: Yup.string().required("⚠️ Este campo es necesario"),
-      dias: Yup.array().min(1, "⚠️ Debes seleccionar al menos un día"),
+      dias: Yup.array()
+        .required()
+        .min(1, "⚠️ Debes seleccionar al menos un día"),
     }),
     onSubmit: async (values) => {
       try {
@@ -209,7 +34,9 @@ function PlanEjercicios() {
         setEntrenaiento(values.tipoEntrenamiento);
         setObjetivo(values.objetivo);
 
-        alert("Solicitud enviada");
+        alert(
+          "🫶 Gracias por su solicitus, le mostraremos al profesor perfecto para su seleccion 💪"
+        );
         // meter aquí las actividades
       } catch (error) {
         setError(true);
@@ -221,8 +48,9 @@ function PlanEjercicios() {
 
   if (error) {
     listaProfesores = (
-      <p style={{ textAlign: "center", color: "red", fontSize: "30px" }}>
-        Ha ocurrido un error
+      <p style={{ textAlign: "center", color: "orange", fontSize: "30px" }}>
+        Disculpe la molestias, no hemos podido encontrar un profesor en estos
+        momentos, intentenlo de nuevo mas tarde
       </p>
     );
   }
@@ -240,9 +68,21 @@ function PlanEjercicios() {
             alt="foto de perfil"
           />
           <h3>{`${profesor.name.first} ${profesor.name.last}`}</h3>
-          <p>Género: {profesor.gender}</p>
-          <p>Especializado en tipos de entrenamiento de {entrenamiento}</p>
-          <p>{`${profesor.name.first} esta especializado en ayudar a personas que tienen como objetivo ${objetivo}, no dudes en contactar con el si tienes alguna duda en este numero ${profesor.phone}`}</p>
+
+          <p className="infoProfesor" style={{ color: "#6daf6a" }}>
+            Especista en entrenamiento de tipo {entrenamiento}
+          </p>
+          <p className="infoProfesor" style={{ color: "#1696c0" }}>
+            {profesor.name.first} dedica la mayor parte de su tiempo en ayudar a
+            personas que tienen, como tu, el objetivo de {objetivo}.
+          </p>
+          <p
+            className="infoProfesor"
+            style={{ color: "#48d308", fontSize: "38px" }}
+          >
+            Puede llamar al numero {profesor.phone} sin ningun tipo de
+            compromiso si tiene mas preguntas.
+          </p>
         </div>
       </div>
     ));
@@ -256,10 +96,12 @@ function PlanEjercicios() {
           COMPLETA EL CUSTIONARIO PARA VER UN PLAN MAS ADAPTADO A TUS
           NECESIDADES
         </h2>
-        <div className="form">
+        <div className="form" style={{ width: "500px" }}>
           <form onSubmit={formik.handleSubmit}>
             <div className="caja">
-              <label htmlFor="tipoEntrenamiento">Tipo de entrenamiento: </label>
+              <label htmlFor="tipoEntrenamiento" className="pregunta">
+                Tipo de entrenamiento:{" "}
+              </label>
               <select
                 name="tipoEntrenamiento"
                 value={formik.values.tipoEntrenamiento}
@@ -280,7 +122,9 @@ function PlanEjercicios() {
             </div>
 
             <div className="caja">
-              <label htmlFor="edad">Edad: </label>
+              <label htmlFor="edad" className="pregunta">
+                Edad:{" "}
+              </label>
               <input
                 type="range"
                 min="18"
@@ -290,14 +134,17 @@ function PlanEjercicios() {
                 value={formik.values.edad}
                 onChange={formik.handleChange}
               />
-              <span>{formik.values.edad}</span>
+              <span>{formik.values.edad} años</span>
+
               {formik.touched.edad && formik.errors.edad ? (
                 <p className="error">{formik.errors.edad}</p>
               ) : null}
             </div>
 
             <div className="caja">
-              <label htmlFor="peso">Peso: </label>
+              <label htmlFor="peso" className="pregunta">
+                Peso:{" "}
+              </label>
               <input
                 type="range"
                 min="50"
@@ -308,79 +155,97 @@ function PlanEjercicios() {
                 onChange={formik.handleChange}
               />
               <span>{formik.values.peso} kg</span>
+
               {formik.touched.peso && formik.errors.peso ? (
                 <p className="error">{formik.errors.peso}</p>
               ) : null}
             </div>
 
             <div className="caja">
-              <label htmlFor="objetivo">Cual es tu objetivo</label>
-              <input
-                type="radio"
-                name="objetivo"
-                id="prueba-ruta"
-                value="La preparacion de una ruta o pruebas fisicas"
-                onChange={formik.handleChange}
-                checked={
-                  formik.values.objetivo ===
-                  "La preparacion de una ruta o pruebas fisicas"
-                }
-              />
-              <label htmlFor="prueba-ruta">
-                Prepararme para una ruta o prueba
+              <label htmlFor="objetivo" className="pregunta">
+                Cual es tu objetivo
               </label>
-
-              <input
-                type="radio"
-                name="objetivo"
-                id="forma-fisica"
-                value="Mejorar la forma física"
-                onChange={formik.handleChange}
-                checked={formik.values.objetivo === "Mejorar la forma física"}
-              />
-              <label htmlFor="forma-fisica">Mejorar mi forma física</label>
-
-              <input
-                type="radio"
-                name="objetivo"
-                id="peso-musculo"
-                value="Perder peso y/o tonificar musculos"
-                onChange={formik.handleChange}
-                checked={
-                  formik.values.objetivo ===
-                  "Perder peso y/o tonificar musculos"
-                }
-              />
-              <label htmlFor="peso-musculo">Perder peso y/o tonificar</label>
-
+              <div className="flex">
+                <input
+                  type="radio"
+                  name="objetivo"
+                  id="prueba-ruta"
+                  value="perpararse una ruta o una prueba fisicas"
+                  onChange={formik.handleChange}
+                  checked={
+                    formik.values.objetivo ===
+                    "perpararse una ruta o una prueba fisicas"
+                  }
+                />
+                <label htmlFor="prueba-ruta">
+                  Prepararme para una ruta o prueba
+                </label>
+              </div>
+              <div className="flex">
+                <input
+                  type="radio"
+                  name="objetivo"
+                  id="forma-fisica"
+                  value="mejorar su forma física"
+                  onChange={formik.handleChange}
+                  checked={formik.values.objetivo === "mejorar su forma física"}
+                />
+                <label htmlFor="forma-fisica">Mejorar mi forma física</label>
+              </div>
+              <div className="flex">
+                <input
+                  type="radio"
+                  name="objetivo"
+                  id="peso-musculo"
+                  value="perder peso y/o tonificar musculos"
+                  onChange={formik.handleChange}
+                  checked={
+                    formik.values.objetivo ===
+                    "perder peso y/o tonificar musculos"
+                  }
+                />
+                <label htmlFor="peso-musculo">Perder peso y/o tonificar</label>
+              </div>
               {formik.touched.objetivo && formik.errors.objetivo ? (
                 <p className="error">{formik.errors.objetivo}</p>
               ) : null}
             </div>
 
             <div>
-              <label htmlFor="dias">Cuantos días te gustaría entrenar</label>
-              {[
-                "Lunes",
-                "Martes",
-                "Miércoles",
-                "Jueves",
-                "Viernes",
-                "Sábado",
-                "Domingo",
-              ].map((dia) => (
-                <div key={dia}>
-                  <input
-                    type="checkbox"
-                    name="dias"
-                    id={dia}
-                    value={dia}
-                    onChange={formik.handleChange}
-                    checked={formik.values.dias.includes(dia)}
-                  />
-                  <label htmlFor={dia}>{dia}</label>
-                </div>
-              ))}
+              <label htmlFor="dias" className="pregunta">
+                Cuantos días te gustaría entrenar
+              </label>
+              <div className="flex" style={{ justifyContent: "center" }}>
+                {[
+                  "Lunes",
+                  "Martes",
+                  "Miércoles",
+                  "Jueves",
+                  "Viernes",
+                  "Sábado",
+                  "Domingo",
+                ].map((dia) => (
+                  <div
+                    key={dia}
+                    className="flex"
+                    style={{
+                      margin: "4px",
+                      padding: "5px",
+                      background: "#0a969b50",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      name="dias"
+                      id={dia}
+                      value={dia}
+                      onChange={formik.handleChange}
+                      checked={formik.values.dias.includes(dia)}
+                    />
+                    <label htmlFor={dia}>{dia}</label>
+                  </div>
+                ))}
+              </div>
               {formik.touched.dias && formik.errors.dias ? (
                 <p className="error">{formik.errors.dias}</p>
               ) : null}

@@ -46,7 +46,10 @@ function Formulario() {
     onSubmit: (values) => {
       // Enviar datos a la API
       console.log("Formulario enviado:", values);
-      enviarDatos(values);
+      enviarDatos(
+        "Mandamos los valores del formulario al componente hijo: ",
+        values
+      );
     },
   });
 
@@ -138,7 +141,9 @@ function Formulario() {
               onBlur={formik.handleBlur}
             />
             {formik.errors.telefono && (
-              <p className="error">{formik.errors.telefono}</p>
+              <p className="error">
+                Debes introducir un numero de telefono valido
+              </p>
             )}
           </div>
           <div className="caja">

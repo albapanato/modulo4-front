@@ -3,41 +3,41 @@ En este ejercicio vamos a imaginar que hemos aceptado un trabajo para la creaci�
 
 1. Requisitos del formulario
 
-Componentes:
+- Componentes:
 
 Crear componentes reutilizables para cada sección del formulario (datos personales, información de contacto, preferencias de entrenamiento, etc.).
 
 Implementar la lógica de cada sección como un componente independiente.
 
-Props y State:
+- Props y State:
 
 Pasar datos entre componentes utilizando props.
 
 Gestionar el estado interno de cada componente con useState.
 
-Manejo de eventos:
+- Manejo de eventos:
 
 Validar la entrada del usuario en tiempo real.
 
 Mostrar mensajes de error y éxito. -- Manejo de errores con CSS con condicionales
 
-Comunicación hijo-padre:
+- Comunicación hijo-padre:
 
 Enviar datos desde el componente hijo al componente padre al completar el formulario.
 
-Condicionales y Listas:
+- Condicionales y Listas:
 
 Mostrar u ocultar elementos del formulario según las opciones del usuario.
 
 Mostrar una lista de opciones de entrenamiento disponibles.
 
-Aplicación de estilos:
+- Aplicación de estilos:
 
 Aplicar estilos CSS a los componentes para una interfaz atractiva.
 
 Usar clases CSS para diferentes estados de los elementos (activo, inactivo, error).
 
-Estilos dinámicos:
+- Estilos dinámicos:
 
 Cambiar estilos dinámicamente según las opciones del usuario.
 
@@ -49,7 +49,7 @@ CSS Modules: -- esto noo
 
 Usar CSS Modules para evitar conflictos de nombres de clase.
 
-Peticiones HTTP:
+- Peticiones HTTP:
 
 Enviar datos del formulario al servidor para registrar al nuevo miembro.
 
