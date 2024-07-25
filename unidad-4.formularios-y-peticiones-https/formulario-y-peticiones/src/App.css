@@ -1,0 +1,35 @@
+
+.App{
+ text-align: center;
+ padding: 20px;
+ background: #b3bce2;
+ height: 90vh;
+}
+
+.titleUrl{
+
+  text-align: center;
+  margin-top: 40px;
+  color: #3f058a;
+  font-size: 30px;
+}
+
+.people{
+  padding: 10px;  
+}
+
+
+.person {
+  h3{
+    color:#3f058a;
+    cursor: pointer;
+  }
+  background: #a884e2;
+  color: rgb(98, 36, 114);
+  border-radius: 10px;
+  margin: 20px;
+  display: inline-block;
+  width: 250px;
+  padding: 10px; 
+}
+
