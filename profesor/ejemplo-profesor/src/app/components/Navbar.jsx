@@ -1,36 +1,23 @@
-import Link from 'next/link'
-import './Navbar.css'
+import Link from "next/link";
+import "./Navbar.css";
 
 export default function Navbar() {
-    // <nav className="navbar py-5">
-    //  <nav className='bg-slate-400 mb-4 flex justify-between items-center px-20 p-3 font-bold text-black'>
-    return (
-        <nav className="navbar py-5">
-            <Link href="/">
-                Home
-            </Link>
-            <ul>
-                <li>
-                    <Link href="/about" >
-                        About
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/posts" >
-                        Posts
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/register" >
-                        Sign Up
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/login" >
-                        Sign In
-                    </Link>
-                </li>
-            </ul>
-        </nav>
-    )
+  // <nav className="navbar py-5">
+  //  <nav className='bg-slate-400 mb-4 flex justify-between items-center px-20 p-3 font-bold text-black'>
+  return (
+    <nav className="navbar py-5">
+      {/*  Este componente no me lo reconoce si lo pongo en el layout...porque??? */}
+      <ul>
+        <li>
+          <Link href="/user">Clientes</Link>
+        </li>
+        <li>
+          <Link href="user/projects">Proyectos</Link>
+        </li>
+        <li>
+          <Link href="user/deliveryNotes">Albaranes</Link>
+        </li>
+      </ul>
+    </nav>
+  );
 }

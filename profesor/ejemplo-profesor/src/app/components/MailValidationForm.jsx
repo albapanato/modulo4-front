@@ -1,7 +1,11 @@
 "use client";
-import { useRouter } from "next/navigation";
 
-import { useForm } from "react-hook-form"; // npm install react-hook-form
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import InputsValidation from "./InputsValidation";
+import Image from "next/image";
+
 import { validateUser } from "@/app/utils/user";
 
 export default function RegisterForm() {
@@ -9,54 +13,58 @@ export default function RegisterForm() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
-
+  } = useForm({
+    defaultValues: {
+      code: Array(6).fill(""),
+    },
+  });
+  const [code, setCode] = useState("");
   const router = useRouter();
 
-  const onSubmit = async (data) => {
-    // errata en el pdf-es localStorage.getItem
-    const token = localStorage.getItem("jwt"); // cuando necesite token o autorizacion , cojemos el token de localStorage.getItem('nombre que hayamos puesto') en el componente LoginForm.jsx
-    const res = await validateUser(token, data);
-    //console.log(res)
+  const onSubmit = async () => {
+    const token = localStorage.getItem("jwt");
+    const fullCode = code; // Convertimos el array de códigos a una cadena
+    const res = await validateUser(token, { code: fullCode });
+
     if (res.acknowledged) {
-      router.push("/about");
+      router.push("/user");
     } else {
       throw new Error("Failed to match code.");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-      <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className={"mb-3 text-xl text-black"}>
-          Introduce tu código recibido
-        </h1>
-
-        <div className="w-full">
-          <div className="mt-4">
-            <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
-              htmlFor="code"
-            >
-              Código
-            </label>
-            <div className="relative">
-              <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] text-sm outline-2text-gray-500"
-                type="text"
-                id="code"
-                {...register("code", {
-                  required: true,
-                  minLength: 6,
-                  maxLength: 6,
-                })}
-              />
-              {errors.code?.type === "required" && "Códido es requerido"}
-            </div>
-          </div>
-        </div>
-        <input className="mt-4 w-full" type="submit" />
+    <div className="flex-1 rounded-lg bg-white p-2">
+      <div className="p-2 pt-3">
+        <Image
+          src="/img/ZoSale.png"
+          alt="Logo ZoSale"
+          width={100}
+          height={80}
+        />
       </div>
-    </form>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 px-6 pb-4">
+        <h1 className="mb-4 text-xs text-black font-bold text-shadow-none">
+          Introduce el código enviado a tu correo electrónico
+        </h1>
+        <div className="">
+          <InputsValidation
+            register={register}
+            errors={errors}
+            setCode={setCode}
+          />
+          {errors.code && (
+            <p className="text-red-500 mt-2">Código es requerido</p>
+          )}
+        </div>
+        <div className="pt-3">
+          <input
+            className="w-full bg-blue-500 text-white p-2 rounded cursor-pointer hover:bg-blue-600"
+            type="submit"
+            value="Enviar"
+          />
+        </div>
+      </form>
+    </div>
   );
 }

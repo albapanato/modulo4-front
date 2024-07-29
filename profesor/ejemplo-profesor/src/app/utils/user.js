@@ -1,6 +1,7 @@
 "use server"; // es necesrio poner "use server " porque si no,  el fichero que lo llama al ser "use client" por default renderizara la funcion en el lado del cliente
 
 async function createUser(data) {
+  console.log("por aqui", data);
   try {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/user/register`; // con esto se crean la rutas para hacer el fetch a la api. creamos el archivo .env o .env.local y le asignamos a NEXT_PUBLIC_BACKEND_DOMAIN el valor de la url generica(https://bildy-rpmaya.koyeb.app), y luego le agregamos la terminacion a la llamada que deseemos /api/user/register
     const response = await fetch(url, {
@@ -22,7 +23,7 @@ async function createUser(data) {
 }
 
 async function validateUser(token, data) {
-  // le pasamos como parametro el token y la data que estemos mandando desde el componente MailValidationForm.jsx
+  console.log(token);
   try {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/user/validation`;
     const response = await fetch(url, {
@@ -65,4 +66,106 @@ async function loginUser(data) {
   }
 }
 
-export { createUser, validateUser, loginUser };
+async function listClient(token) {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/client`;
+    const response = await fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+    const dataRes = await response.json();
+    console.log(dataRes);
+    return dataRes;
+  } catch (error) {
+    console.error("Failed to show data client:", error);
+    throw new Error("Failed to show data client.");
+  }
+}
+
+async function newClient(token, data) {
+  console.log("la info en user.js: ", data);
+  console.log("token: ", token);
+  try {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/client`;
+    console.log("URL: ", url);
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+    const dataRes = await response.json();
+    console.log(dataRes);
+    return dataRes;
+  } catch (error) {
+    console.error("Failed to create new client:", error);
+    throw new Error("Failed to create new client.");
+  }
+}
+
+async function listProject(token) {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/project`;
+    const response = await fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+    const dataRes = await response.json();
+    console.log(dataRes);
+    return dataRes;
+  } catch (error) {
+    console.error("Failed to show data project:", error);
+    throw new Error("Failed to show data project.");
+  }
+}
+
+async function newProyect(token, data) {
+  console.log("proyect en user.js: ", data);
+  console.log("token: ", token);
+  try {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/proyect`;
+    console.log("URL: ", url);
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+    const dataRes = await response.json();
+    console.log(dataRes);
+    return dataRes;
+  } catch (error) {
+    console.error("Failed to create new proyect:", error);
+    throw new Error("Failed to create new proyect.");
+  }
+}
+
+export {
+  createUser,
+  validateUser,
+  loginUser,
+  listClient,
+  newClient,
+  newProyect,
+  listProject,
+};

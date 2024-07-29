@@ -1,5 +1,6 @@
-import MailValidationForm from '@/app/components/MailValidationForm';
- 
+import MailValidationForm from "@/app/components/MailValidationForm";
+import ImageBg from "@/app/components/ImageBg";
+
 export default function MailValidationPage() {
   return (
     <main className="flex items-center justify-center md:h-screen">

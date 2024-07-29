@@ -18,7 +18,7 @@ export default function LoginForm() {
     const res = await loginUser(data);
     if (res.token) {
       localStorage.setItem("jwt", res.token);
-      router.push("/about");
+      router.push("/user");
     } else {
       throw new Error("Failed to login user.");
     }
@@ -26,51 +26,46 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-      <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className={"mb-3 text-2xl text-black"}>Accede a tu cuenta</h1>
-
-        <div className="w-full">
-          <div>
-            <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
-              htmlFor="email"
-            >
-              Email
-            </label>
-            <div className="relative">
-              <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] text-sm outline-2 text-gray-500"
-                type="email"
-                id="email"
-                {...register("email", { required: true, maxLength: 30 })}
-              />
-              {errors.email?.type === "required" && "Email es requerido"}
-            </div>
+      <h1 className="mb-5 text-center text-4xl text-shadow-xl text-blue-900 font-bold">
+        Accede a tu cuenta
+      </h1>
+      <div className="flex-1 rounded-lg bg-orange-400 bg-opacity-75 px-6 pb-8 pt-4">
+        <div className="w-full mt-4">
+          <div className="relative pt-3">
+            <label htmlFor="email"></label>
+            <input
+              className="peer block w-full rounded-md border border-gray-200 p-4 text-lg outline-2 text-scale-600"
+              type="email"
+              id="email"
+              placeholder="Email"
+              {...register("email", { required: true, maxLength: 30 })}
+            />
+            {errors.email?.type === "required" && "Email es requerido"}
           </div>
-          <div className="mt-4">
-            <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
-              htmlFor="password"
-            >
-              Contraseña
-            </label>
-            <div className="relative">
-              <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] text-sm outline-2text-gray-500"
-                type="password"
-                id="password"
-                {...register("password", { required: true, minLength: 8 })}
-              />
-              {errors.password?.type === "required" &&
-                "Contraseña es requerida"}
-            </div>
+
+          <div className="relative mt-4">
+            <label htmlFor="password"></label>
+            <input
+              className="peer block w-full rounded-md border border-gray-200 p-4 text-lg outline-2 text-slate-700"
+              type="password"
+              id="password"
+              placeholder="Contraseña"
+              {...register("password", { required: true, minLength: 8 })}
+            />
+            {errors.password?.type === "required" && "Contraseña es requerida"}
           </div>
         </div>
-        <input className="mt-4 w-full" type="submit" />
+        <input
+          className="mt-4 w-full text-3xl pt-3 cursor-pointer text-blue-900 text-shadow-xl font-bold"
+          type="submit"
+        />
       </div>
-      <div className="mt-6 text-white">
+      <div className="mt-6 text-xl w-auto text-shadow-xl text-orange-600 text-center font-bold">
+        ¿No tienes cuenta?
         <Link href="/register">
-          ¿No tienes cuenta? <span className="text-blue-500">Registrate</span>
+          <span className=" ml-3 text-blue-900 text-3xl text-shadow-xl font-bold">
+            Registrate
+          </span>
         </Link>
       </div>
     </form>
