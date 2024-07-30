@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { listClient } from "../utils/user";
+import { listDeliverynote } from "../utils/user";
 import { useEffect, useState } from "react";
-import ImageRandom from "./ImageRandom";
 
-export default function ShowClient() {
+export default function ShowDeliverynote() {
   const [token, setToken] = useState(null);
-  const [clientData, setClientData] = useState([]);
+  const [deliverynoteData, setDeliverynoteData] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -20,8 +19,8 @@ export default function ShowClient() {
     if (token) {
       const fetchClientData = async () => {
         try {
-          const recordClient = await listClient(token); // Cambiar storedToken por token
-          setClientData(recordClient);
+          const recordDeliverynote = await listDeliverynote(token); // Cambiar storedToken por token
+          setDeliverynoteData(recordDeliverynote);
         } catch (err) {
           setError(err.message);
         }
@@ -34,45 +33,46 @@ export default function ShowClient() {
   if (error) {
     return <div>Error: {error}</div>;
   }
-  if (clientData.length === 0 || !clientData) {
+  if (deliverynoteData.length === 0 || !deliverynoteData) {
     return (
       <>
-        <div className="w-[600px] ">
-          <h2 className="text-2xl">Parece que no tienes ningún cliente!</h2>
-          <p className="text-xl">
-            Crea un para poder generar Albaranes digitales
-          </p>
-          <Link
-            href="/user/client"
-            className="rounded-sm bg-cyan-700 w-fit p-2"
-          >
-            Empieza pulsando este boton
-          </Link>
+        <div className="container text-center">
+          <h2 className="text-2xl p-4">
+            Parece que no tienes ningún albaran todavia!
+          </h2>
+          <div className=" text-center mt-20 mb-10">
+            <Link
+              href="/user/deliverynotes/note"
+              className="rounded-sm text-white font-bold bg-cyan-700 w-fit p-4"
+            >
+              Crea tu primer albaran
+            </Link>
+          </div>
         </div>
       </>
     );
   }
-  console.log(clientData);
+  console.log(deliverynoteData);
 
   return (
     <div>
       {/* <div>
         <h1>Client Information</h1>
-        <pre>{JSON.stringify(clientData, null, 2)}</pre>
+        <pre>{JSON.stringify(deliverynoteData, null, 2)}</pre>
       </div> */}
 
       <div className="grid grid-cols-1 w-full">
         <div className="flex">
           <div>
-            {clientData.map((client) => (
+            {deliverynoteData.map((deliveryNotes) => (
               <div className="flex justify-center items-center">
-                <div>
-                  <ImageRandom />
-                </div>
                 <div className="flex justify-center">
-                  <Link href={`/user/client/${client._id}`} key={client.id}>
+                  <Link
+                    href={`/user/deliveryNotes/${deliveryNotes._id}`}
+                    key={deliveryNotes.id}
+                  >
                     {" "}
-                    <h5> {client.name}</h5>
+                    <h5> {deliveryNotes.name}</h5>
                   </Link>
                 </div>
               </div>

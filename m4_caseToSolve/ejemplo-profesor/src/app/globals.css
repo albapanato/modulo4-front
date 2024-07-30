@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#body {
+  max-height: fit-content;
+  margin-top: 10px;
+}
