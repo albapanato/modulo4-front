@@ -9,13 +9,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body id="body">
-        <div className="flex justyfy-center">
-          <div className="flex">
-            <ImageBildy />{" "}
-          </div>
+        <ImageBildy />{" "}
+        <div className="flex justyfy-center ">
+          <div className="flex"></div>
           <div className="container mx-auto">
             <div className="flex">
-              <main className="container mx-auto h-auto flex flex-col">
+              <main className="container mx-auto h-auto flex flex-col w-full">
                 {children}
               </main>
             </div>

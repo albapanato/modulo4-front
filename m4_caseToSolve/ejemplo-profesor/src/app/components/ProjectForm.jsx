@@ -5,8 +5,10 @@ import { useRouter } from "next/navigation";
 import { newProject } from "../utils/user";
 import { useEffect, useState } from "react";
 
-export default function ProjectForm() {
+// Por hacer... al crear un cliente y pinchar en la decripcion aparece la informacion del cliente, hacer la logica para que pase por parametro el id del cliente
+export default function ProjectForm({ clientId }) {
   const [token, setToken] = useState(null);
+
   const {
     register,
     handleSubmit,
@@ -24,6 +26,7 @@ export default function ProjectForm() {
       },
       code: "",
       client: "",
+      clientId: clientId, // asignamos el valor del id del cliente a clientId
     },
   });
 
@@ -31,20 +34,23 @@ export default function ProjectForm() {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("jwt");
       setToken(storedToken);
+
       console.log("token :", storedToken);
-      console.log("token :", typeof storedToken);
+      console.log("idClient en ProjectForm", clientId);
     }
   }, []);
 
   const router = useRouter();
 
   const onSubmit = async (data) => {
+    data.clientId = clientId; // asi agregamos el valos del id a los datos del proyecto
     console.log("data", data);
+    console.log("id", clientId);
     console.log("token", typeof token);
     try {
-      const res = await newProject(token, data);
-      alert("Tu usuario ha sido registrado con éxito");
-      router.push("/user/project");
+      const res = await newProject(clientId, token, data);
+      alert("El proyecto ha sido asignado al cliente con exito"); // cambiar esto por un modal si da tiempo
+      router.push("/user/projects");
       if (res.token) {
         localStorage.setItem("jwt", res.token);
       } else {
@@ -82,7 +88,7 @@ export default function ProjectForm() {
               className="mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
               type="email"
               id="email"
-              {...register("email")}
+              {...register("email", { required: true })}
             />
             {errors.email && <p>{errors.email.message}</p>}
           </div>

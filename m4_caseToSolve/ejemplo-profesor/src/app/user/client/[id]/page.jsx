@@ -1,6 +1,6 @@
 "use client";
 import ClientID from "@/app/components/ClientID";
-import ShowClient from "@/app/components/ShowClient";
+//import ShowClient from "@/app/components/ShowClient";
 
 function ShowInfo({ params }) {
   //console.log(props)
@@ -8,9 +8,9 @@ function ShowInfo({ params }) {
 
   return (
     <div className="grid grid-cols-2">
-      <div>
+      {/* <div>
         <ShowClient />
-      </div>
+      </div> */}
       <div>
         <ClientID id={params.id} />
       </div>

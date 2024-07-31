@@ -68,7 +68,7 @@ async function loginUser(data) {
 
 async function listClient(token) {
   try {
-    console.log("Tu lista de clientes");
+    //console.log("Tu lista de clientes");
     const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/client`;
     const response = await fetch(url, {
       headers: {
@@ -80,7 +80,7 @@ async function listClient(token) {
       throw new Error("Network response was not ok " + response.statusText);
     }
     const dataRes = await response.json();
-    console.log("dataRes: ", dataRes);
+    //console.log("dataRes: ", dataRes);
     return dataRes;
   } catch (error) {
     console.error("Failed to show data client:", error);
@@ -118,12 +118,38 @@ async function newClient(token, data) {
 }
 
 async function infoClient(id, token) {
+  //console.log("Info cliente");
+  console.log("id en infoCLien:", id);
+  console.log(token);
+  try {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/client/${id}`;
+    const response = await fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+    const dataRes = await response.json();
+    //console.log("dataRes: ", dataRes);
+    return dataRes;
+  } catch (error) {
+    console.error("Failed to show data client:", error);
+    throw new Error("Failed to show data client.");
+  }
+}
+
+//Por hacer......
+async function modifyInfoClient(id, token) {
   console.log("Info cliente");
   console.log("id en infoCLien:", id);
   console.log(token);
   try {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/client/${id}`;
     const response = await fetch(url, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -162,9 +188,11 @@ async function listProject(token) {
   }
 }
 
-async function newProject(token, data) {
+// Por agregar un id
+async function newProject(id, token, data) {
   console.log("proyect data en user.js: ", data);
   console.log("token: ", token);
+  console.log("id: ", id);
   try {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/project`;
     console.log("URL: ", url);
@@ -180,7 +208,7 @@ async function newProject(token, data) {
       throw new Error("Network response was not ok " + response.statusText);
     }
     const dataRes = await response.json();
-    console.log(dataRes);
+    console.log("Data proyecto en user.js:", dataRes);
     return dataRes;
   } catch (error) {
     console.error("Failed to create new proyect:", error);

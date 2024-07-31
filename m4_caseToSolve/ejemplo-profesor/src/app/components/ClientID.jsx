@@ -1,9 +1,10 @@
 import { infoClient } from "../utils/user";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function ClientID({ id }) {
   const [token, setToken] = useState(null);
-  const [recordClient, setRecordClient] = useState([]);
+  const [recordClient, setRecordClient] = useState({});
   const [error, setError] = useState(null);
   const [logoUrl, setLogoUrl] = useState("");
 
@@ -20,15 +21,15 @@ export default function ClientID({ id }) {
 
     fetchRandomLogo();
   }, []);
-  console.log("id en CLientID", id);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("jwt");
       setToken(storedToken);
-      console.log("token :", storedToken);
+      localStorage.setItem("clientId", id); // Guardamos el ID del cliente en localStorage
+      console.log("id en ClientID", id);
     }
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (token) {
@@ -44,7 +45,7 @@ export default function ClientID({ id }) {
 
       fetchClientDataByID();
     }
-  }, [token]);
+  }, [token, id]);
 
   if (error) {
     return <div> Error: {error}</div>;
@@ -52,8 +53,9 @@ export default function ClientID({ id }) {
 
   return (
     <div className="container border w-full">
+      <h1>{recordClient.name}</h1>
+      <h2>{recordClient._id}</h2>
       <div className="flex">
-        <h1>{recordClient.name}</h1>
         <div
           className="logo-container"
           style={{ textAlign: "center", margin: "20px" }}
@@ -62,7 +64,7 @@ export default function ClientID({ id }) {
             <img
               src={logoUrl}
               alt="Random Logo"
-              style={{ width: "200px", height: "200px", borderRadius: "8px" }}
+              style={{ width: "auto", height: "auto" }}
             />
           ) : (
             <p>Loading...</p>
@@ -85,6 +87,11 @@ export default function ClientID({ id }) {
         <p>
           <strong>Provincia:</strong> {recordClient.address?.province}
         </p>
+      </div>
+      <div className=" text-white text-xl font-bold w-56 bg-cyan-500 p-3 mb-4 text-center mx-auto rounded-lg">
+        <Link href="/user/projects/new ">
+          Asignar un proyecto a este cliente
+        </Link>
       </div>
     </div>
   );

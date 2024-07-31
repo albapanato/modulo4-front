@@ -3,6 +3,4 @@
 @tailwind utilities;
 
 #body {
-  max-height: fit-content;
-  margin-top: 10px;
 }

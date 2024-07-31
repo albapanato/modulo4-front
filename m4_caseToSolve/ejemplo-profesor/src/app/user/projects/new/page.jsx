@@ -1,8 +1,17 @@
 "use client";
 import Link from "next/link";
 import ProjectForm from "@/app/components/ProjectForm";
+import { useEffect, useState } from "react";
 
 export default function NewProject() {
+  const [clientId, setClientId] = useState(null);
+
+  useEffect(() => {
+    const storedClientId = localStorage.getItem("clientId");
+    setClientId(storedClientId);
+    console.log("Client ID:", storedClientId);
+  }, []);
+
   return (
     <div className=" container flex w-2/3  flex-col justify-center p-10">
       <div className="text-center p-4">
@@ -16,7 +25,7 @@ export default function NewProject() {
       </div>
       <div className="container flex col-auto  h-56 ">
         <div className="mt-10">
-          <ProjectForm />
+          {clientId && <ProjectForm clientId={clientId} />}
         </div>
       </div>
     </div>

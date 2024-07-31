@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import NewDeliverynote from "../user/deliverynotes/note/page";
 import { useEffect, useState } from "react";
 import { newDeliverynote } from "../utils/user";
 

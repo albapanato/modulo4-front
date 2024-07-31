@@ -52,7 +52,7 @@ export default function ShowClient() {
       </>
     );
   }
-  console.log(clientData);
+  // console.log(clientData);
 
   return (
     <div>
@@ -65,14 +65,19 @@ export default function ShowClient() {
         <div className="flex">
           <div>
             {clientData.map((client) => (
-              <div className="flex justify-center items-center">
+              <div
+                key={client._id}
+                className="flex justify-center items-center"
+              >
                 <div>
                   <ImageRandom />
                 </div>
                 <div className="flex justify-center">
-                  <Link href={`/user/client/${client._id}`} key={client.id}>
+                  <Link key={client._id} href={`/user/client/${client._id}`}>
                     {" "}
                     <h5> {client.name}</h5>
+                    <h5>_id: {client._id}</h5>
+                    <h5>userId: {client.userId}</h5>
                   </Link>
                 </div>
               </div>
