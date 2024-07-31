@@ -1,0 +1,22 @@
+"use client";
+import ProjectID from "@/app/components/ProjectID";
+
+//import ShowClient from "@/app/components/ShowClient";
+
+function ShowProject({ params }) {
+  //console.log(props)
+  console.log("params", params);
+  console.log("id ", params.id);
+
+  return (
+    <div className="grid grid-cols-2">
+      {/* <div>
+        <ShowClient />
+      </div> */}
+      <div>
+        <ProjectID id={params.id} />
+      </div>
+    </div>
+  );
+}
+export default ShowProject;

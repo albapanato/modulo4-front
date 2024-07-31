@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { listProject } from "@/app/utils/user";
 import { useEffect, useState } from "react";
+import ImageRandom from "./ImageRandom";
 
 export default function ShowProject() {
   const [token, setToken] = useState(null);
@@ -48,8 +49,43 @@ export default function ShowProject() {
 
   return (
     <div>
-      <h1>Project Information</h1>
-      <pre>{JSON.stringify(projectData, null, 2)}</pre>
+      {/* <h1>Project Information</h1>
+      <pre>{JSON.stringify(projectData, null, 2)}</pre> */}
+
+      <div className="grid grid-cols-1 w-full">
+        <div className="block justify-center">
+          <div className="">
+            {projectData.map((project) => (
+              <div
+                key={project._id}
+                className="bg-blue-100 p-4 m-4 rounded-md w-full "
+              >
+                <div className="block">
+                  <div className="block p-3" key={project._id}>
+                    <Link href={`/user/projects/${project._id}`}>
+                      {" "}
+                      <h2 className=" text-2xl text-orange-600  text-center font-bold">
+                        {" "}
+                        {project.name}
+                      </h2>
+                      <div className="flex justify-end">
+                        <ImageRandom />
+                      </div>
+                      <h5>
+                        <strong>_id: </strong>
+                        {project._id}
+                      </h5>
+                      <h5>
+                        <strong> clientId:</strong> {project.clientId}
+                      </h5>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

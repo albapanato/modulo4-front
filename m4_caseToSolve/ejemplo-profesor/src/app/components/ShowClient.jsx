@@ -61,28 +61,28 @@ export default function ShowClient() {
         <pre>{JSON.stringify(clientData, null, 2)}</pre>
       </div> */}
 
-      <div className="grid grid-cols-1 w-full">
-        <div className="flex">
-          <div>
-            {clientData.map((client) => (
-              <div
-                key={client._id}
-                className="flex justify-center items-center"
-              >
+      <div className="grid grid-cols-1 w-full text-right">
+        <div className="mx-auto">
+          {clientData.map((client) => (
+            <div key={client._id} className="flex justify-center items-center">
+              <div className="flex justify-center items-center bg-blue-100 p-4 m-4 rounded-md w-full ">
+                <Link key={client._id} href={`/user/client/${client._id}`}>
+                  {" "}
+                  <div>
+                    <h2 className=" text-lg text-orange-600  text-rigth font-bold">
+                      {" "}
+                      {client.name}
+                    </h2>
+                    <h5>_id: {client._id}</h5>
+                    <h5>userId: {client.userId}</h5>
+                  </div>
+                </Link>
                 <div>
                   <ImageRandom />
                 </div>
-                <div className="flex justify-center">
-                  <Link key={client._id} href={`/user/client/${client._id}`}>
-                    {" "}
-                    <h5> {client.name}</h5>
-                    <h5>_id: {client._id}</h5>
-                    <h5>userId: {client.userId}</h5>
-                  </Link>
-                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

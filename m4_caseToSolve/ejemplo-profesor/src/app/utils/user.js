@@ -65,7 +65,7 @@ async function loginUser(data) {
     throw new Error("Failed to login user.");
   }
 }
-
+//Funciona
 async function listClient(token) {
   try {
     //console.log("Tu lista de clientes");
@@ -87,7 +87,7 @@ async function listClient(token) {
     throw new Error("Failed to show data client.");
   }
 }
-
+//Funciona
 async function newClient(token, data) {
   //Sale por el catch
   console.log("la info en user.js: ", data);
@@ -116,7 +116,7 @@ async function newClient(token, data) {
     throw new Error("Failed to create new client.");
   }
 }
-
+//Funciona
 async function infoClient(id, token) {
   //console.log("Info cliente");
   console.log("id en infoCLien:", id);
@@ -142,12 +142,13 @@ async function infoClient(id, token) {
 }
 
 //Por hacer......
-async function modifyInfoClient(id, token) {
-  console.log("Info cliente");
-  console.log("id en infoCLien:", id);
+
+async function modifyInfoProject(id, token) {
+  console.log("Cambiando los datos del proyecto...");
   console.log(token);
+  console.log(id);
   try {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/client/${id}`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/project/${id}`;
     const response = await fetch(url, {
       method: "PUT",
       headers: {
@@ -167,6 +168,33 @@ async function modifyInfoClient(id, token) {
   }
 }
 
+async function infoProject(id, token) {
+  console.log("token en infoProject", token);
+  console.log("id en infoProject users.js", id);
+  //console.log("Info cliente");
+
+  console.log("id en infoProject user.js:", id);
+  console.log(token);
+  try {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/project/one/${id}`;
+    const response = await fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+    const dataRes = await response.json();
+    console.log("Data proyecto:  ", dataRes); //Sale vacio??
+    return dataRes;
+  } catch (error) {
+    console.error("Failed to show data client:", error);
+    throw new Error("Failed to show data client.");
+  }
+}
+//Funciona
 async function listProject(token) {
   try {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/project`;
@@ -188,7 +216,7 @@ async function listProject(token) {
   }
 }
 
-// Por agregar un id
+//Funciona
 async function newProject(id, token, data) {
   console.log("proyect data en user.js: ", data);
   console.log("token: ", token);
@@ -216,6 +244,7 @@ async function newProject(id, token, data) {
   }
 }
 
+//Por completar
 async function listDeliverynote(token) {
   console.log("listDeliverynotes user.js");
   console.log(token);
@@ -240,7 +269,7 @@ async function listDeliverynote(token) {
     throw new Error("Failed to show data client.");
   }
 }
-
+// Por completar
 async function newDeliverynote(token, data) {
   console.log("la info de albaranes en user.js: ", data);
   console.log("token: ", token);
@@ -276,6 +305,8 @@ export {
   listClient,
   newClient,
   infoClient,
+  modifyInfoProject,
+  infoProject,
   newProject,
   listProject,
   listDeliverynote,

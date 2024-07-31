@@ -30,7 +30,7 @@ const ImageRandom = () => {
         <img
           src={imageUrl}
           alt="Random"
-          style={{ width: "100px", height: "100px", borderRadius: "50%" }}
+          style={{ width: "120px", height: "120px", borderRadius: "8px" }}
         />
       ) : (
         <p>Loading...</p>
