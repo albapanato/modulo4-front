@@ -2,14 +2,17 @@ import { infoProject } from "../utils/user";
 import { useEffect, useState } from "react";
 import ModifyProjectById from "./ModifyProjectById";
 import Link from "next/link";
-import ImageRandom from "./ImageRandom";
+
+import DelinoteFormMaterial from "./DelinoteFormMaterial";
+import DelinoteHorsForm from "./DelinoteFormHours";
 
 export default function ProjectID({ id }) {
   const [token, setToken] = useState(null);
   const [recordProject, setRecordProject] = useState({});
   const [error, setError] = useState(null);
   const [showModifyForm, setShowModifyForm] = useState(false); // mostrar/ocultar el formulario de modificación
-
+  const [storeProjectID, setProjectID] = useState(null);
+  const [storeClientID, setClientID] = useState(null);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("jwt");
@@ -19,13 +22,18 @@ export default function ProjectID({ id }) {
     }
   }, [id]);
 
+  //
   useEffect(() => {
     if (token) {
       const fetchClientDataByID = async () => {
         try {
           const recordProject = await infoProject(id, token); // Cambiar storedToken por token
           setRecordProject(recordProject);
+          setClientID(recordProject.clienId);
+          setProjectID(recordProject._id);
           console.log("recordProject:", recordProject);
+          console.log("recordProject.clientId:", recordProject.clientId);
+          console.log("recordProject.projectId:", recordProject._id);
         } catch (err) {
           setError(err.message);
         }
@@ -33,7 +41,7 @@ export default function ProjectID({ id }) {
 
       fetchClientDataByID();
     }
-  }, [token, id]);
+  }, [token, id, storeClientID, storeProjectID]);
 
   if (error) {
     return <div> Error: {error}</div>;
@@ -49,8 +57,19 @@ export default function ProjectID({ id }) {
       >
         Modificar Información
       </button>
-
       {showModifyForm && <ModifyProjectById projectId={id} />}
+      {<DelinoteFormMaterial clienID={clienId} projectID={projectId} /> && (
+        <Link href="/user/deliverynotes/new/material">
+          {" "}
+          Agregar un albaran material
+        </Link>
+      )}
+      {<DelinoteHorsForm clienID={clienId} projectID={projectId} /> && (
+        <Link href="/user/deliverynotes/new/material">
+          {" "}
+          Agregar un albaran horas
+        </Link>
+      )}
     </div>
 
     // <div className="container border w-full">

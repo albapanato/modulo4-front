@@ -2,22 +2,38 @@ import Link from "next/link";
 import "./Navbar.css";
 
 export default function Navbar() {
-  // <nav className="navbar py-5">
-  //  <nav className='bg-slate-400 mb-4 flex justify-between items-center px-20 p-3 font-bold text-black'>
   return (
-    <div className="navbar justify-end">
-      {/*  Este componente no me lo reconoce si lo pongo en el layout...porque??? */}
-      <ul>
-        <li className=" hover:text-4xl hover:p-2 hover:text-orange-400">
-          <Link href="/user">Clientes</Link>
-        </li>
-        <li className=" hover:text-4xl hover:p-2  hover:text-orange-400">
-          <Link href="/user/projects">Proyectos</Link>
-        </li>
-        <li className=" hover:text-4xl hover:p-2 hover:text-orange-400">
-          <Link href="/user/deliverynotes">Albaranes</Link>
-        </li>
-      </ul>
+    <div className="wrapper mt-10">
+      <div className="figura -rotate-90">
+        <div className="octogono absolute -z-8  p-4 -rotate-45 "></div>
+        <div className="octogono absolute -z-8  p-4 rotate-45"></div>
+        <div className="octogono absolute -z-8  p-4 rotate-90"></div>
+        <div className="octogono absolute -z-8  p-4"></div>
+      </div>
+      <div className="navbar relative">
+        <ul>
+          <li className="hover:text-5xl ">
+            <Link className="p-10" href="/user">
+              Clientes
+            </Link>
+          </li>
+          <li className="hover:text-5xl  ">
+            <Link className="p-10" href="/user/projects">
+              Proyectos
+            </Link>
+          </li>
+          <li className="hover:text-5xl  ">
+            <Link className="p-10" href="/user/deliverynotes">
+              Albaranes
+            </Link>
+          </li>
+          <li className="out text-4xl text-orange-900 hover:text-white hover:bg-black ">
+            <Link className="p-10" href="/">
+              Sing out
+            </Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }

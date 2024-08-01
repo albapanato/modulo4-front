@@ -4,7 +4,7 @@ import ShowProject from "@/app/components/ShowProject";
 
 export default function PortalProject() {
   return (
-    <div>
+    <div className="border w-full bg-blue-900">
       <div className=" container flex w-2/3 justify-center text-center p-10">
         <Link
           className="border font-bold text-white text-2xl p-6 bg-orange-300 w-2/4 rounded-md"
@@ -14,7 +14,7 @@ export default function PortalProject() {
           Crear un nuevo proyecto
         </Link>
       </div>
-      <div className="flex border p-10 mt-10 justify-center w-2/3">
+      <div className="page-p border p-2 m-4">
         <ShowProject />
       </div>
     </div>

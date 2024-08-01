@@ -38,7 +38,16 @@ main {
   margin: 0;
 }
 
-.user {
-  width: 70vw;
+.layout-p {
+  width: 98%;
   max-height: 300px;
+}
+
+.page-p {
+  margin: auto;
+  background-color: rgb(95, 185, 238);
+  width: 90%;
+  height: 600px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }

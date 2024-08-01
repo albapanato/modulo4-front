@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import DeliverynoteForm from "@/app/components/DeliverynoteForm";
 
 export default function NewDeliverynote() {
   return (
@@ -14,8 +13,10 @@ export default function NewDeliverynote() {
         </Link>
       </div>
       <div className="flex border p-10 mt-10 w-2/3">
-        <DeliverynoteForm />
+        <h1>Indica en que formato deseas registrar tu albaran</h1>
       </div>
+      <Link href="/user/deliverynotes/new/hour">Horas</Link>
+      <Link href="/user/deliverynotes/new/material">Material</Link>
     </div>
   );
 }

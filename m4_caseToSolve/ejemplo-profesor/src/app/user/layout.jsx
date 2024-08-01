@@ -8,9 +8,9 @@ export const metadata = {
 
 export default function UserLayout({ children }) {
   return (
-    <div className="user flex w-full">
+    <div className="layout-p flex">
       <div className="flex flex-col">
-        <nav className="w-full">
+        <nav className="w-full mt-2">
           <Navbar />
         </nav>
       </div>

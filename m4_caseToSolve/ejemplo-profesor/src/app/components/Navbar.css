@@ -1,37 +1,61 @@
 @import url("https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Spicy+Rice&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
+
+.wrapper {
+  width: 600px;
+}
 .navbar {
+  display: flex;
   font-family: "Amaranth", sans-serif;
-  /* 4
-  font-family: "Alef", sans-serif;
-  font-family: "Archivo Black", sans-serif; 
-  font-family: "Spicy Rice", serif;
-
-
-  */
   color: burlywood;
   min-width: 500px;
   margin: auto;
-  margin-top: 30px;
-
-  height: 80vh;
+  height: 36vh;
   font-weight: 900;
-  font-size: 45px;
-}
-.navbar ul {
-  background-color: rgba(2, 105, 202, 0.973);
-  padding: 30px;
-  width: 280px;
-  box-shadow: 4px 0px 16px rgb(5, 7, 32);
-  border-radius: 10px;
-  margin: auto;
-
+  font-size: 46px;
+  box-sizing: content-box;
   text-align: center;
 }
-.navbar ul:hover {
-  border: 10px solid hsla(16, 81%, 60%, 0.966);
+
+.figura {
+  position: absolute;
+  top: 710px;
+  left: 200px;
+}
+.octogono {
+  background-color: rgba(17, 82, 221, 0.521);
+  margin-left: 40px;
+  width: 500px;
+  height: 206px;
+  box-shadow: 0px 0px 20px rgb(196, 162, 140);
+}
+.navbar ul {
+  margin: auto;
+}
+.navbar ul li:hover {
+  color: rgba(32, 15, 126, 0.747);
+  text-decoration: none;
+  background-color: rgb(233, 119, 12);
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .navbar ul li {
   list-style: none;
+  /* text-decoration: overline; */
+
+  margin-bottom: 20px;
+  margin-left: 10px;
+  background-color: rgba(48, 115, 240, 0.925);
+  box-shadow: 2px 2px 4px rgb(13, 10, 34);
+  border-radius: 10px;
+}
+
+.out {
+  text-align: center;
+  margin: auto;
+  padding: 15px;
+  background-color: rgba(48, 115, 240, 0.925);
+  box-shadow: 2px 2px 4px rgb(13, 10, 34);
+  border-radius: 10px;
 }
