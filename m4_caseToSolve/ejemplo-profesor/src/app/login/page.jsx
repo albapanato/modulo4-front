@@ -1,11 +1,9 @@
 import LoginForm from "@/app/components/LoginForm";
-import ImageBg from "@/app/components/ImageBg";
 
 export default function RegisterPage() {
   return (
-    <div className="flex items-center justify-center md:h-screen">
-      <ImageBg />
-      <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-32 text-gray-900">
+    <div className="w-full  flex justify-center mt-52">
+      <div className=" w-2/5 md:-mt-32 bg-orange-600 p-20 rounded-full  text-gray-900">
         <LoginForm />
       </div>
     </div>

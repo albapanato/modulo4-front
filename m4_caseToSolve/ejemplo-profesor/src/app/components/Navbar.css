@@ -1,13 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Spicy+Rice&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
 .navbar {
-  padding: 20px;
-  display: block;
-  justify-content: space-between;
+  font-family: "Amaranth", sans-serif;
+  /* 4
+  font-family: "Alef", sans-serif;
+  font-family: "Archivo Black", sans-serif; 
+  font-family: "Spicy Rice", serif;
 
-  align-items: center;
+
+  */
+  color: burlywood;
+  min-width: 500px;
+  margin: auto;
+  margin-top: 30px;
+
+  height: 80vh;
+  font-weight: 900;
+  font-size: 45px;
 }
 .navbar ul {
+  background-color: rgba(2, 105, 202, 0.973);
+  padding: 30px;
+  width: 280px;
+  box-shadow: 4px 0px 16px rgb(5, 7, 32);
+  border-radius: 10px;
+  margin: auto;
+
   text-align: center;
 }
+.navbar ul:hover {
+  border: 10px solid hsla(16, 81%, 60%, 0.966);
+}
+
 .navbar ul li {
   list-style: none;
 }

@@ -60,7 +60,7 @@ export default function LoginForm() {
           type="submit"
         />
       </div>
-      <div className="mt-6 text-xl w-auto text-shadow-xl text-orange-600 text-center font-bold">
+      <div className="mt-6 text-xl w-auto text-shadow-xl text-black text-center font-bold">
         ¿No tienes cuenta?
         <Link href="/register">
           <span className=" ml-3 text-blue-900 text-3xl text-shadow-xl font-bold">

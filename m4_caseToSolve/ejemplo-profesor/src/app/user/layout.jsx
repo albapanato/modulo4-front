@@ -1,4 +1,3 @@
-import ImageBildy from "../components/ImageBildy";
 import Navbar from "../components/Navbar";
 import "../globals.css"; // Asegúrate de importar tus estilos globales
 
@@ -9,10 +8,9 @@ export const metadata = {
 
 export default function UserLayout({ children }) {
   return (
-    <div className="flex">
+    <div className="user flex w-full">
       <div className="flex flex-col">
-        {/* <ImageBildy /> */}
-        <nav>
+        <nav className="w-full">
           <Navbar />
         </nav>
       </div>
