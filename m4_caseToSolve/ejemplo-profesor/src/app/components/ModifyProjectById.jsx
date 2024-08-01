@@ -14,21 +14,20 @@ export default function ModifyProjectById({ projectId }) {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: {
-      _id: projectId,
-      name: "",
-      email: "",
-      address: {
-        street: "",
-        number: "",
-        postal: "",
-        city: "",
-        province: "",
-      },
-      code: "",
-      client: "",
-      notes: "",
+    // _id: projectId,
+    name: "",
+    //projectCode: "",
+    email: "",
+    address: {
+      street: "",
+      number: "",
+      postal: "",
+      city: "",
+      province: "",
     },
+    client: "",
+    code: "",
+    //notes: "",
   });
 
   useEffect(() => {
@@ -44,10 +43,12 @@ export default function ModifyProjectById({ projectId }) {
   const router = useRouter();
 
   const onSubmit = async (data) => {
-    data._id = projectId; // asi agregamos el valos del id a los datos del proyecto
-    console.log("data", data);
+    // data._id = projectId; // asi agregamos el valos del id a los datos del proyecto
+    console.log("data en componente", data);
     console.log("id", projectId);
     console.log("token", typeof token);
+    console.log("tipoe de data", typeof data);
+
     try {
       const res = await modifyInfoProject(projectId, token, data);
       alert("El proyecto ha sido asignado al cliente con exito"); // cambiar esto por un modal si da tiempo
@@ -62,13 +63,21 @@ export default function ModifyProjectById({ projectId }) {
     }
   };
 
+  console.log("name: ", typeof name);
+  console.log("code:", typeof code);
+  //console.log("projectCode:", typeof projectCode);
+  console.log("email: ", typeof email);
+  console.log("client: ", typeof client);
+  console.log("address: ", typeof address);
+  //console.log("notes: ", typeof notes);
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="p-10 w-full">
         <h1 className="mt-8 text-4xl font-extrabold p-1 text-blue-500">
           Integra los nuevos datos del proyecto
         </h1>
-        <div className="p-4 mt-10 grid grid-cols-2 gap-4">
+        <div className="p-4 mt-10 ">
           <div className="text-xl">
             <label className="p-2" htmlFor="name">
               Nombre del Proyecto
@@ -77,10 +86,37 @@ export default function ModifyProjectById({ projectId }) {
               className="mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
               type="text"
               id="name"
-              {...register("name", { maxLength: 20 })}
+              {...register("name", { required: true, maxLength: 20 })}
             />
             {errors.name && <p>{errors.name.message}</p>}
           </div>
+
+          <div className="text-xl">
+            <label className="p-2" htmlFor="code">
+              Codigo
+            </label>
+            <input
+              className="mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
+              type="text"
+              id="code"
+              {...register("code", { required: true })}
+            />
+            {errors.code && <p>{errors.code.message}</p>}
+          </div>
+
+          {/* <div className="text-xl">
+            <label className="p-2" htmlFor="projectCode">
+              Codigo del proyecto
+            </label>
+            <input
+              className="mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
+              type="number"
+              id="projectCode"
+              {...register("projectCode", { required: true })}
+            />
+            {errors.projectCode && <p>{errors.projectCode.message}</p>}
+          </div> */}
+
           <div className="text-xl">
             <label className="p-2" htmlFor="email">
               Email
@@ -93,18 +129,7 @@ export default function ModifyProjectById({ projectId }) {
             />
             {errors.email && <p>{errors.email.message}</p>}
           </div>
-          <div className="text-xl">
-            <label className="p-2" htmlFor="code">
-              Codigo interno del proyecto
-            </label>
-            <input
-              className="mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
-              type="text"
-              id="code"
-              {...register("code")}
-            />
-            {errors.code && <p>{errors.code.message}</p>}
-          </div>
+
           <div className="text-xl">
             <label className="p-2" htmlFor="client">
               Mongo id
@@ -113,12 +138,12 @@ export default function ModifyProjectById({ projectId }) {
               className="mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
               type="text"
               id="client"
-              {...register("client", { maxLength: 20 })}
+              {...register("client", { required: true, maxLength: 20 })}
             />
             {errors.client && <p>{errors.client.message}</p>}
           </div>
         </div>{" "}
-        <div className="text-xl">
+        {/* <div className="text-xl">
           <label className="p-2" htmlFor="notes">
             Notas
           </label>
@@ -129,25 +154,25 @@ export default function ModifyProjectById({ projectId }) {
             {...register("notes", { maxLength: 20 })}
           />
           {errors.notes && <p>{errors.notes.message}</p>}
-        </div>
+        </div> */}
         <div className="p-4 m text-xl h-10">
           <label htmlFor="address">Domicilio Fiscal: </label>
         </div>{" "}
-        <div className="p-4 flex gap-5">
-          <div className="text-xl">
-            <label className="p-2" htmlFor="address.street">
-              Calle
-            </label>
-            <input
-              className="peer block w-[500px] rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
-              type="text"
-              id="address.street"
-              {...register("address.street", {
-                required: "Street is required",
-              })}
-            />
-            {errors.address?.street && <p>{errors.address.street.message}</p>}
-          </div>
+        <div className="text-xl">
+          <label className="p-2" htmlFor="address.street">
+            Calle
+          </label>
+          <input
+            className="peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
+            type="text"
+            id="address.street"
+            {...register("address.street", {
+              required: "Street is required",
+            })}
+          />
+          {errors.address?.street && <p>{errors.address.street.message}</p>}
+        </div>
+        <div className="p-4 gap-5">
           <div className="text-xl">
             <label className="p-2" htmlFor="address.number">
               Número
@@ -158,7 +183,6 @@ export default function ModifyProjectById({ projectId }) {
               type="text"
               {...register("address.number", {
                 required: "Number is required",
-                valueAsNumber: true,
                 min: {
                   value: 1,
                   message: "Number must be greater than 0",
@@ -174,10 +198,10 @@ export default function ModifyProjectById({ projectId }) {
             <input
               className="peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
               id="address.postal"
-              type="text"
+              type="text" //prueba a cambiar esto a texto??
               {...register("address.postal", {
                 required: "Postal code is required",
-                valueAsNumber: true,
+
                 min: {
                   value: 1,
                   message: "Postal code must be greater than 0",
@@ -187,7 +211,7 @@ export default function ModifyProjectById({ projectId }) {
             {errors.address?.postal && <p>{errors.address.postal.message}</p>}
           </div>
         </div>{" "}
-        <div className="p-4 grid grid-cols-2 gap-10">
+        <div className="p-4 mt-10">
           <div className="text-xl">
             <label className="p-2" htmlFor="address.city">
               Ciudad

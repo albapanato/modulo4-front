@@ -143,10 +143,22 @@ async function infoClient(id, token) {
 
 //Por hacer......
 
-async function modifyInfoProject(id, token) {
-  console.log("Cambiando los datos del proyecto...");
-  console.log(token);
-  console.log(id);
+async function modifyInfoProject(id, token, data) {
+  console.log("Entrando por funcion modifyInfoProject, method: PUT ");
+  console.log("La cual recibe los siguientes parametros: en ese orden ");
+  console.log("ID en user.js: ", id);
+  console.log("Token en user.js: ", token);
+  console.log("data en user.js ", data);
+  console.log("Datos a enviar:", JSON.stringify(data));
+  console.log("name: ", typeof data.name);
+  console.log("code:", typeof data.code);
+  console.log("projectCode:", typeof data.projectCode);
+  console.log("email: ", typeof data.email);
+  console.log("client: ", typeof data.client);
+  console.log("address: ", typeof data.address);
+  console.log("notes: ", typeof data.notes);
+  console.log(typeof data); // Hasta aqui llega bien
+  // Sale por catch error 500
   try {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/project/${id}`;
     const response = await fetch(url, {
@@ -169,8 +181,6 @@ async function modifyInfoProject(id, token) {
 }
 
 async function infoProject(id, token) {
-  console.log("token en infoProject", token);
-  console.log("id en infoProject users.js", id);
   //console.log("Info cliente");
 
   console.log("id en infoProject user.js:", id);
@@ -187,7 +197,17 @@ async function infoProject(id, token) {
       throw new Error("Network response was not ok " + response.statusText);
     }
     const dataRes = await response.json();
-    console.log("Data proyecto:  ", dataRes); //Sale vacio??
+    console.log("Data proyecto:  ", dataRes);
+    console.log("name: ", typeof dataRes.name);
+    console.log("email: ", typeof dataRes.email);
+    console.log("code:", typeof dataRes.code);
+    //console.log("projectCode:", typeof dataRes.projectCode);
+    console.log("client: ", typeof dataRes.client);
+    console.log("address: ", typeof dataRes.address);
+    //console.log("notes: ", typeof dataRes.notes);
+    console.log(typeof dataRes);
+    console.log("token en infoProject", token);
+    console.log("id en infoProject users.js", id);
     return dataRes;
   } catch (error) {
     console.error("Failed to show data client:", error);

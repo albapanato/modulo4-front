@@ -6,7 +6,7 @@ import ProjectID from "@/app/components/ProjectID";
 function ShowProject({ params }) {
   //console.log(props)
   console.log("params", params);
-  console.log("id ", params.id);
+  console.log("params.id: ", params.id);
 
   return (
     <div className="grid grid-cols-2">
