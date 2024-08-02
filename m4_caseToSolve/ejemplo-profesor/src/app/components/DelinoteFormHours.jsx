@@ -7,6 +7,8 @@ import { newDeliverynote } from "../utils/user";
 
 export default function DelinoteHorsForm(clientID, projectID) {
   const [token, setToken] = useState(null);
+  const [storeProjectID, setProjectID] = useState("");
+  const [storeClientID, setClientID] = useState("");
 
   const {
     register,
@@ -14,8 +16,8 @@ export default function DelinoteHorsForm(clientID, projectID) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      clientId: clientID,
-      projectId: projectID,
+      clientId: storeClientID, //no pilla el dato del local storage
+      projectId: storeProjectID, //no pilla el dato del local storage
       format: "hours",
       hours: "",
       description: "",
@@ -27,10 +29,15 @@ export default function DelinoteHorsForm(clientID, projectID) {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("jwt");
       setToken(storedToken);
+      const storeClientID = localStorage.getItem("clientId");
+      setClientID(storeClientID);
+      const storeProjectID = localStorage.getItem("projectId");
+      setProjectID(storeProjectID);
       console.log("token :", storedToken);
-      console.log("token :", typeof storedToken);
+      console.log("client ID:", storeClientID);
+      console.log("proyect ID: ", storeProjectID);
     }
-  }, []);
+  }, [storeClientID, storeProjectID]);
 
   const router = useRouter();
 
@@ -53,13 +60,16 @@ export default function DelinoteHorsForm(clientID, projectID) {
   };
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 w-full">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="form-p pt-1 pb-5 text-center pl-3 pr-3"
+      >
         <div className="p-4">
-          <h1 className="mb-10 text-4xl font-extrabold p-1 text-center text-blue-500">
+          <h1 className="mb-10 text-4xl font-extrabold p-1 text-center text-orange-600">
             Nuevo Albaran de Horas
           </h1>
 
-          <div className="text-xl">
+          <div className="color-texto">
             <label htmlFor="hours">Total de horas</label>
             <input
               className="mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
@@ -70,7 +80,7 @@ export default function DelinoteHorsForm(clientID, projectID) {
             {errors.hours && <p>{errors.hours.message}</p>}
           </div>
 
-          <div className="mt-8 text-xl">
+          <div className="color-texto">
             <label htmlFor="description">Descripcion</label>
             <input
               className="mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
@@ -80,10 +90,10 @@ export default function DelinoteHorsForm(clientID, projectID) {
             />
             {errors.description && <p>{errors.description.message}</p>}
           </div>
-          <div className="mt-8 text-xl">
+          <div className="color-texto">
             <label htmlFor="workdate">Fecha de trabajo </label>
             <input
-              className="mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
+              className=" text-center mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
               type="date"
               id="workdate"
               {...register("workdate")}

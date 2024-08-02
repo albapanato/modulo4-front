@@ -11,13 +11,15 @@ export default function ProjectID({ id }) {
   const [recordProject, setRecordProject] = useState({});
   const [error, setError] = useState(null);
   const [showModifyForm, setShowModifyForm] = useState(false); // mostrar/ocultar el formulario de modificación
+  //const [showDeliHoursForm, setShowDeliHoursForm] = useState(false);
+  //const [showDeliMaterialForm, setShowDeliMaterialForm] = useState(false);
   const [storeProjectID, setProjectID] = useState(null);
   const [storeClientID, setClientID] = useState(null);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("jwt");
       setToken(storedToken);
-      localStorage.setItem("_id", id); // Guardamos el ID del cliente en localStorage
+      localStorage.setItem("projectId", id); // Guardamos el ID del proyecto en localStorage
       console.log("id del proyecto", id);
     }
   }, [id]);
@@ -57,19 +59,39 @@ export default function ProjectID({ id }) {
       >
         Modificar Información
       </button>
-      {showModifyForm && <ModifyProjectById projectId={id} />}
-      {<DelinoteFormMaterial clienID={clienId} projectID={projectId} /> && (
-        <Link href="/user/deliverynotes/new/material">
-          {" "}
+      {showModifyForm && <ModifyProjectById projectId={id} />}{" "}
+      <div className="border mt-10 flex">
+        <Link
+          className="border p-5 bg-white"
+          href="/user/deliverynotes/new/material"
+        >
           Agregar un albaran material
         </Link>
-      )}
-      {<DelinoteHorsForm clienID={clienId} projectID={projectId} /> && (
-        <Link href="/user/deliverynotes/new/material">
-          {" "}
+        <Link
+          className="border p-5 bg-white"
+          href="/user/deliverynotes/new/hour"
+        >
           Agregar un albaran horas
         </Link>
-      )}
+      </div>
+      {/* <div onClick={() => setShowDeliMaterialForm(showDeliMaterialForm)}>
+        <Link href="/user/deliverynotes/new/material">
+          <DelinoteFormMaterial
+            clienID={storeClientID}
+            projectID={storeProjectID}
+          />
+          Agregar un albaran material
+        </Link>
+      </div>
+      <div onClick={() => setShowDeliHoursForm(showDeliHoursForm)}>
+        <Link href="/user/deliverynotes/new/hour">
+          <DelinoteHorsForm
+            clienID={storeClientID}
+            projectID={storeProjectID}
+          />{" "}
+          Agregar un albaran horas
+        </Link>
+      </div> */}
     </div>
 
     // <div className="container border w-full">

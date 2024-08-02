@@ -1,9 +1,9 @@
 "use client";
 import DelinoteHorsForm from "@/app/components/DelinoteFormHours";
 
-export default function HoursForm() {
+export default function HoursForm({ params }) {
   return (
-    <div>
+    <div className="">
       <DelinoteHorsForm />
     </div>
   );

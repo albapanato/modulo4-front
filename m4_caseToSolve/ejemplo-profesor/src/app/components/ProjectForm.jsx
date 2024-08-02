@@ -34,7 +34,6 @@ export default function ProjectForm({ clientId }) {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("jwt");
       setToken(storedToken);
-
       console.log("token :", storedToken);
       console.log("idClient en ProjectForm", clientId);
     }
@@ -53,6 +52,7 @@ export default function ProjectForm({ clientId }) {
       router.push("/user/projects");
       if (res.token) {
         localStorage.setItem("jwt", res.token);
+        // localStorage.setItem("projectID", res._id); Esto sobraria ya?? ver componente ProjectID
       } else {
         throw new Error("Failed to register project.");
       }

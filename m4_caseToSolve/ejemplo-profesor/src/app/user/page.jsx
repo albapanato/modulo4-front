@@ -14,7 +14,7 @@ export default function PortalVirtual() {
           Crear nuevo cliente
         </Link>
       </div>
-      <div className="page-p border p-2 m-4 ">
+      <div className="page-p border p-2 m-4">
         <ShowClient />
       </div>
     </div>

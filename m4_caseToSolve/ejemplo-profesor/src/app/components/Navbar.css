@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Spicy+Rice&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
 
 .wrapper {
   width: 600px;
@@ -8,7 +7,7 @@
   display: flex;
   font-family: "Amaranth", sans-serif;
   color: burlywood;
-  min-width: 500px;
+  width: 500px;
   margin: auto;
   height: 36vh;
   font-weight: 900;
@@ -21,8 +20,11 @@
   position: absolute;
   top: 710px;
   left: 200px;
+  box-sizing: border-box;
 }
 .octogono {
+  box-sizing: border-box;
+
   background-color: rgba(17, 82, 221, 0.521);
   margin-left: 40px;
   width: 500px;
@@ -58,4 +60,21 @@
   background-color: rgba(48, 115, 240, 0.925);
   box-shadow: 2px 2px 4px rgb(13, 10, 34);
   border-radius: 10px;
+}
+
+@media screen and (max-width: 1200px) {
+  .figura {
+    display: none;
+  }
+
+  .navbar ul {
+    background-color: rgba(17, 82, 221, 0.521);
+    padding: 35px;
+    box-shadow: 2px 2px 4px rgb(13, 10, 34);
+    border-radius: 10px;
+  }
+  .navbar ul li {
+    text-align: center;
+    margin: 5px;
+  }
 }

@@ -11,7 +11,7 @@ export default function Navbar() {
         <div className="octogono absolute -z-8  p-4"></div>
       </div>
       <div className="navbar relative">
-        <ul>
+        <ul className="md:text-left">
           <li className="hover:text-5xl ">
             <Link className="p-10" href="/user">
               Clientes
@@ -27,7 +27,7 @@ export default function Navbar() {
               Albaranes
             </Link>
           </li>
-          <li className="out text-4xl text-orange-900 hover:text-white hover:bg-black ">
+          <li className="hover:text-white hover:bg-black ">
             <Link className="p-10" href="/">
               Sing out
             </Link>
