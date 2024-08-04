@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
           <ImageBildy />{" "}
         </div>
         <div className="flex justyfy-center ">
-          <main className="w-full">{children}</main>
+          <main className="w-full h-96">{children}</main>
         </div>
       </body>
     </html>

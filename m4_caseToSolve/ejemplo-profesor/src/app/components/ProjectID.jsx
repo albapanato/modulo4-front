@@ -50,9 +50,11 @@ export default function ProjectID({ id }) {
   }
 
   return (
-    <div>
+    <div className="w-full">
       <h1>Client Information</h1>
-      <pre>{JSON.stringify(recordProject, null, 2)}</pre>
+      <pre className="text-white bg-slate-950 ">
+        {JSON.stringify(recordProject, null, 2)}
+      </pre>
       <button
         className="mt-4 p-2 bg-blue-500 text-white"
         onClick={() => setShowModifyForm(!showModifyForm)}
@@ -63,15 +65,15 @@ export default function ProjectID({ id }) {
       <div className="border mt-10 flex">
         <Link
           className="border p-5 bg-white"
-          href="/user/deliverynotes/new/material"
-        >
-          Agregar un albaran material
-        </Link>
-        <Link
-          className="border p-5 bg-white"
           href="/user/deliverynotes/new/hour"
         >
           Agregar un albaran horas
+        </Link>
+        <Link
+          className="border p-5 bg-white"
+          href="/user/deliverynotes/new/material"
+        >
+          Agregar un albaran material
         </Link>
       </div>
       {/* <div onClick={() => setShowDeliMaterialForm(showDeliMaterialForm)}>

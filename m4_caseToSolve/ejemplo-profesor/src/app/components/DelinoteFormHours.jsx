@@ -5,19 +5,18 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { newDeliverynote } from "../utils/user";
 
-export default function DelinoteHorsForm(clientID, projectID) {
+export default function DelinoteHorsForm() {
   const [token, setToken] = useState(null);
-  const [storeProjectID, setProjectID] = useState("");
-  const [storeClientID, setClientID] = useState("");
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
-      clientId: storeClientID, //no pilla el dato del local storage
-      projectId: storeProjectID, //no pilla el dato del local storage
+      clientId: "",
+      projectId: "",
       format: "hours",
       hours: "",
       description: "",
@@ -28,22 +27,30 @@ export default function DelinoteHorsForm(clientID, projectID) {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("jwt");
+      const storedClientID = localStorage.getItem("clientId");
+      const storedProjectID = localStorage.getItem("projectId");
+
       setToken(storedToken);
-      const storeClientID = localStorage.getItem("clientId");
-      setClientID(storeClientID);
-      const storeProjectID = localStorage.getItem("projectId");
-      setProjectID(storeProjectID);
-      console.log("token :", storedToken);
-      console.log("client ID:", storeClientID);
-      console.log("proyect ID: ", storeProjectID);
+
+      reset({
+        clientId: storedClientID,
+        projectId: storedProjectID,
+        format: "hours",
+        hours: "",
+        description: "",
+        workdate: "",
+      });
+
+      console.log("token:", storedToken);
+      console.log("client ID:", storedClientID);
+      console.log("project ID:", storedProjectID);
     }
-  }, [storeClientID, storeProjectID]);
+  }, [reset]);
 
   const router = useRouter();
 
   const onSubmit = async (data) => {
     console.log("data", data);
-    console.log(token);
     console.log("token", typeof token);
     try {
       const res = await newDeliverynote(token, data);
@@ -75,7 +82,7 @@ export default function DelinoteHorsForm(clientID, projectID) {
               className="mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
               type="number"
               id="hours"
-              {...register("hours", { maxLength: 9 })}
+              {...register("hours", { required: true, maxLength: 9 })}
             />
             {errors.hours && <p>{errors.hours.message}</p>}
           </div>
@@ -86,7 +93,7 @@ export default function DelinoteHorsForm(clientID, projectID) {
               className="mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
               type="text"
               id="description"
-              {...register("description", { maxLength: 50 })}
+              {...register("description", { required: true, maxLength: 50 })}
             />
             {errors.description && <p>{errors.description.message}</p>}
           </div>
@@ -96,7 +103,7 @@ export default function DelinoteHorsForm(clientID, projectID) {
               className=" text-center mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
               type="date"
               id="workdate"
-              {...register("workdate")}
+              {...register("workdate", { required: true })}
             />
             {errors.workdate && <p>{errors.workdate.message}</p>}
           </div>

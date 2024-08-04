@@ -3,16 +3,15 @@ import Link from "next/link";
 
 export default function NewClient() {
   return (
-    <div className="">
+    <div className="w-full bg-blue-900 bg-opacity-70 rounded-lg">
       <div className="container flex justify-center text-center p-10">
-        <Link
-          className="border font-bold text-white text-2xl p-6 bg-orange-300 w-52 rounded-md"
-          href="/user"
-        >
+        <Link className="boton-volver font-bold text-2xl w-2/4" href="/user">
           Volver
         </Link>
       </div>
-      <ClientForm />
+      <div className="page-p p-2 m-4">
+        <ClientForm />
+      </div>
     </div>
   );
 }

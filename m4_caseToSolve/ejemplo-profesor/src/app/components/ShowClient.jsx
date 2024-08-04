@@ -37,17 +37,19 @@ export default function ShowClient() {
   if (clientData.length === 0 || !clientData) {
     return (
       <>
-        <div className="w-[600px] ">
-          <h2 className="text-2xl">Parece que no tienes ningún cliente!</h2>
-          <p className="text-xl">
-            Crea un para poder generar Albaranes digitales
-          </p>
-          <Link
-            href="/user/client"
-            className="rounded-sm bg-cyan-700 w-fit p-2"
-          >
-            Empieza pulsando este boton
-          </Link>
+        <div>
+          <div className="">
+            <h2 className="text-2xl">Parece que no tienes ningún cliente!</h2>
+            <p className="text-xl">
+              Crea un para poder generar Albaranes digitales
+            </p>
+            <Link
+              href="/user/client"
+              className="rounded-sm bg-cyan-700 w-fit p-2"
+            >
+              Empieza pulsando este boton
+            </Link>
+          </div>
         </div>
       </>
     );
@@ -61,20 +63,24 @@ export default function ShowClient() {
         <pre>{JSON.stringify(clientData, null, 2)}</pre>
       </div> */}
 
-      <div className="grid grid-cols-1 w-full text-right">
+      <div className="grid grid-cols-1 w-full text-left">
         <div className="mx-auto">
           {clientData.map((client) => (
-            <div key={client._id} className="flex justify-center items-center">
-              <div className="flex justify-center items-center bg-blue-100 p-4 m-4 rounded-md w-full ">
+            <div
+              key={client._id}
+              className="info-p flex justify-center items-center"
+            >
+              <div className="flex justify-center items-center p-4 m-4 rounded-md w-full ">
                 <Link key={client._id} href={`/user/client/${client._id}`}>
                   {" "}
                   <div>
-                    <h2 className=" text-lg text-orange-600  text-rigth font-bold">
-                      {" "}
-                      {client.name}
-                    </h2>
-                    <h5>_id: {client._id}</h5>
-                    <h5>userId: {client.userId}</h5>
+                    <h2 className=" text-3xl p-2 font-bold"> {client.name}</h2>
+                    <h5>
+                      <strong>_id:</strong> {client._id}
+                    </h5>
+                    <h5>
+                      <strong>userId:</strong> {client.userId}
+                    </h5>
                   </div>
                 </Link>
                 <div>

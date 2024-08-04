@@ -6,7 +6,7 @@
 #body {
   width: 100%;
   display: flex;
-
+  margin: auto;
   flex-direction: column;
   /* justify-content: center;
   justify-items: center; */
@@ -44,14 +44,26 @@ main {
   max-height: 300px;
 }
 
+.caja1 {
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px rgb(8, 5, 36);
+  margin-bottom: 10px;
+  height: 700px;
+  width: 90%;
+}
+
 .page-p {
   margin: auto;
-  background-color: rgb(95, 185, 238);
+  background-color: rgba(95, 185, 238, 0.849);
   width: 90%;
-  height: 600px;
+  height: 500px;
   overflow-y: auto;
   scroll-behavior: smooth;
+  box-shadow: 2px 2px 8px rgb(13, 10, 34);
+  border-radius: 10px;
+  font-family: "Amaranth", sans-serif;
 }
+
 .form-p {
   font-family: "Amaranth", sans-serif;
   background-color: rgba(48, 115, 240, 0.5);
@@ -83,6 +95,7 @@ main {
   margin: 10px;
   border-radius: 10px;
   font-size: 28px;
+  font-family: "Amaranth", sans-serif;
 }
 /* rgba(48, 115, 240, 0.925); */
 .boton-volver:hover {
@@ -99,6 +112,28 @@ main {
   box-shadow: 2px 0px 4px rgb(13, 10, 34);
   border-radius: 10px;
 }
+
+.info-p {
+  width: 100%;
+
+  background-color: rgba(48, 115, 240, 0.925);
+  box-shadow: 2px 2px 4px rgb(13, 10, 34);
+  padding: 12px;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+strong {
+  font-size: 25px;
+}
+
+.info-p:hover {
+  color: rgba(32, 15, 126, 0.747);
+  background-color: rgb(233, 119, 12);
+  box-shadow: 2px 2px 4px rgb(13, 10, 34);
+  border-radius: 10px;
+}
+
 @media screen and (max-width: 1000px) {
   .layout-p {
     display: block;

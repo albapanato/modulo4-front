@@ -9,7 +9,7 @@ function ShowProject({ params }) {
   console.log("params.id: ", params.id);
 
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-1">
       {/* <div>
         <ShowClient />
       </div> */}

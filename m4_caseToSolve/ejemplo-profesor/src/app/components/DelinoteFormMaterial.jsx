@@ -5,17 +5,18 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { newDeliverynote } from "../utils/user";
 
-export default function DelinoteFormMaterial(clientID, projectID) {
+export default function DelinoteFormMaterial() {
   const [token, setToken] = useState(null);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
-      clientId: clientID,
-      projectId: projectID,
+      clientId: "",
+      projectId: "",
       format: "material",
       material: "",
       description: "",
@@ -25,9 +26,22 @@ export default function DelinoteFormMaterial(clientID, projectID) {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedToken = localStorage.getItem("jwt");
+      const storedClientID = localStorage.getItem("clientId");
+      const storedProjectID = localStorage.getItem("projectId");
       setToken(storedToken);
       console.log("token :", storedToken);
       console.log("token :", typeof storedToken);
+
+      reset({
+        clientId: storedClientID,
+        projectId: storedProjectID,
+        format: "material",
+        material: "",
+        description: "",
+      });
+      console.log("token:", storedToken);
+      console.log("client ID:", storedClientID);
+      console.log("project ID:", storedProjectID);
     }
   }, []);
 
@@ -64,7 +78,7 @@ export default function DelinoteFormMaterial(clientID, projectID) {
               className="mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
               type="text"
               id="material"
-              {...register("material", { maxLength: 9 })}
+              {...register("material", { required: true, maxLength: 9 })}
             />
             {errors.material && <p>{errors.material.message}</p>}
           </div>
@@ -76,7 +90,7 @@ export default function DelinoteFormMaterial(clientID, projectID) {
             className="mt-3 peer block w-full rounded-md border border-gray-200 p-3 text-xl outline-2 text-scale-600"
             type="text"
             id="description"
-            {...register("description", { maxLength: 50 })}
+            {...register("description", { required: true, maxLength: 50 })}
           />
           {errors.description && <p>{errors.description.message}</p>}
         </div>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { listDeliverynote } from "../utils/user";
 import { useEffect, useState } from "react";
+import ImageRandom from "./ImageRandom";
 
 export default function ShowDeliverynote() {
   const [token, setToken] = useState(null);
@@ -36,8 +37,8 @@ export default function ShowDeliverynote() {
   if (deliverynoteData.length === 0 || !deliverynoteData) {
     return (
       <>
-        <div className="container text-center">
-          <h2 className="text-2xl p-4">
+        <div className="">
+          <h2 className="text-2xl">
             Parece que no tienes ningún albaran todavia!
           </h2>
           <div className=" text-center mt-20 mb-10">
@@ -65,14 +66,28 @@ export default function ShowDeliverynote() {
         <div className="flex">
           <div>
             {deliverynoteData.map((deliveryNotes) => (
-              <div className="flex justify-center items-center">
-                <div className="flex justify-center">
-                  <Link
-                    href={`/user/deliveryNotes/${deliveryNotes._id}`}
-                    key={deliveryNotes.id}
-                  >
+              <div
+                className="flex justify-center items-center"
+                key={deliveryNotes._id}
+              >
+                <div className="flex justify-center items-center bg-blue-100 p-4 m-4 rounded-md w-full ">
+                  <div>
+                    <ImageRandom />
+                  </div>
+                  <Link href={`/user/deliveryNotes/${deliveryNotes._id}`}>
                     {" "}
-                    <h5> {deliveryNotes.name}</h5>
+                    <div className="p-4">
+                      <h2 className=" text-xl text-orange-600  text-rigth font-bold">
+                        Id del Albaran: {deliveryNotes._id}
+                      </h2>
+                      <p>Id cliente:{deliveryNotes.clientId}</p>
+                      <div>
+                        Informacion de su proyecto:
+                        <pre>
+                          {JSON.stringify(deliveryNotes.projectId, null, 2)}
+                        </pre>
+                      </div>
+                    </div>
                   </Link>
                 </div>
               </div>

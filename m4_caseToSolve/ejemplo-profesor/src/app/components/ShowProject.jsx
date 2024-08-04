@@ -37,7 +37,7 @@ export default function ShowProject() {
   if (projectData.length === 0) {
     return (
       <>
-        <div className="w-[600px] ">
+        <div className="">
           <h2 className="text-2xl">Parece que no tienes ningún projecto!</h2>
           <p className="text-xl">
             Crea un para poder generar Albaranes digitales
@@ -52,38 +52,34 @@ export default function ShowProject() {
       {/* <h1>Project Information</h1>
       <pre>{JSON.stringify(projectData, null, 2)}</pre> */}
 
-      <div className="grid grid-cols-1 w-full">
-        <div className="block justify-center">
-          <div className="">
-            {projectData.map((project) => (
-              <div
-                key={project._id}
-                className="bg-blue-100 p-4 m-4 rounded-md w-full "
-              >
-                <div className="block">
-                  <div className="block p-3" key={project._id}>
-                    <Link href={`/user/projects/${project._id}`}>
-                      {" "}
-                      <h2 className=" text-2xl text-orange-600  text-center font-bold">
-                        {" "}
-                        {project.name}
-                      </h2>
-                      <div className="flex justify-end">
-                        <ImageRandom />
-                      </div>
-                      <h5>
-                        <strong>_id: </strong>
-                        {project._id}
-                      </h5>
-                      <h5>
-                        <strong> clientId:</strong> {project.clientId}
-                      </h5>
-                    </Link>
+      <div className="grid grid-cols-1 w-full text-left">
+        <div className="mx-auto">
+          {projectData.map((project) => (
+            <div
+              key={project._id}
+              className="info-p flex justify-center items-center"
+            >
+              <div className="flex justify-center items-center p-4 m-4 rounded-md w-full ">
+                <Link href={`/user/projects/${project._id}`}>
+                  {" "}
+                  <h2 className=" text-3xl">
+                    <strong>Nombre del Proyecto:</strong>
+                    {project.name}
+                  </h2>
+                  <div className="flex justify-center">
+                    <ImageRandom />
                   </div>
-                </div>
+                  <h5>
+                    <strong>Id del proyecto: </strong>
+                    {project._id}
+                  </h5>
+                  <h5>
+                    <strong>Id del cliente: </strong> {project.clientId}
+                  </h5>
+                </Link>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
