@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { listDeliverynote } from "../utils/user";
 import { useEffect, useState } from "react";
-import ImageRandom from "./ImageRandom";
+// import ImageRandom from "./ImageRandom";
 
 export default function ShowDeliverynote() {
   const [token, setToken] = useState(null);
@@ -26,7 +26,6 @@ export default function ShowDeliverynote() {
           setError(err.message);
         }
       };
-
       fetchClientData();
     }
   }, [token]);
@@ -62,7 +61,7 @@ export default function ShowDeliverynote() {
         <pre>{JSON.stringify(deliverynoteData, null, 2)}</pre>
       </div> */}
 
-      <div className="grid grid-cols-1 w-full">
+      <div className="grid grid-cols-1">
         <div className="flex">
           <div>
             {deliverynoteData.map((deliveryNotes) => (
@@ -71,10 +70,10 @@ export default function ShowDeliverynote() {
                 key={deliveryNotes._id}
               >
                 <div className="flex justify-center items-center bg-blue-100 p-4 m-4 rounded-md w-full ">
-                  <div>
+                  {/* <div>
                     <ImageRandom />
-                  </div>
-                  <Link href={`/user/deliveryNotes/${deliveryNotes._id}`}>
+                  </div> */}
+                  <Link href={`/user/deliverynotes/${deliveryNotes._id}`}>
                     {" "}
                     <div className="p-4">
                       <h2 className=" text-xl text-orange-600  text-rigth font-bold">

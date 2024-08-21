@@ -40,8 +40,14 @@ main {
 }
 
 .layout-p {
-  width: 98%;
+  margin: auto;
+  width: 90%;
   max-height: 300px;
+}
+.fondo {
+  background: white;
+  width: 600px;
+  font-size: 12px;
 }
 
 .caja1 {
@@ -77,12 +83,31 @@ main {
   padding: 12px;
   margin: 10px;
   border-radius: 10px;
-  font-size: 35px;
+  font-size: 30px;
 }
 
 .boton-2:hover {
   color: rgba(32, 15, 126, 0.747);
   background-color: rgb(233, 119, 12);
+  box-shadow: 2px 2px 4px rgb(13, 10, 34);
+  border-radius: 10px;
+}
+.boton-3 {
+  font-family: "Amaranth", sans-serif;
+  width: 300px;
+  font-weight: 700;
+  color: rgba(32, 15, 126, 0.747);
+  background-color: rgb(233, 119, 12);
+  box-shadow: 2px 2px 4px rgb(13, 10, 34);
+  padding: 12px;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.boton-3:hover {
+  color: rgba(32, 15, 126, 0.67);
+  background-color: rgba(233, 119, 12, 0.629);
   box-shadow: 2px 2px 4px rgb(13, 10, 34);
   border-radius: 10px;
 }
@@ -115,7 +140,6 @@ main {
 
 .info-p {
   width: 100%;
-
   background-color: rgba(48, 115, 240, 0.925);
   box-shadow: 2px 2px 4px rgb(13, 10, 34);
   padding: 12px;

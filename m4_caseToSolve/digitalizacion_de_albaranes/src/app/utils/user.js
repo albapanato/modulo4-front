@@ -141,24 +141,11 @@ async function infoClient(id, token) {
   }
 }
 
-//Por hacer......
-
+//Funciona
 async function modifyInfoProject(id, token, data) {
-  console.log("Entrando por funcion modifyInfoProject, method: PUT ");
-  console.log("La cual recibe los siguientes parametros: en ese orden ");
-  console.log("ID en user.js: ", id);
-  console.log("Token en user.js: ", token);
-  console.log("data en user.js ", data);
+  console.log("ID en modifyInfoProject: ", id);
+  console.log("Token en modifyInfoProject: ", token);
   console.log("Datos a enviar:", JSON.stringify(data));
-  console.log("name: ", typeof data.name);
-  console.log("code:", typeof data.code);
-  console.log("projectCode:", typeof data.projectCode);
-  console.log("email: ", typeof data.email);
-  console.log("client: ", typeof data.client);
-  console.log("address: ", typeof data.address);
-  console.log("notes: ", typeof data.notes);
-  console.log(typeof data); // Hasta aqui llega bien
-  // Sale por catch error 500
   try {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/project/${id}`;
     const response = await fetch(url, {
@@ -167,11 +154,14 @@ async function modifyInfoProject(id, token, data) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify(data), // Faltaba el cuerpo de la solicitud para poder ser modificado pavaaaa
     });
     if (!response.ok) {
       throw new Error("Network response was not ok " + response.statusText);
     }
     const dataRes = await response.json();
+    console.log("----------- dataRes: ----------");
+
     console.log("dataRes: ", dataRes);
     return dataRes;
   } catch (error) {
@@ -181,8 +171,6 @@ async function modifyInfoProject(id, token, data) {
 }
 
 async function infoProject(id, token) {
-  //console.log("Info cliente");
-
   console.log("id en infoProject user.js:", id);
   console.log(token);
   try {
@@ -264,7 +252,7 @@ async function newProject(id, token, data) {
   }
 }
 
-//Por completar
+//Funciona
 async function listDeliverynote(token) {
   console.log("listDeliverynotes user.js");
   console.log(token);
@@ -289,7 +277,7 @@ async function listDeliverynote(token) {
     throw new Error("Failed to show data client.");
   }
 }
-// Por completar
+// Funciona?
 async function newDeliverynote(token, data) {
   console.log("la info de albaranes en user.js: ", data);
   console.log("token: ", token);
@@ -318,6 +306,29 @@ async function newDeliverynote(token, data) {
   }
 }
 
+async function infoDeliverynote(id, token) {
+  console.log("id en infoProject user.js:", id);
+  console.log(token);
+  try {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/deliverynote/${id}`;
+    const response = await fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+    const dataRes = await response.json();
+    console.log("Data proyecto:  ", dataRes);
+    return dataRes;
+  } catch (error) {
+    console.error("Failed to show data client:", error);
+    throw new Error("Failed to show data client.");
+  }
+}
+
 export {
   createUser,
   validateUser,
@@ -331,4 +342,5 @@ export {
   listProject,
   listDeliverynote,
   newDeliverynote,
+  infoDeliverynote,
 };

@@ -4,7 +4,7 @@ import ShowProject from "@/app/components/ShowProject";
 
 export default function PortalProject() {
   return (
-    <div className="w-full bg-blue-900 rounded-lg p-4 max-md:mt-14">
+    <div className=" bg-blue-900 rounded-lg p-4 max-md:mt-14">
       <div className="container flex justify-center text-center p-10">
         <Link
           className="boton-volver font-bold text-2xl w-2/3"

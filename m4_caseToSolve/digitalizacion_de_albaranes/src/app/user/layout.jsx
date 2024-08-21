@@ -16,7 +16,7 @@ export default function UserLayout({ children }) {
       </div>
 
       <div className="mx-auto h-auto flex flex-col">
-        <main>{children}</main>
+        <div>{children}</div>
       </div>
     </div>
   );
