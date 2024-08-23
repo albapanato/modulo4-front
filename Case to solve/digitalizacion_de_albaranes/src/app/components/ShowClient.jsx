@@ -3,7 +3,8 @@ import { listClient } from "../utils/user";
 import { useEffect, useState } from "react";
 import ImageRandom from "./ImageRandom";
 
-export default function ShowClient() {
+export default function ShowClient({ searchTerm }) {
+  // Recibir el término de búsqueda como prop
   const [token, setToken] = useState(null);
   const [clientData, setClientData] = useState([]);
   const [error, setError] = useState(null);
@@ -20,7 +21,7 @@ export default function ShowClient() {
     if (token) {
       const fetchClientData = async () => {
         try {
-          const recordClient = await listClient(token); // Cambiar storedToken por token
+          const recordClient = await listClient(token);
           setClientData(recordClient);
         } catch (err) {
           setError(err.message);
@@ -34,64 +35,30 @@ export default function ShowClient() {
   if (error) {
     return <div>Error: {error}</div>;
   }
+
   if (clientData.length === 0 || !clientData) {
     return (
-      <>
-        <div>
-          <div className="">
-            <h2 className="text-2xl">Parece que no tienes ningún cliente!</h2>
-            <p className="text-xl">
-              Crea un para poder generar Albaranes digitales
-            </p>
-            <Link
-              href="/user/client"
-              className="rounded-sm bg-cyan-700 w-fit p-2"
-            >
-              Empieza pulsando este boton
-            </Link>
-          </div>
-        </div>
-      </>
+      <div>
+        <h2 className="text-2xl">Parece que no tienes ningún cliente!</h2>
+        <p className="text-xl">
+          Crea un para poder generar Albaranes digitales
+        </p>
+        <Link href="/user/client" className="rounded-sm bg-cyan-700 w-fit p-2">
+          Empieza pulsando este botón
+        </Link>
+      </div>
     );
   }
-  // console.log(clientData);
+
+  // Filtrar los clientes según el término de búsqueda recibido como prop
+  const filteredClients = clientData.filter(
+    (client) =>
+      client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      client.cif.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      client._id.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    // <div>
-    // //   <div>
-    // //    <h1>Client Information</h1>
-    // //     <pre>{JSON.stringify(clientData, null, 2)}</pre>
-    // //   </div>
-
-    //   <div className="grid grid-cols-1 w-full text-left">
-    //     <div className="mx-auto">
-    //       {clientData.map((client) => (
-    //         <div
-    //           key={client._id}
-    //           className="info-p flex justify-center items-center"
-    //         >
-    //           <div className="flex justify-center items-center p-4 m-4 rounded-md w-full ">
-    //             <Link key={client._id} href={`/user/client/${client._id}`}>
-    //               {" "}
-    //               <div>
-    //                 <h2 className=" text-3xl p-2 font-bold"> {client.name}</h2>
-    //                 <h5>
-    //                   <strong>_id:</strong> {client._id}
-    //                 </h5>
-    //                 <h5>
-    //                   <strong>userId:</strong> {client.userId}
-    //                 </h5>
-    //               </div>
-    //             </Link>
-    //             <div>
-    //               <ImageRandom />
-    //             </div>
-    //           </div>
-    //         </div>
-    //       ))}
-    //     </div>
-    //   </div>
-    // </div>
     <div className="w-full text-left">
       <div className="mx-auto">
         <table className="min-w-full bg-white">
@@ -109,19 +76,27 @@ export default function ShowClient() {
             </tr>
           </thead>
           <tbody>
-            {clientData.map((client) => (
-              <tr key={client._id}>
-                <td className="py-2 px-4 border-b">
-                  <Link href={`/user/client/${client._id}`}>
-                    <span className="text-blue-500 hover:underline">
-                      {client.name}
-                    </span>
-                  </Link>
+            {filteredClients.length > 0 ? (
+              filteredClients.map((client) => (
+                <tr key={client._id}>
+                  <td className="py-2 px-4 border-b">
+                    <Link href={`/user/client/${client._id}`}>
+                      <span className="text-blue-500 hover:underline">
+                        {client.name}
+                      </span>
+                    </Link>
+                  </td>
+                  <td className="py-2 px-4 border-b">{client._id}</td>
+                  <td className="py-2 px-4 border-b">{client.cif}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="3" className="text-center py-4">
+                  No se encontró ningun cliente con ese nombre.
                 </td>
-                <td className="py-2 px-4 border-b">{client._id}</td>
-                <td className="py-2 px-4 border-b">{client.cif}</td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
