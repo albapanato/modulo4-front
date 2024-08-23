@@ -16,8 +16,8 @@ export default function RootLayout({ children }) {
         <div className="logo">
           <ImageBildy />{" "}
         </div>
-        <div className="flex justyfy-center ">
-          <main className="w-full h-96">{children}</main>
+        <div className="flex justify-center ">
+          <main className="">{children}</main>
         </div>
       </body>
     </html>

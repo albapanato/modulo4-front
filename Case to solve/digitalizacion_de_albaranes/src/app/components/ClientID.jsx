@@ -52,9 +52,15 @@ export default function ClientID({ id }) {
   }
 
   return (
-    <div className="container border w-full">
-      <h1>{recordClient.name}</h1>
-      <h2>{recordClient._id}</h2>
+    <div className=" bg-white text-black p-4 rounded-lg shadow-lg">
+      <div className="flex justify-center ">
+        <button className="bg-red-600 rounded-lg p-2 cursor-pointer">
+          BORRAR USUARIO
+        </button>
+      </div>
+      <h1 className="text-2xl font-bold text-center">
+        Information del cliente:{" "}
+      </h1>
       <div className="flex">
         <div
           className="logo-container"
@@ -64,32 +70,28 @@ export default function ClientID({ id }) {
             <img
               src={logoUrl}
               alt="Random Logo"
-              style={{ width: "auto", height: "auto" }}
+              style={{ width: "100px", height: "100px" }}
             />
           ) : (
             <p>Loading...</p>
           )}
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4">
-        <p>
-          <strong>Calle:</strong> {recordClient.address?.street}
-        </p>
-        <p>
-          <strong>Número:</strong> {recordClient.address?.number}
-        </p>
-        <p>
-          <strong>Código Postal:</strong> {recordClient.address?.postal}
-        </p>
-        <p>
-          <strong>Ciudad:</strong> {recordClient.address?.city}
-        </p>
-        <p>
-          <strong>Provincia:</strong> {recordClient.address?.province}
-        </p>
-      </div>
+      <pre>{JSON.stringify(recordClient, null, 2)}</pre>
+
+      {/* <h1>
+        <strong>{recordClient.name}</strong>
+      </h1>
+      <h2>{recordClient._id}</h2>
+
+      <p>Calle: {recordClient.address?.street}</p>
+      <p>Número: {recordClient.address?.number}</p>
+      <p>Código Postal: {recordClient.address?.postal}</p>
+      <p>Ciudad: {recordClient.address?.city}</p>
+      <p>Provincia: {recordClient.address?.province}</p> */}
+
       <div className=" text-white text-xl font-bold w-56 bg-cyan-500 p-3 mb-4 text-center mx-auto rounded-lg">
-        <Link href="/user/projects/new ">
+        <Link className="cursor-pointer" href="/user/projects/new ">
           Asignar un proyecto a este cliente
         </Link>
       </div>

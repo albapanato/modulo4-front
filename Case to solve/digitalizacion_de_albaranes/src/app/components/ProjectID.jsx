@@ -61,6 +61,10 @@ export default function ProjectID({ id }) {
 
   return (
     <div className="w-full bg-white text-black p-4 rounded-lg shadow-lg">
+      {/* <div>
+         <h1>Client Information</h1>
+         <pre>{JSON.stringify(deliverynoteData, null, 2)}</pre>
+       </div> */}
       <div className="flex justify-evenly text-xs text-center">
         <Link className="boton-3" href="/user/deliverynotes/new/hour">
           Pincha para agregar a este cliente un albaran de horas

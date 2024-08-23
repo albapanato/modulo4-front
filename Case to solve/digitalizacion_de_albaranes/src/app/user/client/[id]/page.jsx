@@ -7,11 +7,11 @@ function ShowInfo({ params }) {
   console.log("params", params);
 
   return (
-    <div className="grid grid-cols-2">
+    <div className="w-full">
       {/* <div>
         <ShowClient />
       </div> */}
-      <div>
+      <div className="">
         <ClientID id={params.id} />
       </div>
     </div>

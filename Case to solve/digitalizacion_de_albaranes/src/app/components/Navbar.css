@@ -4,18 +4,18 @@
   display: flex;
   font-family: "Amaranth", sans-serif;
   color: burlywood;
-  height: 36vh;
+  min-height: 80vh;
   font-weight: 900;
-  font-size: 30px;
+  font-size: 20px;
   box-sizing: content-box;
   text-align: center;
+  background-color: rgba(17, 82, 221, 0.89);
+  box-shadow: 2px 2px 4px rgb(13, 10, 34);
 }
 
 .navbar ul {
   margin: auto;
-  background-color: rgba(17, 82, 221, 0.521);
   padding: 35px;
-  box-shadow: 2px 2px 4px rgb(13, 10, 34);
   border-radius: 10px;
 }
 .navbar ul li:hover {
@@ -54,9 +54,7 @@
   }
 
   .navbar ul {
-    background-color: rgba(17, 82, 221, 0.521);
     padding: 35px;
-    box-shadow: 2px 2px 4px rgb(13, 10, 34);
     border-radius: 10px;
   }
   .navbar ul li {

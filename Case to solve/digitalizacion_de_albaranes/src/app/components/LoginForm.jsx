@@ -26,15 +26,15 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-      <h1 className="mb-5 text-center text-4xl text-shadow-xl text-blue-900 font-bold">
+      <h1 className=" p-1 text-center text-2xl shadow-md  bg-red-200 bg-opacity-75 rounded-lg text-orange-500 text-shadow-xl font-bold">
         Accede a tu cuenta
       </h1>
-      <div className="flex-1 rounded-lg bg-orange-400 bg-opacity-75 px-6 pb-8 pt-4">
-        <div className="w-full mt-4">
-          <div className="relative pt-3">
+      <div className="flex-1 rounded-lg bg-opacity-75  bg-red-200 p-4">
+        <div className="w-full ">
+          <div className="relative">
             <label htmlFor="email"></label>
             <input
-              className="peer block w-full rounded-md border border-gray-200 p-4 text-lg outline-2 text-scale-600"
+              className="text-center peer block w-full rounded-md border border-gray-200 p-1 text-lg outline-2 text-scale-600"
               type="email"
               id="email"
               placeholder="Email"
@@ -46,7 +46,7 @@ export default function LoginForm() {
           <div className="relative mt-4">
             <label htmlFor="password"></label>
             <input
-              className="peer block w-full rounded-md border border-gray-200 p-4 text-lg outline-2 text-slate-700"
+              className="text-center peer block w-full rounded-md border border-gray-200 p-1 text-lg outline-2 text-slate-700"
               type="password"
               id="password"
               placeholder="Contraseña"
@@ -55,15 +55,17 @@ export default function LoginForm() {
             {errors.password?.type === "required" && "Contraseña es requerida"}
           </div>
         </div>
-        <input
-          className="mt-4 w-full text-3xl pt-3 cursor-pointer text-blue-900 text-shadow-xl font-bold"
-          type="submit"
-        />
+        <div className="flex justify-center mt-4 w-full">
+          <input
+            className="p-1 w-2/4 rounded-lg bg-orange-600 text-xl cursor-pointer text-blue-900 shadow-md font-bold"
+            type="submit"
+          />
+        </div>
       </div>
-      <div className="flex justify-center items-center p-2 rounded-lg mx-auto w-3/4 bg-orange-400 bg-opacity-75 mt-6 text-xl text-shadow-xl text-black text-center font-bold">
+      <div className="flex justify-center items-center p-2 rounded-lg mx-auto w-full bg-orange-400 bg-opacity-75 mt-6 text-lg shadow-md  text-black text-center font-bold">
         ¿No tienes cuenta?
         <Link href="/register">
-          <span className=" ml-3 text-blue-900 text-3xl text-shadow-xl font-bold">
+          <span className=" text-shadow-xl ml-3 text-blue-900 text-xl font-bold">
             Registrate
           </span>
         </Link>

@@ -57,39 +57,73 @@ export default function ShowClient() {
   // console.log(clientData);
 
   return (
-    <div>
-      {/* <div>
-        <h1>Client Information</h1>
-        <pre>{JSON.stringify(clientData, null, 2)}</pre>
-      </div> */}
+    // <div>
+    // //   <div>
+    // //    <h1>Client Information</h1>
+    // //     <pre>{JSON.stringify(clientData, null, 2)}</pre>
+    // //   </div>
 
-      <div className="grid grid-cols-1 w-full text-left">
-        <div className="mx-auto">
-          {clientData.map((client) => (
-            <div
-              key={client._id}
-              className="info-p flex justify-center items-center"
-            >
-              <div className="flex justify-center items-center p-4 m-4 rounded-md w-full ">
-                <Link key={client._id} href={`/user/client/${client._id}`}>
-                  {" "}
-                  <div>
-                    <h2 className=" text-3xl p-2 font-bold"> {client.name}</h2>
-                    <h5>
-                      <strong>_id:</strong> {client._id}
-                    </h5>
-                    <h5>
-                      <strong>userId:</strong> {client.userId}
-                    </h5>
-                  </div>
-                </Link>
-                <div>
-                  <ImageRandom />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+    //   <div className="grid grid-cols-1 w-full text-left">
+    //     <div className="mx-auto">
+    //       {clientData.map((client) => (
+    //         <div
+    //           key={client._id}
+    //           className="info-p flex justify-center items-center"
+    //         >
+    //           <div className="flex justify-center items-center p-4 m-4 rounded-md w-full ">
+    //             <Link key={client._id} href={`/user/client/${client._id}`}>
+    //               {" "}
+    //               <div>
+    //                 <h2 className=" text-3xl p-2 font-bold"> {client.name}</h2>
+    //                 <h5>
+    //                   <strong>_id:</strong> {client._id}
+    //                 </h5>
+    //                 <h5>
+    //                   <strong>userId:</strong> {client.userId}
+    //                 </h5>
+    //               </div>
+    //             </Link>
+    //             <div>
+    //               <ImageRandom />
+    //             </div>
+    //           </div>
+    //         </div>
+    //       ))}
+    //     </div>
+    //   </div>
+    // </div>
+    <div className="w-full text-left">
+      <div className="mx-auto">
+        <table className="min-w-full bg-white">
+          <thead>
+            <tr>
+              <th className="py-2 px-4 border-b-2 border-gray-200 bg-gray-100">
+                ID
+              </th>
+              <th className="py-2 px-4 border-b-2 border-gray-200 bg-gray-100">
+                NOMBRE
+              </th>
+              <th className="py-2 px-4 border-b-2 border-gray-200 bg-gray-100">
+                CIF
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {clientData.map((client) => (
+              <tr key={client._id}>
+                <td className="py-2 px-4 border-b">
+                  <Link href={`/user/client/${client._id}`}>
+                    <span className="text-blue-500 hover:underline">
+                      {client.name}
+                    </span>
+                  </Link>
+                </td>
+                <td className="py-2 px-4 border-b">{client._id}</td>
+                <td className="py-2 px-4 border-b">{client.cif}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
