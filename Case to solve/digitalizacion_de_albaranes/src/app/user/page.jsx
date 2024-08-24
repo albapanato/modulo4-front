@@ -8,9 +8,9 @@ export default function PortalVirtual() {
 
   return (
     <div className="grid grid-row-2 gap-6">
-      <div className="flex justify-evenly ">
+      <div className="flex items-center justify-center">
         {/* Barra de búsqueda */}
-        <div className="w-full border">
+        <div className="w-full">
           <input
             type="text"
             placeholder="Buscar clientes..."
@@ -19,9 +19,11 @@ export default function PortalVirtual() {
             className="w-full p-2 border border-gray-300 rounded-md"
           />
         </div>
-        <Link className="boton-volver tex" href="/user/client">
-          Crear nuevo cliente
-        </Link>
+        <div className="w-2/4">
+          <Link className="boton-volver tex" href="/user/client">
+            Crear nuevo cliente
+          </Link>
+        </div>
       </div>
 
       <div className="wrapper-page-p bg-blue-900 bg-opacity-70 rounded-lg p-4 max-md:mt-14">
