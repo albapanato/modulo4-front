@@ -1,8 +1,13 @@
 "use client";
 
-export async function downloadDeliveryNotePDFclient(id, token) {
+export async function downloadDeliveryNotePDFclient({
+  id,
+  token,
+  quantity,
+  price,
+}) {
   console.log("TOKEN ", token);
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/deliverynote/pdf/${id}`;
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/deliverynote/pdf/${id}?quantity=${quantity}&price=${price}`;
   try {
     const response = await fetch(url, {
       method: "GET",

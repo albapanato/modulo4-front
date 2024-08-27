@@ -2,12 +2,9 @@ import Link from "next/link";
 import { listDeliverynote } from "../utils/user";
 import { cookies } from "next/headers";
 
-import ImageRandom from "./ImageRandom";
-
 export default async function ShowDeliverynote() {
   const allCookies = cookies();
   const token = allCookies.get("jwt")?.value;
-
   const deliverynoteData = await listDeliverynote(token);
 
   if (deliverynoteData.length === 0 || !deliverynoteData) {
@@ -41,35 +38,29 @@ export default async function ShowDeliverynote() {
       <table className="min-w-full bg-white">
         <thead className="sticky top-0">
           <tr>
-            <th className=" py-2 px-4 border-b-2 border-gray-200 bg-gray-100">
+            <th className=" p-2 border-b-2 w-1/3 border-gray-200 bg-gray-100">
               EMPRESA
             </th>
-            <th className="py-2 px-4 border-b-2 border-gray-200 bg-gray-100">
+            <th className="p-2 border-b-2 w-1/3 border-gray-200 bg-gray-100">
               FORMATO
             </th>
-            <th className="py-2 px-4 border-b-2 border-gray-200 bg-gray-100">
+            <th className="p-2 border-b-2 w-1/3 border-gray-200 bg-gray-100">
               ID CLIENTE
             </th>
-            <th className="py-2 px-4 border-b-2 border-gray-200 bg-gray-100"></th>
           </tr>
         </thead>
         <tbody>
           {deliverynoteData.map((deliverynote) => (
             <tr className=" " key={deliverynote._id}>
-              <td className="border-b">
+              <td className="border-b p-3">
                 <Link href={`/user/deliverynotes/${deliverynote._id}`}>
                   <span className="text-blue-500 hover:underline">
                     {deliverynote.projectId.name}
                   </span>
                 </Link>
               </td>
-              <td className="border-b">{deliverynote.format}</td>
-              <td className="border-b">{deliverynote.clientId}</td>
-              <td className="border-b w-44">
-                <div className="">
-                  <ImageRandom />
-                </div>
-              </td>
+              <td className="border-b p-3">{deliverynote.format}</td>
+              <td className="border-b p-3">{deliverynote.clientId}</td>
             </tr>
           ))}
         </tbody>

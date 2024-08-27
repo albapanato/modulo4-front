@@ -328,7 +328,8 @@ async function infoDeliverynote(id, token) {
     return dataRes;
   } catch (error) {
     console.error("Failed to show data client:", error);
-    throw new Error("Failed to show data client.");
+    // throw new Error("Failed to show data client.");
+    return { error: true };
   }
 }
 

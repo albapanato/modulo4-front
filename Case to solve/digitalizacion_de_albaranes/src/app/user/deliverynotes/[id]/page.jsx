@@ -1,4 +1,3 @@
-"use client";
 import DeliverynoteID from "@/app/components/DeliverynoteID";
 
 function ShowDeliverynote({ params }) {
