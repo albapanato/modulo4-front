@@ -26,6 +26,7 @@ export async function downloadDeliveryNotePDFclient(id, token) {
 }
 
 export function getCookie(name) {
+  if (typeof window === "undefined") return null;
   let cookies = document.cookie.split(";");
   for (let cookie of cookies) {
     let [key, value] = cookie.trim().split("=");
