@@ -331,31 +331,6 @@ async function infoDeliverynote(id, token) {
   }
 }
 
-async function pdfDeliverynote(id, token) {
-  console.log("id delinote pdf: ", id);
-  console.log("token: ", token);
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/deliverynote/pdf/${id}`;
-  try {
-    console.log("url llamada pdfDelinote: ", url);
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error("Error de red: " + response.statusText);
-    }
-    const blob = await response.blob();
-    const urlBlob = window.URL.createObjectURL(blob);
-    window.open(urlBlob, "_blank");
-  } catch (error) {
-    console.error("Error al abrir el PDF del albarán:", error);
-    throw new Error("No se pudo abrir el PDF del albarán.");
-  }
-}
-
 export {
   createUser,
   validateUser,
@@ -370,5 +345,4 @@ export {
   listDeliverynote,
   newDeliverynote,
   infoDeliverynote,
-  pdfDeliverynote,
 };

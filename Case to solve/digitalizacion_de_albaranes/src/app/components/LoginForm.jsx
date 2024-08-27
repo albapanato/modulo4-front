@@ -17,6 +17,7 @@ export default function LoginForm() {
   const onSubmit = async (data) => {
     const res = await loginUser(data);
     if (res.token) {
+      document.cookie = `jwt=${res.token}`;
       localStorage.setItem("jwt", res.token);
       router.push("/user");
     } else {

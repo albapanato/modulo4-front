@@ -1,5 +1,6 @@
-import { infoDeliverynote, pdfDeliverynote } from "../utils/user";
 import { useEffect, useState } from "react";
+import { downloadDeliveryNotePDF, infoDeliverynote } from "../utils/user";
+import { downloadDeliveryNotePDFclient, getCookie } from "../utils/services";
 
 export default function DeliverynoteID({ id }) {
   const [token, setToken] = useState(null);
@@ -31,11 +32,14 @@ export default function DeliverynoteID({ id }) {
   }, [token, id]);
 
   const handleDownloadPDF = async (id) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("jwt");
+    // TODO: cambiar en cliente localStorage.getItem("jwt") --> getCookie("jwt");
     console.log(id);
     console.log(token);
     try {
-      await pdfDeliverynote(id, token);
+      console.log("entra");
+      await downloadDeliveryNotePDFclient(id, token);
+      console.log("sale");
     } catch (error) {
       console.error("Error al descargar el PDF del albarán:", error);
       alert(`Error al descargar el PDF: ${error.message}`);
@@ -56,7 +60,7 @@ export default function DeliverynoteID({ id }) {
         <button
           className="boton-3"
           onClick={(e) => {
-            e.stopPropagation();
+            // e.stopPropagation();
             handleDownloadPDF(recordDeliverynote._id);
           }}
         >
