@@ -1,38 +1,15 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { listDeliverynote } from "../utils/user";
-// import ImageRandom from "./ImageRandom";
+import { cookies } from "next/headers";
 
-export default function ShowDeliverynote() {
-  const [token, setToken] = useState(null);
-  const [deliverynoteData, setDeliverynoteData] = useState([]);
-  const [error, setError] = useState(null);
+import ImageRandom from "./ImageRandom";
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("jwt");
-      setToken(storedToken);
-      console.log("token :", storedToken);
-    }
-  }, []);
+export default async function ShowDeliverynote() {
+  const allCookies = cookies();
+  const token = allCookies.get("jwt")?.value;
 
-  useEffect(() => {
-    if (token) {
-      const fetchClientData = async () => {
-        try {
-          const recordDeliverynote = await listDeliverynote(token); // Cambiar storedToken por token
-          setDeliverynoteData(recordDeliverynote);
-        } catch (err) {
-          setError(err.message);
-        }
-      };
-      fetchClientData();
-    }
-  }, [token]);
+  const deliverynoteData = await listDeliverynote(token);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
   if (deliverynoteData.length === 0 || !deliverynoteData) {
     return (
       <>
@@ -52,7 +29,7 @@ export default function ShowDeliverynote() {
       </>
     );
   }
-  console.log(deliverynoteData);
+  console.log("deliverynoteData: ", deliverynoteData);
 
   return (
     <div>
@@ -61,39 +38,42 @@ export default function ShowDeliverynote() {
         <pre>{JSON.stringify(deliverynoteData, null, 2)}</pre>
       </div> */}
 
-      <div className="grid grid-cols-1">
-        <div className="flex">
-          <div>
-            {deliverynoteData.map((deliveryNotes) => (
-              <div
-                className="flex justify-center items-center"
-                key={deliveryNotes._id}
-              >
-                <div className="flex justify-center items-center bg-blue-100 p-4 m-4 rounded-md w-full ">
-                  {/* <div>
-                    <ImageRandom />
-                  </div> */}
-                  <Link href={`/user/deliverynotes/${deliveryNotes._id}`}>
-                    {" "}
-                    <div className="p-4">
-                      <h2 className=" text-xl text-orange-600  text-rigth font-bold">
-                        Id del Albaran: {deliveryNotes._id}
-                      </h2>
-                      <p>Id cliente:{deliveryNotes.clientId}</p>
-                      <div>
-                        Informacion de su proyecto:
-                        <pre>
-                          {JSON.stringify(deliveryNotes.projectId, null, 2)}
-                        </pre>
-                      </div>
-                    </div>
-                  </Link>
+      <table className="min-w-full bg-white">
+        <thead className="sticky top-0">
+          <tr>
+            <th className=" py-2 px-4 border-b-2 border-gray-200 bg-gray-100">
+              EMPRESA
+            </th>
+            <th className="py-2 px-4 border-b-2 border-gray-200 bg-gray-100">
+              FORMATO
+            </th>
+            <th className="py-2 px-4 border-b-2 border-gray-200 bg-gray-100">
+              ID CLIENTE
+            </th>
+            <th className="py-2 px-4 border-b-2 border-gray-200 bg-gray-100"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {deliverynoteData.map((deliverynote) => (
+            <tr className=" " key={deliverynote._id}>
+              <td className="border-b">
+                <Link href={`/user/deliverynotes/${deliverynote._id}`}>
+                  <span className="text-blue-500 hover:underline">
+                    {deliverynote.projectId.name}
+                  </span>
+                </Link>
+              </td>
+              <td className="border-b">{deliverynote.format}</td>
+              <td className="border-b">{deliverynote.clientId}</td>
+              <td className="border-b w-44">
+                <div className="">
+                  <ImageRandom />
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
