@@ -26,7 +26,7 @@
 }
 
 main {
-  height: 80vh;
+  height: 82vh;
   background: rgba(17, 82, 221, 0.89);
 }
 
@@ -105,17 +105,19 @@ main {
   font-family: "Amaranth", sans-serif;
   width: 200px;
   font-weight: 700;
-  color: #080421be;
-  background-color: rgba(12, 148, 233, 0.756);
+  background-color: rgba(32, 15, 126, 0.747);
+  color: rgb(233, 119, 12);
+
   box-shadow: 2px 2px 4px rgb(13, 10, 34);
   padding: 12px;
   margin: 10px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .boton-3:hover {
-  background-color: rgb(12, 148, 233);
+  color: rgba(32, 15, 126, 0.747);
+  background-color: rgb(233, 119, 12);
 }
 .boton-volver {
   text-align: center;

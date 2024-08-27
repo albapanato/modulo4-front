@@ -67,6 +67,7 @@ async function loginUser(data) {
 }
 //Funciona
 async function listClient(token) {
+  console.log(token);
   try {
     //console.log("Tu lista de clientes");
     const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/client`;
