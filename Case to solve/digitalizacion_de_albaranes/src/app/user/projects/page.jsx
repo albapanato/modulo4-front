@@ -1,4 +1,4 @@
-"use client";
+import { Suspense } from "react";
 import Link from "next/link";
 import ShowProject from "@/app/components/ShowProject";
 
@@ -10,12 +10,13 @@ export default function PortalProject() {
           className="boton-volver font-bold text-2xl w-2/3"
           href="/user/projects/new"
         >
-          {" "}
           Crear un nuevo proyecto
         </Link>
       </div>
       <div className="caja1  page-p ">
-        <ShowProject />
+        <Suspense fallback={"Loading..."}>
+          <ShowProject />
+        </Suspense>
       </div>
     </div>
   );

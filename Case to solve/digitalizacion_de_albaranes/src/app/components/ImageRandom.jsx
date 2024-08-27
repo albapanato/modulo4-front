@@ -1,34 +1,13 @@
-import React, { useEffect, useState } from "react";
-
-const ImageRandom = () => {
-  const [imageUrl, setImageUrl] = useState("");
-
-  useEffect(() => {
-    // Función para obtener la imagen aleatoria
-    const fetchRandomImage = async () => {
-      try {
-        const response = await fetch("https://picsum.photos/100");
-        if (response.ok) {
-          setImageUrl(response.url);
-        } else {
-          console.error("Error fetching the image");
-        }
-      } catch (error) {
-        console.error("Error fetching the image:", error);
-      }
-    };
-
-    fetchRandomImage();
-  }, []);
-
+async function ImageRandom() {
+  const { url } = await fetch("https://picsum.photos/100");
   return (
     <div
       className="image-container"
       style={{ textAlign: "center", margin: "20px" }}
     >
-      {imageUrl ? (
+      {url ? (
         <img
-          src={imageUrl}
+          src={url}
           alt="Random"
           style={{ width: "120px", height: "120px", borderRadius: "8px" }}
         />
@@ -37,6 +16,6 @@ const ImageRandom = () => {
       )}
     </div>
   );
-};
+}
 
 export default ImageRandom;

@@ -1,5 +1,6 @@
 import ClientForm from "@/app/components/ClientForm";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default function NewClient() {
   return (
@@ -10,7 +11,9 @@ export default function NewClient() {
         </Link>
       </div>
       <div className="page-p p-2 m-4">
-        <ClientForm />
+        <Suspense fallback={"LOADING..."}>
+          <ClientForm />
+        </Suspense>
       </div>
     </div>
   );

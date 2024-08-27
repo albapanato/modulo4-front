@@ -3,7 +3,7 @@ import { infoDeliverynote } from "../utils/user";
 import { downloadDeliveryNotePDFclient, getCookie } from "../utils/services";
 
 export default function DeliverynoteID({ id }) {
-  const [recordDeliverynote, setRecordDeliverynote] = useState(undefined);
+  const [recordDeliverynote, setRecordDeliverynote] = useState(undefined); // al intentar pintar la info de recordDeliverynote antes de hacer la llamada, tiraba error, cambiado de {} a undefined
   const [error, setError] = useState(null);
 
   useEffect(() => {

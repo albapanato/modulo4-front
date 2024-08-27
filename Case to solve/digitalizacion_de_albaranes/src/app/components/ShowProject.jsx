@@ -1,39 +1,13 @@
 import Link from "next/link";
 import { listProject } from "@/app/utils/user";
-import { useEffect, useState } from "react";
+import { cookies } from "next/headers";
 import ImageRandom from "./ImageRandom";
 
-export default function ShowProject() {
-  const [token, setToken] = useState(null);
-  const [projectData, setProjectData] = useState([]);
-  const [error, setError] = useState(null);
+export default async function ShowProject() {
+  const allCookies = cookies();
+  const token = allCookies.get("jwt")?.value;
+  const projectData = await listProject(token);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("jwt");
-      setToken(storedToken);
-      console.log("token :", storedToken);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (token) {
-      const fetchProjectData = async () => {
-        try {
-          const recordProject = await listProject(token); // Cambiar storedToken por token
-          setProjectData(recordProject);
-        } catch (err) {
-          setError(err.message);
-        }
-      };
-
-      fetchProjectData();
-    }
-  }, [token]);
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
   if (projectData.length === 0) {
     return (
       <>
@@ -46,12 +20,10 @@ export default function ShowProject() {
       </>
     );
   }
+  console.log(projectData);
 
   return (
     <div>
-      {/* <h1>Project Information</h1>
-      <pre>{JSON.stringify(projectData, null, 2)}</pre> */}
-
       <div className="grid grid-cols-1 w-full text-left">
         <div className="mx-auto">
           {projectData.map((project) => (
