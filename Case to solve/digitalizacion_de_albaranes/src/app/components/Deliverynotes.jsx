@@ -1,8 +1,9 @@
+import { cookies } from "next/headers";
+import Image from "next/image";
 import Link from "next/link";
 import { listDeliverynote } from "../utils/deliverynotes";
-import { cookies } from "next/headers";
+import ButtonLink from "./ButtonLink";
 import DelinoteBotonDelete from "./DelinoteBotonDelete";
-import Image from "next/image";
 
 export default async function Deliverynotes() {
   const allCookies = cookies();
@@ -42,57 +43,59 @@ export default async function Deliverynotes() {
       </>
     );
   }
-  // console.log("deliverynoteData: ", deliverynoteData);
 
   return (
-    <div className="">
-      {/* <div>
-        <h1>Client Information</h1>
-        <pre>{JSON.stringify(deliverynoteData, null, 2)}</pre>
-      </div> */}
-
-      <div className="flex justify-end mb-4">
-        <Link
-          className=" text-white text-md p-3 bg-[#3073f0ec] rounded-sm"
+    <div className="h-full">
+      <div className="flex justify-end mb-2">
+        <ButtonLink
+          text={"Nuevo albarán"}
           href="/user/deliverynotes/new"
-        >
-          Agregar nuevo albaran
-        </Link>
+          className={"bg-indigo-600 text-white hover:bg-indigo-500"}
+        />
       </div>
-
-      <table className="min-w-full bg-white">
-        <thead className="sticky top-0">
+      <table className=" block min-w-full bg-transparent text-white max-h-[100%] overflow-scroll">
+        <thead className="top-0 bg-transparent text-left">
           <tr>
-            <th className="font-normal p-2 border-b-2 w-1/5 border-gray-200 bg-gray-100">
-              PROYECTO
-            </th>
-            <th className="font-normal p-2 border-b-2 w-1/5 border-gray-200 bg-gray-100">
-              EMAIL CLIENTE
-            </th>
-            <th className="font-normal p-2 border-b-2 w-1/5 border-gray-200 bg-gray-100">
+            <th className="font-normal p-2 border-b-2 w-1/3">PROYECTO</th>
+            <th className="font-normal p-2 border-b-2 w-1/3">EMAIL CLIENTE</th>
+            <th className="font-normal p-2 border-b-2 w-1/3">
               DESCRIPCIÓN ALBARÁN
             </th>
-            <th className="font-normal p-2 border-b-2 w-1/5 border-gray-200 bg-gray-100">
-              FORMATO
-            </th>
-            <th className="font-normal p-2 border-b-2 w-1/5 border-gray-200 bg-gray-100"></th>
+            <th className="font-normal p-2 border-b-2 w-1/3">FORMATO</th>
+            <th className="font-normal p-2 border-b-2 w-1/3"></th>
           </tr>
         </thead>
         <tbody>
           {deliverynoteData.map((deliverynote) => (
             <tr className=" " key={deliverynote._id}>
-              <td className="border-b p-3">
-                <Link href={`/user/deliverynotes/${deliverynote._id}`}>
-                  <span className="text-blue-500 hover:underline">
-                    {deliverynote.projectId.name}
-                  </span>
-                </Link>
-              </td>
+              <td className="border-b p-3">{deliverynote.projectId.name}</td>
               <td className="border-b p-3">{deliverynote.projectId.email}</td>
               <td className="border-b p-3">{deliverynote.description}</td>
               <td className="border-b p-3">{deliverynote.format}</td>
               <td className="border-b p-3">
-                <DelinoteBotonDelete id={deliverynote._id} />
+                <div className=" flex items-center gap-2">
+                  <Link
+                    className="block w-7 h-7"
+                    href={`/user/deliverynotes/${deliverynote._id}`}
+                  >
+                    <Image
+                      src="/img/icons/view-white.png"
+                      alt="view-icon"
+                      width={24}
+                      height={24}
+                    />
+                  </Link>
+                  <DelinoteBotonDelete id={deliverynote._id} />
+                  {/* 
+                    <Image
+                      src="/img/icons/edit-white.png"
+                      alt="edit-icon"
+                      width={24}
+                      height={24}
+                    />
+                  </Link>
+                   */}
+                </div>
               </td>
             </tr>
           ))}

@@ -115,7 +115,7 @@ export default function ProjectForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="w-2/4 mx-auto">
+      <form onSubmit={handleSubmit} className="w-3/4 mx-auto">
         <div className="p-4 mx-auto">
           <div className="flex gap-4 justify-between">
             <h1 className="text-white w-full text-2xl md:text-3xl self-center font-bold leading-tight px-4 md:px-0">

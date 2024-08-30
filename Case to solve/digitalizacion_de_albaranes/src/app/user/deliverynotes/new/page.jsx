@@ -4,16 +4,16 @@ import DeliveryForm from "../../../components/DeliverynoteForm";
 
 export default function NewDeliverynote() {
   return (
-    <div className="form-p mt-8 p-2 rounded-lg">
-      <div className="flex justify-center text-center m-10">
-        <Link
+    <div className="mt-[70px] h-full flex justify-center items-center flex-col custom-shadow backdrop-blur-lg bg-black/25">
+      <div className="w-full p-2 m-4">
+        {/* <Link
           className="boton-volver font-bold text-white bg-orange-300 w-44 rounded-md"
           href="/user/deliverynotes"
         >
           Volver
-        </Link>
+        </Link> */}
+        <DeliveryForm />
       </div>
-      <DeliveryForm />
       {/* <div className=" flex  justify-center">
         <h1 className="text-white font-bold m-5 text-4xl text-center">
           Indica en que formato deseas registrar tu albaran

@@ -55,7 +55,7 @@ export default function ClientForm() {
   };
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="w-3/4 mx-auto">
         <div className="p-4 mx-auto">
           <div className="flex justify-between">
             <h1 className="text-white w-full text-2xl md:text-3xl self-center font-bold leading-tight px-4 md:px-0">

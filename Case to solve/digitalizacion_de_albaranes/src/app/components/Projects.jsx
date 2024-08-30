@@ -25,7 +25,6 @@ export default function Projects() {
   const [debouncedSearchTerm] = useDebounce(searchTerm, 300);
 
   useEffect(() => {
-    console.log("entra");
     setLoading(true);
     try {
       const fetchProjects = async () => {
@@ -59,7 +58,7 @@ export default function Projects() {
         <LoadingSpinner fullView />
       ) : filteredProjects.length > 0 ? (
         <div className="h-full">
-          <div className="flex justify-end mb-2 gap-4">
+          <div className="flex justify-between mb-2 gap-4">
             <Searcher
               placeholder={"Busca proyectos"}
               onSearch={(term) => setSearchTerm(term)}

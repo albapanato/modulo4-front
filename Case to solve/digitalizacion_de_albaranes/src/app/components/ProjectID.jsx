@@ -1,8 +1,7 @@
 import { cookies } from "next/headers";
+import { infoClient } from "../utils/clients";
 import { infoProject } from "../utils/projects";
 import ButtonLink from "./ButtonLink";
-import { infoClient } from "../utils/clients";
-import ClientID from "./ClientID";
 
 export default async function ProjectID({ id }) {
   const allCookies = cookies();

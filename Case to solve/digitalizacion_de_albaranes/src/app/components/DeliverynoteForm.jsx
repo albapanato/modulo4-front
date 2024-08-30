@@ -5,6 +5,8 @@ import { listProjects } from "../utils/projects";
 import { listClients } from "../utils/clients";
 import { getCookie } from "../utils/services";
 import { useRouter } from "next/navigation";
+import ButtonLink from "./ButtonLink";
+import Button from "./Button";
 
 export default function DeliveryForm({ refreshDeliveryNotes, onClose }) {
   const [formData, setFormData] = useState({
@@ -119,209 +121,195 @@ export default function DeliveryForm({ refreshDeliveryNotes, onClose }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-indigo-800">Nuevo Albarán</h2>
-        <button
-          type="button"
-          onClick={onClose}
-          className="text-gray-500 hover:text-gray-700"
-        >
-          CERRAR
-        </button>
+    <form onSubmit={handleSubmit} className="w-3/4 mx-auto">
+      <div className="flex gap-4 justify-between">
+        <h1 className="text-white w-full text-2xl md:text-3xl self-center font-bold leading-tight px-4 md:px-0">
+          Nuevo albarán
+        </h1>
+
+        <div className="flex gap-4">
+          <div>
+            <ButtonLink
+              href="/user/deliverynotes"
+              text={"Volver"}
+              className={
+                "block text-center text-white  bg-yellow-500 hover:bg-yellow-700"
+              }
+            />
+          </div>
+          <div>
+            <Button
+              type="submit"
+              className="w-max text-center text-white  bg-indigo-700 hover:bg-indigo-900"
+              text="Crear albarán"
+            />
+          </div>
+        </div>
       </div>
-      <div>
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Nombre del trabajador
-        </label>
-        <input
-          id="name"
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
-            errors.name ? "border-red-500" : ""
-          }`}
-        />
-        {errors.name && (
-          <p className="mt-1 text-sm text-red-500">{errors.name}</p>
-        )}
-      </div>
-      <div>
-        <label
-          htmlFor="clientId"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Cliente
-        </label>
-        <select
-          id="clientId"
-          name="clientId"
-          value={formData.clientId}
-          onChange={handleClientChange}
-          className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
-            errors.clientId ? "border-red-500" : ""
-          }`}
-        >
-          <option value="">Selecciona un cliente</option>
-          {clients.map((client) => (
-            <option key={client._id} value={client._id}>
-              {client.name}
-            </option>
-          ))}
-        </select>
-        {errors.clientId && (
-          <p className="mt-1 text-sm text-red-500">{errors.clientId}</p>
-        )}
-      </div>
-      <div>
-        <label
-          htmlFor="projectId"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Proyecto
-        </label>
-        <select
-          id="projectId"
-          name="projectId"
-          value={formData.projectId}
-          onChange={handleChange}
-          className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
-            errors.projectId ? "border-red-500" : ""
-          }`}
-        >
-          <option value="">Selecciona un proyecto</option>
-          {filteredProjects.map((project) => (
-            <option key={project._id} value={project._id}>
-              {project.name}
-            </option>
-          ))}
-        </select>
-        {errors.projectId && (
-          <p className="mt-1 text-sm text-red-500">{errors.projectId}</p>
-        )}
-      </div>
-      <div>
-        <label
-          htmlFor="format"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Formato
-        </label>
-        <select
-          id="format"
-          name="format"
-          value={formData.format}
-          onChange={handleFormatChange}
-          className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
-            errors.format ? "border-red-500" : ""
-          }`}
-        >
-          <option value="">Selecciona un formato</option>
-          <option value="material">Material</option>
-          <option value="hours">Horas</option>
-        </select>
-        {errors.format && (
-          <p className="mt-1 text-sm text-red-500">{errors.format}</p>
-        )}
-      </div>
-      {formData.format === "material" && (
-        <div>
-          <label
-            htmlFor="material"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Tipo de Material
+      <div className="grid grid-cols-2 gap-4 mt-4">
+        <div className="col-start-1 col-end-3">
+          <label htmlFor="name" className="text-white">
+            Nombre del trabajador
           </label>
           <input
-            id="material"
+            id="name"
             type="text"
-            name="material"
-            value={formData.material}
+            name="name"
+            value={formData.name}
             onChange={handleChange}
-            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
-              errors.material ? "border-red-500" : ""
+            className={`block w-full rounded-sm border p-1 text-scale-400 ${
+              errors.name ? "border-yellow-500" : ""
             }`}
           />
-          {errors.material && (
-            <p className="mt-1 text-sm text-red-500">{errors.material}</p>
+          {errors.name && (
+            <p className="mt-1 text-sm text-red-500">{errors.name}</p>
           )}
         </div>
-      )}
-      {formData.format === "hours" && (
-        <div>
-          <label
-            htmlFor="hours"
-            className="block text-sm font-medium text-gray-700"
+        <div className="col-start-1 col-end-2">
+          <label htmlFor="clientId" className="text-white">
+            Cliente
+          </label>
+          <select
+            id="clientId"
+            name="clientId"
+            value={formData.clientId}
+            onChange={handleClientChange}
+            className={`block w-full h-[34px] rounded-sm border p-1 text-scale-400 ${
+              errors.name ? "border-yellow-500" : ""
+            }`}
           >
-            Horas
+            <option value="">Selecciona un cliente</option>
+            {clients.map((client) => (
+              <option key={client._id} value={client._id}>
+                {client.name}
+              </option>
+            ))}
+          </select>
+          {errors.clientId && (
+            <p className="mt-1 text-sm text-red-500">{errors.clientId}</p>
+          )}
+        </div>
+        <div className="col-start-2 col-end-3">
+          <label htmlFor="projectId" className="text-white">
+            Proyecto
+          </label>
+          <select
+            id="projectId"
+            name="projectId"
+            value={formData.projectId}
+            onChange={handleChange}
+            className={`block w-full h-[34px] rounded-sm border p-1 text-scale-400 ${
+              errors.name ? "border-yellow-500" : ""
+            }`}
+          >
+            <option value="">Selecciona un proyecto</option>
+            {filteredProjects.map((project) => (
+              <option key={project._id} value={project._id}>
+                {project.name}
+              </option>
+            ))}
+          </select>
+          {errors.projectId && (
+            <p className="mt-1 text-sm text-red-500">{errors.projectId}</p>
+          )}
+        </div>
+        <div className="col-start-1 col-end-2">
+          <label htmlFor="format" className="text-white">
+            Formato
+          </label>
+          <select
+            id="format"
+            name="format"
+            value={formData.format}
+            onChange={handleFormatChange}
+            className={`block w-full h-[34px] rounded-sm border p-1 text-scale-400 ${
+              errors.name ? "border-yellow-500" : ""
+            }`}
+          >
+            <option value="">Selecciona un formato</option>
+            <option value="material">Material</option>
+            <option value="hours">Horas</option>
+          </select>
+          {errors.format && (
+            <p className="mt-1 text-sm text-red-500">{errors.format}</p>
+          )}
+        </div>
+        {formData.format === "material" && (
+          <div className="col-start-2 col-end-3">
+            <label htmlFor="material" className="text-white">
+              Tipo de Material
+            </label>
+            <input
+              id="material"
+              type="text"
+              name="material"
+              value={formData.material}
+              onChange={handleChange}
+              className={`block w-full rounded-sm border p-1 text-scale-400 ${
+                errors.name ? "border-yellow-500" : ""
+              }`}
+            />
+            {errors.material && (
+              <p className="mt-1 text-sm text-red-500">{errors.material}</p>
+            )}
+          </div>
+        )}
+        {formData.format === "hours" && (
+          <div className="col-start-2 col-end-3">
+            <label htmlFor="hours" className="text-white">
+              Horas
+            </label>
+            <input
+              id="hours"
+              type="number"
+              name="hours"
+              value={formData.hours}
+              onChange={handleChange}
+              className={`block w-full rounded-sm border p-1 text-scale-400 ${
+                errors.name ? "border-yellow-500" : ""
+              }`}
+            />
+            {errors.hours && (
+              <p className="mt-1 text-sm text-red-500">{errors.hours}</p>
+            )}
+          </div>
+        )}
+        <div className="col-start-1 col-end-3">
+          <label htmlFor="description" className="text-white">
+            Descripción
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            className={`block w-full rounded-sm border p-1 text-scale-400 ${
+              errors.name ? "border-yellow-500" : ""
+            }`}
+          />
+          {errors.description && (
+            <p className="mt-1 text-sm text-red-500">{errors.description}</p>
+          )}
+        </div>
+        <div>
+          <label htmlFor="workdate" className="text-white">
+            Fecha de Trabajo
           </label>
           <input
-            id="hours"
-            type="number"
-            name="hours"
-            value={formData.hours}
+            id="workdate"
+            type="date"
+            name="workdate"
+            value={formData.workdate}
             onChange={handleChange}
-            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
-              errors.hours ? "border-red-500" : ""
+            className={`block w-full rounded-sm border p-1 text-scale-400 ${
+              errors.name ? "border-yellow-500" : ""
             }`}
           />
-          {errors.hours && (
-            <p className="mt-1 text-sm text-red-500">{errors.hours}</p>
+          {errors.workdate && (
+            <p className="mt-1 text-sm text-red-500">{errors.workdate}</p>
           )}
         </div>
-      )}
-      <div>
-        <label
-          htmlFor="description"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Descripción
-        </label>
-        <textarea
-          id="description"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
-            errors.description ? "border-red-500" : ""
-          }`}
-        />
-        {errors.description && (
-          <p className="mt-1 text-sm text-red-500">{errors.description}</p>
-        )}
       </div>
-      <div>
-        <label
-          htmlFor="workdate"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Fecha de Trabajo
-        </label>
-        <input
-          id="workdate"
-          type="date"
-          name="workdate"
-          value={formData.workdate}
-          onChange={handleChange}
-          className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
-            errors.workdate ? "border-red-500" : ""
-          }`}
-        />
-        {errors.workdate && (
-          <p className="mt-1 text-sm text-red-500">{errors.workdate}</p>
-        )}
-      </div>
-      <button
-        type="submit"
-        className="w-full px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors duration-200"
-      >
-        Crear Albarán
-      </button>
     </form>
   );
 }

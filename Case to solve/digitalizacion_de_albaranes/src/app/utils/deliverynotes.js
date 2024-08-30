@@ -90,13 +90,10 @@ async function deleteDeliverynote(id, token) {
         Authorization: `Bearer ${token}`,
       },
     });
-
     if (!response.ok) {
       throw new Error(`Error de red: ${response.statusText}`);
     }
-
     const result = await response.json();
-    console.log(result);
     revalidatePath("/user/deliverynotes"); //recarga la pagina al borrar el albaran
     return result;
   } catch (error) {
