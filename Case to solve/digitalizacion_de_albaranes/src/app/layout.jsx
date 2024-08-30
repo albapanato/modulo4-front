@@ -10,14 +10,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body id="body">
-        <div className="">
-          <ImageBg />
-        </div>
         <div className="logo">
-          <ImageBildy />{" "}
+          <ImageBildy />
         </div>
-        <div className="flex justify-center ">
-          <main className="">{children}</main>
+        <div className="flex justify-center h-screen w-full">
+          <main className="w-full h-full">{children}</main>
         </div>
       </body>
     </html>

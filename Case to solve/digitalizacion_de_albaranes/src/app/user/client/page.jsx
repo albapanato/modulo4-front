@@ -1,17 +1,13 @@
-import ClientForm from "@/app/components/ClientForm";
-import Link from "next/link";
+import ClientForm from "../../components/ClientForm";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import { Suspense } from "react";
+LoadingSpinner;
 
 export default function NewClient() {
   return (
-    <div className="w-full bg-blue-900 bg-opacity-70 rounded-lg">
-      <div className="container flex justify-center text-center p-10">
-        <Link className="boton-volver font-bold text-2xl w-2/4" href="/user">
-          Volver
-        </Link>
-      </div>
+    <div className="mt-10 flex justify-center items-center flex-col custom-shadow backdrop-blur-lg bg-black/25">
       <div className="page-p p-2 m-4">
-        <Suspense fallback={"LOADING..."}>
+        <Suspense fallback={<LoadingSpinner />}>
           <ClientForm />
         </Suspense>
       </div>

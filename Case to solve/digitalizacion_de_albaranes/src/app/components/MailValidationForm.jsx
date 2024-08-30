@@ -1,12 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import InputsValidation from "./InputsValidation";
 import Image from "next/image";
-
-import { validateUser } from "@/app/utils/user";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { validateUser } from "../utils/user";
+import InputsValidation from "./InputsValidation";
 
 export default function RegisterForm() {
   const {

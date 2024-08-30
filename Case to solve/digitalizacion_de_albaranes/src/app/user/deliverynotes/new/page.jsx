@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import DeliveryForm from "../../../components/DeliverynoteForm";
 
 export default function NewDeliverynote() {
   return (
@@ -12,7 +13,8 @@ export default function NewDeliverynote() {
           Volver
         </Link>
       </div>
-      <div className=" flex  justify-center">
+      <DeliveryForm />
+      {/* <div className=" flex  justify-center">
         <h1 className="text-white font-bold m-5 text-4xl text-center">
           Indica en que formato deseas registrar tu albaran
         </h1>
@@ -30,7 +32,7 @@ export default function NewDeliverynote() {
         >
           Material
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }

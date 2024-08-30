@@ -1,19 +1,15 @@
-import Link from "next/link";
-import ShowClient from "@/app/components/ShowClient";
+import Clients from "../components/Clients";
 import { Suspense } from "react";
 
 export default function PortalVirtual() {
   return (
-    <div className="">
-      <div className="flex justify-end text-center p-2">
-        <Link className="boton-3" href="/user/client">
-          Agregar cliente
-        </Link>
+    <div className="w-full h-full p-4 sm:p-12 md:p-16 lg:p-20">
+      <div>
+        <h1 className="text-white text-4xl text-center">CLIENTES</h1>
       </div>
-
-      <div className="caja1 page-p text-center">
+      <div className="text-center">
         <Suspense fallback={"Cargando lista de clientes..."}>
-          <ShowClient />
+          <Clients />
         </Suspense>
       </div>
     </div>

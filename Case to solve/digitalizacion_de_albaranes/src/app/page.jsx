@@ -1,61 +1,37 @@
-import Link from "next/link";
+import ButtonLink from "./components/ButtonLink";
 
 export default function PrincipalPage() {
   return (
-    <>
-      {/* <ImageBg /> */}
-      <div className="grid grid-cols-3 mt-10 border h-full ">
-        <div className="w-[100px] border ">{/* mantener este div */}</div>
-        <div className="border w-[600px] ">
-          <h1 className="text-white w-[600px] text-6xl text-center  text-shadow-lg font-bold ">
+    <div className="w-full h-full flex items-center justify-center bg-cover bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?ixid=M3wzOTE5Mjl8MHwxfHNlYXJjaHw1fHxkaWdpdGFsJTIwaW52b2ljaW5nfGVufDB8fHx8MTcxODU2NTQ1NHww&ixlib=rb-4.0.3&auto=format&fit=crop&w=1920')]">
+      <div className="flex w-full p-20 justify-center items-center flex-col  custom-shadow backdrop-blur-lg bg-black/25">
+        <div>
+          <h1 className="text-white w-full md:w-[600px] text-4xl sm:text-5xl md:text-6xl self-center font-bold leading-tight px-4 md:px-0">
             Genera albaranes digitales facilmente con bildyapp
           </h1>
         </div>
-
-        <div className="relative bottom-40 m-10 border">
-          <ul className="flex justify-end ">
-            <li className="boton p-5 text-2xl text-white bg-indigo-600 rounded-xl shadow-2xl -rotate-6">
-              <Link href="/register" className="">
-                Sign Up
-              </Link>
+        <div>
+          <ul className="flex flex-col sm:flex-row justify-center gap-4 mt-7 w-full">
+            <li>
+              <ButtonLink
+                href="/register"
+                text={"Regístrate"}
+                className={
+                  "block w-[200px] text-center text-white  bg-indigo-700 hover:bg-indigo-900"
+                }
+              />
             </li>
-            <li className="boton p-5 ml-5 text-2xl text-white bg-orange-400 rounded-xl rotate-6">
-              <Link href="/login">Sign In</Link>
+            <li>
+              <ButtonLink
+                href="/login"
+                text={"Inicia sesión"}
+                className={
+                  "block w-[200px] text-center text-white  bg-yellow-500  hover:bg-yellow-700"
+                }
+              />
             </li>
           </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 }
-
-// import Link from "next/link";
-
-// export default function PrincipalPage() {
-//   return (
-//     <>
-//       {/* <ImageBg /> */}
-//       <div className="grid grid-cols-3 mt-10  border h-full ">
-//         <div className="">{/* mantener este div */}</div>
-//         <div className=" border jus ">
-//           <h1 className="text-white text-6xl text-center text-shadow-lg font-bold leading-normal ">
-//             Genera albaranes digitales facilmente con bildyapp
-//           </h1>
-//         </div>
-
-//         <div className="relative border w-[300px]">
-//           <ul className="flex justify-end ">
-//             <li className="boton p-5 text-2xl text-white bg-indigo-600 rounded-xl shadow-2xl -rotate-6">
-//               <Link href="/register" className="">
-//                 Sign Up
-//               </Link>
-//             </li>
-//             <li className="boton p-5 ml-5 text-2xl text-white bg-orange-400 rounded-xl rotate-6">
-//               <Link href="/login">Sign In</Link>
-//             </li>
-//           </ul>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }

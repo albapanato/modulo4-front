@@ -1,17 +1,11 @@
-"use client";
-import ClientID from "@/app/components/ClientID";
-//import ShowClient from "@/app/components/ShowClient";
+import ClientID from "../../../components/ClientID";
 
 function ShowInfo({ params }) {
-  //console.log(props)
   console.log("params", params);
 
   return (
-    <div className="w-full">
-      {/* <div>
-        <ShowClient />
-      </div> */}
-      <div className="">
+    <div className="w-full mt-16">
+      <div className="text-center">
         <ClientID id={params.id} />
       </div>
     </div>

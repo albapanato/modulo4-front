@@ -1,11 +1,9 @@
-import LoginForm from "@/app/components/LoginForm";
+import LoginForm from "../components/LoginForm";
 
-export default function RegisterPage() {
+export default function LoginPage() {
   return (
-    <div className="flex justify-center mt-32 h-80">
-      <div className=" md:-mt-32 bg-orange-600 p-20 rounded-full bg-opacity-90 text-gray-900">
-        <LoginForm />
-      </div>
+    <div className="flex justify-center py-20 items-center flex-col custom-shadow backdrop-blur-lg bg-black/25 rounded-md">
+      <LoginForm />
     </div>
   );
 }

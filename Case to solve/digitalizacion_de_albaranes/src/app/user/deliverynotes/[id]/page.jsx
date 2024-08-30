@@ -1,4 +1,4 @@
-import DeliverynoteID from "@/app/components/DeliverynoteID";
+import DeliverynoteID from "../../../components/DeliverynoteID";
 
 function ShowDeliverynote({ params }) {
   console.log("params de showDeliverynote: ", params);

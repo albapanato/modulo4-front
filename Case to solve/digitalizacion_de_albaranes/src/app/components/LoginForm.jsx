@@ -1,11 +1,16 @@
 "use client";
 import { useRouter } from "next/navigation";
-
+import { useState } from "react";
 import { useForm } from "react-hook-form"; // npm install react-hook-form
 import { loginUser } from "../utils/user";
-import Link from "next/link";
+import ButtonInput from "./Buttoninput";
+import ButtonLink from "./ButtonLink";
+import Notification from "./Notification";
+import LoadingSpinner from "./LoadingSpinner";
 
 export default function LoginForm() {
+  const [needsLoader, setNeedsLoader] = useState(false);
+  const [error, setError] = useState("");
   const {
     register,
     formState: { errors },
@@ -15,62 +20,90 @@ export default function LoginForm() {
   const router = useRouter();
 
   const onSubmit = async (data) => {
+    setNeedsLoader(true);
     const res = await loginUser(data);
-    if (res.token) {
-      document.cookie = `jwt=${res.token}`;
-      localStorage.setItem("jwt", res.token);
-      router.push("/user");
-    } else {
-      throw new Error("Failed to login user.");
+    if (res.error) {
+      setNeedsLoader(false);
+      setError(res.error);
+      return;
     }
+    if (!res?.token) {
+      setNeedsLoader(false);
+      setError("No tienes autorización para entrar");
+      return;
+    }
+    document.cookie = `jwt=${res.token}`;
+    localStorage.setItem("jwt", res.token);
+    router.push("/user");
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-      <h1 className=" p-1 text-center text-2xl shadow-md  bg-red-200 bg-opacity-75 rounded-lg text-orange-500 text-shadow-xl font-bold">
-        Accede a tu cuenta
-      </h1>
-      <div className="flex-1 rounded-lg bg-opacity-75  bg-red-200 p-4">
-        <div className="w-full ">
-          <div className="relative">
-            <label htmlFor="email"></label>
-            <input
-              className="text-center peer block w-full rounded-md border border-gray-200 p-1 text-lg outline-2 text-scale-600"
-              type="email"
-              id="email"
-              placeholder="Email"
-              {...register("email", { required: true, maxLength: 30 })}
-            />
-            {errors.email?.type === "required" && "Email es requerido"}
-          </div>
+    <>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+        <h1 className="text-white w-full text-2xl md:text-3xl self-center font-bold leading-tight px-4 md:px-0">
+          Accede a tu cuenta
+        </h1>
+        <div className="flex-1 rounded-lg  p-4">
+          <div className="w-full ">
+            <div className="relative">
+              <label htmlFor="email"></label>
+              <input
+                className="block w-full rounded-sm border p-1 text-scale-400"
+                type="email"
+                id="email"
+                placeholder="Email"
+                {...register("email", { required: true, maxLength: 30 })}
+              />
+              {errors.email?.type === "required" && (
+                <div className="text-xs">Email es requerido</div>
+              )}
+            </div>
 
-          <div className="relative mt-4">
-            <label htmlFor="password"></label>
-            <input
-              className="text-center peer block w-full rounded-md border border-gray-200 p-1 text-lg outline-2 text-slate-700"
-              type="password"
-              id="password"
-              placeholder="Contraseña"
-              {...register("password", { required: true, minLength: 8 })}
-            />
-            {errors.password?.type === "required" && "Contraseña es requerida"}
+            <div className="relative mt-4">
+              <label htmlFor="password"></label>
+              <input
+                className="block w-full rounded-sm border p-1 text-scale-400"
+                type="password"
+                id="password"
+                placeholder="Contraseña"
+                {...register("password", { required: true, minLength: 8 })}
+              />
+              {errors.password?.type === "required" && (
+                <div className="text-xs">Contraseña es requerida</div>
+              )}
+            </div>
+          </div>
+          <div className="flex justify-center mt-4 w-full h-[40px]">
+            {needsLoader ? (
+              <LoadingSpinner />
+            ) : (
+              <ButtonInput
+                text={"Inicia sesión"}
+                className="bg-yellow-500 hover:bg-yellow-700"
+              />
+            )}
           </div>
         </div>
-        <div className="flex justify-center mt-4 w-full">
-          <input
-            className="p-1 w-2/4 rounded-lg bg-orange-600 text-xl cursor-pointer text-blue-900 shadow-md font-bold"
-            type="submit"
+        <div className="flex flex-col gap-1 justify-center items-center p-2 mx-auto w-full  mt-6 text-white text-center">
+          <div className="text-sm">¿No tienes cuenta?</div>
+          <ButtonLink
+            href="/register"
+            text={"Regístrate"}
+            className={
+              "block w-[120px] text-center text-white  bg-indigo-700 hover:bg-indigo-900"
+            }
           />
         </div>
-      </div>
-      <div className="flex justify-center items-center p-2 rounded-lg mx-auto w-full bg-orange-400 bg-opacity-75 mt-6 text-lg shadow-md  text-black text-center font-bold">
-        ¿No tienes cuenta?
-        <Link href="/register">
-          <span className=" text-shadow-xl ml-3 text-blue-900 text-xl font-bold">
-            Registrate
-          </span>
-        </Link>
-      </div>
-    </form>
+      </form>
+      {error && (
+        <Notification
+          message={error}
+          type="error"
+          onClose={() => {
+            setError("");
+          }}
+        />
+      )}
+    </>
   );
 }

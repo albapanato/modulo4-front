@@ -1,5 +1,5 @@
 "use client";
-import { downloadDeliveryNotePDFclient, getCookie } from "../utils/services";
+import { downloadDeliveryNotePDFclient } from "../utils/services";
 
 export default function BotonPDF({ id, token }) {
   const handleDownloadPDF = async (id) => {

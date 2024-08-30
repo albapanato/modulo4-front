@@ -9,8 +9,8 @@ export default async function ImageBildy() {
           className="logo"
           src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/YrDavvyjv6iGX8vM/backcolor-transp-blue-YbNa2QX663tzjZ79.png"
           alt="Logo Bildy"
-          width={540}
-          height={850}
+          width={200}
+          height={100}
         />
       </Link>
     </div>

@@ -1,6 +1,5 @@
 "use client";
-import MailValidationForm from "@/app/components/MailValidationForm";
-import ImageBg from "@/app/components/ImageBg";
+import MailValidationForm from "../components/MailValidationForm";
 
 export default function MailValidationPage() {
   return (

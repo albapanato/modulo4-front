@@ -1,22 +1,12 @@
 import { Suspense } from "react";
-import Link from "next/link";
-import ShowProject from "@/app/components/ShowProject";
+import Projects from "../../components/Projects";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function PortalProject() {
   return (
-    <div className=" bg-blue-900 rounded-lg p-4 max-md:mt-14">
-      <div className="container flex justify-center text-center p-10">
-        <Link
-          className="boton-volver font-bold text-2xl w-2/3"
-          href="/user/projects/new"
-        >
-          Crear un nuevo proyecto
-        </Link>
-      </div>
-      <div className="caja1  page-p ">
-        <Suspense fallback={"Loading..."}>
-          <ShowProject />
-        </Suspense>
+    <div className="mt-[70px] h-full flex justify-center items-center flex-col custom-shadow backdrop-blur-lg bg-black/25">
+      <div className="w-full h-full p-4 sm:p-12 md:p-16 lg:p-20">
+        <Projects />
       </div>
     </div>
   );
