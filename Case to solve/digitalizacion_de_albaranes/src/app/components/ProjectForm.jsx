@@ -30,6 +30,7 @@ export default function ProjectForm() {
     clientId: "",
   });
   const [clients, setClients] = useState([]);
+  const [errors, setErrors] = useState({}); // Estado para almacenar los errores
 
   useEffect(() => {
     async function clientList() {
@@ -68,7 +69,40 @@ export default function ProjectForm() {
       }));
     }
   };
+  // Validaciones de formulario
+  // const validate = () => {
+  //   const newErrors = {};
+  //   if (!formData.name)
+  //     newErrors.name = "El nombre del proyecto es obligatorio";
+  //   if (!formData.code)
+  //     newErrors.code = "El código del proyecto es obligatorio";
+  //   if (!formData.clientId) newErrors.clientId = "Debes seleccionar un cliente";
+  //   if (!formData.email) newErrors.email = "El email es obligatorio";
+  //   if (!formData.address.street) newErrors.street = "La calle es obligatoria";
+  //   if (!formData.address.number) newErrors.number = "El número es obligatorio";
+  //   if (!formData.address.city) newErrors.city = "La ciudad es obligatoria";
+  //   if (!formData.address.province)
+  //     newErrors.province = "La provincia es obligatoria";
+  //   if (!formData.address.postal)
+  //     newErrors.postal = "El código postal es obligatorio";
 
+  //   setErrors(newErrors);
+  //   return Object.keys(newErrors).length === 0;
+  // };
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name) newErrors.name = "Campo obligatorio *";
+    if (!formData.code) newErrors.code = "Campo obligatorio *";
+    if (!formData.clientId) newErrors.clientId = "Campo obligatorio *";
+    if (!formData.email) newErrors.email = "Campo obligatorio *";
+    if (!formData.address.street) newErrors.street = "Campo obligatorio *";
+    if (!formData.address.number) newErrors.number = "Campo obligatorio *";
+    if (!formData.address.city) newErrors.city = "Campo obligatorio *";
+    if (!formData.address.province) newErrors.province = "Campo obligatorio *";
+    if (!formData.address.postal) newErrors.postal = "Campo obligatorio *";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
   // Maneja los cambios de los campos de texto
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -92,6 +126,14 @@ export default function ProjectForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validate()) {
+      setNotification({
+        text: "Necesitas completar todos los campos obligatorios para crear un proyecto",
+        type: "error",
+        visible: true,
+      });
+      return;
+    }
     try {
       const token = getCookie("jwt");
       if (!token) {
@@ -154,6 +196,9 @@ export default function ProjectForm() {
                 value={formData.name}
                 onChange={handleChange}
               />
+              {errors.name && (
+                <p className="text-red-500 text-sm">{errors.name}</p>
+              )}
             </div>
             <div className="text-scale-400">
               <label className="text-white" htmlFor="code">
@@ -167,6 +212,9 @@ export default function ProjectForm() {
                 value={formData.code}
                 onChange={handleChange}
               />
+              {errors.code && (
+                <p className="text-red-500 text-sm">{errors.name}</p>
+              )}
             </div>
             <div className="">
               <label className="block text-white">Cliente</label>
@@ -183,6 +231,9 @@ export default function ProjectForm() {
                   </option>
                 ))}
               </select>
+              {errors.clientId && (
+                <p className="text-red-500 text-sm">{errors.clientId}</p>
+              )}
             </div>
             <div className="text-scale-400">
               <label className="text-white" htmlFor="email">
@@ -196,6 +247,9 @@ export default function ProjectForm() {
                 value={formData.email}
                 onChange={handleChange}
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm">{errors.clientId}</p>
+              )}
             </div>
           </div>
           <div className="my-5">
@@ -210,6 +264,9 @@ export default function ProjectForm() {
                   onChange={handleAddressChange}
                   className="block w-full rounded-sm border p-1 text-scale-400"
                 />
+                {errors.street && (
+                  <p className="text-red-500 text-sm">{errors.clientId}</p>
+                )}
               </div>
               <div className="col-start-4 col-end-5">
                 <input
@@ -220,6 +277,9 @@ export default function ProjectForm() {
                   onChange={handleAddressChange}
                   className="block w-full rounded-sm border p-1 text-scale-400"
                 />
+                {errors.number && (
+                  <p className="text-red-500 text-sm">{errors.clientId}</p>
+                )}
               </div>
 
               <div className="col-start-1 col-end-3">
@@ -231,6 +291,9 @@ export default function ProjectForm() {
                   onChange={handleAddressChange}
                   className="block w-full rounded-sm border p-1 text-scale-400"
                 />
+                {errors.city && (
+                  <p className="text-red-500 text-sm">{errors.clientId}</p>
+                )}
               </div>
               <div className="col-start-3 col-end-45">
                 <input
@@ -241,6 +304,9 @@ export default function ProjectForm() {
                   onChange={handleAddressChange}
                   className="block w-full rounded-sm border p-1 text-scale-400"
                 />
+                {errors.province && (
+                  <p className="text-red-500 text-sm">{errors.clientId}</p>
+                )}
               </div>
               <div className="col-start-4 col-end-5">
                 <input
@@ -251,6 +317,9 @@ export default function ProjectForm() {
                   onChange={handleAddressChange}
                   className="block w-full rounded-sm border p-1 text-scale-400"
                 />
+                {errors.postal && (
+                  <p className="text-red-500 text-sm">{errors.clientId}</p>
+                )}
               </div>
             </div>
           </div>

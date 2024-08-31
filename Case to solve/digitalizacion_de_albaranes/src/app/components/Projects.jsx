@@ -10,6 +10,7 @@ import { getCookie } from "../utils/services";
 import { useDebounce } from "use-debounce";
 import LoadingSpinner from "./LoadingSpinner";
 import Notification from "./Notification";
+import EmptyData from "./EmptyData";
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
@@ -133,33 +134,12 @@ export default function Projects() {
           )}
         </div>
       ) : (
-        <div className="flex justify-center ">
-          <div className="w-3/4 bg-white rounded-md p-8">
-            <div className="flex justify-center">
-              <Image
-                src="/img/noData.png"
-                alt="imagen"
-                width={300}
-                height={300}
-              />
-            </div>
-            <div className="flex flex-col items-center">
-              <h2 className="text-2xl ">
-                ¡¡Uups!! Parece que no tienes ningún proyecto!
-              </h2>
-              <p className="text-xl">
-                Crea un para poder generar Albaranes digitales
-              </p>
-            </div>
-            <div className="flex justify-center mt-6">
-              <ButtonLink
-                text={"Nuevo proyecto"}
-                href="/user/projects/new"
-                className={"bg-indigo-600 text-white hover:bg-indigo-500"}
-              />
-            </div>
-          </div>
-        </div>
+        <EmptyData
+          h2={"¡¡Uups!! Parece que no tienes ningún proyecto!"}
+          p={"Crea uno para poder generar albaranes digitales"}
+          button={"Crear mi primer proyecto"}
+          href={"/user/projects/new"}
+        />
       )}
     </>
   );

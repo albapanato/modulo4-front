@@ -4,6 +4,7 @@ import Link from "next/link";
 import { listClients } from "../utils/clients";
 import ButtonLink from "./ButtonLink";
 import ClientBotonDelete from "./ClientBotonDelete";
+import EmptyData from "./EmptyData";
 
 export default async function Clients() {
   const allCookies = cookies();
@@ -12,30 +13,12 @@ export default async function Clients() {
 
   if (clientData.length === 0 || !clientData) {
     return (
-      <div className="flex justify-center ">
-        <div className="w-3/4 bg-white rounded-lg p-10">
-          <div className="flex justify-center">
-            <Image
-              src="/img/noData.png"
-              alt="imagen"
-              width={300}
-              height={300}
-            />
-          </div>
-          <div className="pt-16">
-            <h2 className="text-2xl ">Crea tu primer Cliente</h2>
-            <p className="p-4"> Para poder generar Albaranes digitales</p>
-          </div>
-          <div className="pt-10">
-            <Link
-              className="font-bold text-white text-md p-3 bg-[#3073f0ec] rounded-md"
-              href="/user/client"
-            >
-              Si, vamos!
-            </Link>
-          </div>
-        </div>
-      </div>
+      <EmptyData
+        h2={"¡¡Uups!!Parece que no tienes ningún cliente"}
+        p={"Crea uno para poder generar albaranes digitales"}
+        button={"Crear mi primer cliente"}
+        href={"/user/client"}
+      />
     );
   }
   return (

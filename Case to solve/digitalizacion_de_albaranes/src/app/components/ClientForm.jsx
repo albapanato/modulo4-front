@@ -15,6 +15,7 @@ export default function ClientForm() {
     type: "",
     visible: false,
   });
+
   const {
     register,
     handleSubmit,
@@ -92,9 +93,25 @@ export default function ClientForm() {
                 className="block w-full rounded-sm border p-1 text-scale-400"
                 type="text"
                 id="name"
-                {...register("name", { maxLength: 20 })}
+                {...register("name", {
+                  required: "Campo obligatorio *",
+                  minLength: {
+                    value: 3,
+                    message:
+                      "El nombre es demasiado corto, minimo 3 caracteres",
+                  },
+                  maxLength: {
+                    value: 20,
+                    message:
+                      "El nombre es demasiado largo, maximo 20 caracteres",
+                  },
+                })}
               />
-              {errors.name && <p>{errors.name.message}</p>}
+              {errors.name && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.name.message}
+                </p>
+              )}
             </div>
 
             <div className="mt-4">
@@ -105,15 +122,25 @@ export default function ClientForm() {
                 className="block w-full rounded-sm border p-1 text-scale-400"
                 type="text"
                 id="cif"
-                {...register("cif", { maxLength: 9 })}
+                {...register("cif", {
+                  required: "Campo obligatorio *",
+                  maxLength: {
+                    value: 9,
+                    message: "Maximo de 9 caracteres",
+                  },
+                })}
               />
-              {errors.cif && <p>{errors.cif.message}</p>}
+              {errors.cif && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.cif.message}
+                </p>
+              )}
             </div>
           </div>
 
           <div className="mt-4">
             <label className="text-white" htmlFor="address">
-              Domicilio Fiscal:{" "}
+              Domicilio Fiscal:
             </label>
           </div>
 
@@ -127,10 +154,14 @@ export default function ClientForm() {
                 type="text"
                 id="address.street"
                 {...register("address.street", {
-                  required: "Introduce la calle",
+                  required: "Campo obligatorio *",
                 })}
               />
-              {errors.address?.street && <p>{errors.address.street.message}</p>}
+              {errors.address?.street && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.address.street.message}
+                </p>
+              )}
             </div>
             <div className="col-start-4 col-end-5">
               <label className="text-white" htmlFor="address.number">
@@ -141,16 +172,19 @@ export default function ClientForm() {
                 id="address.number"
                 type="text"
                 {...register("address.number", {
-                  required: "Introduce el numero",
+                  required: "Campo obligatorio *",
                   valueAsNumber: true,
                   min: {
                     value: 1,
-                    message:
-                      "El numero debe contener almenos un numero y ser mayor que 0",
+                    message: "El numero debe ser mayor que 0",
                   },
                 })}
               />
-              {errors.address?.number && <p>{errors.address.number.message}</p>}
+              {errors.address?.number && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.address.number.message}
+                </p>
+              )}
             </div>
 
             <div className="col-start-1 col-end-3">
@@ -162,10 +196,18 @@ export default function ClientForm() {
                 id="address.city"
                 type="text"
                 {...register("address.city", {
-                  required: "Introduce tu ciudad",
+                  required: "Campo obligatorio *",
+                  minLength: {
+                    value: 5,
+                    message: "Minimo 5 caracteres",
+                  },
                 })}
               />
-              {errors.address?.city && <p>{errors.address.city.message}</p>}
+              {errors.address?.city && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.address.city.message}
+                </p>
+              )}
             </div>
 
             <div className="col-start-3 col-end-5">
@@ -177,11 +219,17 @@ export default function ClientForm() {
                 id="address.province"
                 type="text"
                 {...register("address.province", {
-                  required: "Introduce tu provincia",
+                  required: "Campo obligatorio *",
+                  minLength: {
+                    value: 5,
+                    message: "Minimo 5 caracteres",
+                  },
                 })}
               />
               {errors.address?.province && (
-                <p>{errors.address.province.message}</p>
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.address.province.message}
+                </p>
               )}
             </div>
             <div className="col-start-4 col-end-5">
@@ -193,15 +241,32 @@ export default function ClientForm() {
                 id="address.postal"
                 type="text"
                 {...register("address.postal", {
-                  required: "Introduce tu código postal",
-                  valueAsNumber: true,
+                  required: "Campo obligatorio*",
+                  minLength: {
+                    value: 5,
+                    message: "El código postal debe contener 5 dígitos",
+                  },
+                  maxLength: {
+                    value: 5,
+                    message: "El código postal debe contener 5 dígitos",
+                  },
                   min: {
                     value: 1,
-                    message: "Postal code must be greater than 0",
+                    message: "El codigo postal debe ser superior a 0",
                   },
                 })}
               />
-              {errors.address?.postal && <p>{errors.address.postal.message}</p>}
+              {errors.address?.postal && (
+                <p
+                  className={`mt-1 text-sm ${
+                    errors.address.postal.message.includes("Campo obligatorio*")
+                      ? "text-red-500"
+                      : "text-yellow-500"
+                  }`}
+                >
+                  {errors.address.postal.message}
+                </p>
+              )}
             </div>
           </div>
         </div>
