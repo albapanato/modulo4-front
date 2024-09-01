@@ -2,9 +2,16 @@
 import { getCookie } from "../utils/services";
 import { deleteDeliverynote } from "../utils/deliverynotes";
 import Image from "next/image";
+import Notification from "./Notification";
+import { useState } from "react";
 // import { useRouter } from "next/navigation";
 
-export default function DelinoteBotonDelete({ id, setNotification }) {
+export default function DelinoteBotonDelete({ id }) {
+  const [notification, setNotification] = useState({
+    text: "",
+    type: "",
+    visible: false,
+  });
   // const router = useRouter();
   const handleDelete = async (id) => {
     const token = getCookie("jwt");
@@ -28,6 +35,15 @@ export default function DelinoteBotonDelete({ id, setNotification }) {
   };
   return (
     <>
+      {notification.visible && (
+        <Notification
+          message={notification.text}
+          type={notification.type}
+          onClose={() => {
+            setNotification({ text: "", type: "", visible: false });
+          }}
+        />
+      )}
       <div>
         <button
           className="w-7 h-7"

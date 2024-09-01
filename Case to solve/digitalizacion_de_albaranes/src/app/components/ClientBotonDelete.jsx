@@ -4,31 +4,55 @@ import { deleteClient } from "../utils/clients";
 import Image from "next/image";
 
 export default function ClientBotonDelete({ id }) {
+  const [notification, setNotification] = useState({
+    text: "",
+    type: "",
+    visible: false,
+  });
   const handleDelete = async (id) => {
     const token = getCookie("jwt");
     console.log(token);
     try {
       await deleteClient(id, token);
-      alert("Cliente eliminado con éxito");
+      setNotification({
+        text: "Cliente eliminado con éxito",
+        type: "success",
+        visible: true,
+      });
     } catch (error) {
-      console.error("Error al eliminar el albarán:", error);
+      setNotification({
+        text: "Error al eliminar el cliente",
+        type: "error",
+        visible: true,
+      });
     }
   };
   return (
-    <div>
-      <button
-        className="w-7 h-7"
-        onClick={() => {
-          handleDelete(id);
-        }}
-      >
-        <Image
-          src="/img/icons/delete-white.png"
-          alt="delete-icon"
-          width={24}
-          height={24}
+    <>
+      {notification.visible && (
+        <Notification
+          message={notification.text}
+          type={notification.type}
+          onClose={() => {
+            setNotification({ text: "", type: "", visible: false });
+          }}
         />
-      </button>
-    </div>
+      )}
+      <div>
+        <button
+          className="w-7 h-7"
+          onClick={() => {
+            handleDelete(id);
+          }}
+        >
+          <Image
+            src="/img/icons/delete-white.png"
+            alt="delete-icon"
+            width={24}
+            height={24}
+          />
+        </button>
+      </div>
+    </>
   );
 }

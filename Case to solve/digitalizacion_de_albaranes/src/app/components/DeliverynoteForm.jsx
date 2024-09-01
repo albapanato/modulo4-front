@@ -110,11 +110,6 @@ export default function DeliveryForm() {
       });
       return;
     }
-    // const validationErrors = validate();
-    // if (Object.keys(validationErrors).length > 0) {
-    //   setErrors(validationErrors);
-    //   return;
-    // }
 
     const token = getCookie("jwt");
     const data = { ...formData };
