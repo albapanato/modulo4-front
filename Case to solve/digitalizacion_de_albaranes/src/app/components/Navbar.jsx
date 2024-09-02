@@ -1,6 +1,5 @@
 "use client";
 import { usePathname } from "next/navigation";
-import "./Navbar.css";
 import NavbarLink from "./NavbarLink";
 
 export default function Navbar() {

@@ -7,7 +7,6 @@ export default async function DeliverynoteID({ id }) {
   const allCookies = cookies();
   const token = allCookies.get("jwt")?.value;
   const recordDeliverynote = await infoDeliverynote(id, token);
-  // recorDeliveryNote = { error:true }
   if (recordDeliverynote.error) {
     return <div>Ha habido un error</div>;
   }

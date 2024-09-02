@@ -23,6 +23,8 @@ async function listClients(token) {
 
 //Funciona
 async function newClient(token, data) {
+  console.log("token: ", token);
+  console.log("data: ", data);
   //Sale por el catch
   try {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/api/client`;

@@ -85,15 +85,28 @@ export default function DeliveryForm() {
 
   const validate = () => {
     const errors = {};
-    if (!formData.name) errors.name = "Campo obligatorio *";
-    if (!formData.clientId) errors.clientId = "Campo obligatorio *";
-    if (!formData.projectId) errors.projectId = "Campo obligatorio *";
+    if (!formData.name) {
+      errors.name = { type: "required", message: "Campo obligatorio *" };
+    } else if (formData.name.length < 4) {
+      errors.name = { type: "minLength", message: "Mínimo 4 caracteres" };
+    }
+    if (!formData.clientId)
+      errors.clientId = "Necesario seleccionar un cliente *";
+    if (!formData.projectId)
+      errors.projectId = "Necesario seleccionar un proyecto *";
     if (!formData.format) errors.format = "Campo obligatorio *";
     if (formData.format === "material" && !formData.material)
       errors.material = "Campo obligatorio *";
     if (formData.format === "hours" && !formData.hours)
       errors.hours = "Campo obligatorio *";
-    if (!formData.description) errors.description = "Campo obligatorio *";
+    if (!formData.description) {
+      errors.description = { type: "required", message: "Campo obligatorio *" };
+    } else if (formData.description.length < 4) {
+      errors.description = {
+        type: "minLength",
+        message: "Mínimo 4 caracteres",
+      };
+    }
     if (!formData.workdate) errors.workdate = "Campo obligatorio *";
     setErrors(errors);
     return Object.keys(errors).length === 0;
@@ -181,8 +194,13 @@ export default function DeliveryForm() {
                 errors.name ? "border-yellow-500" : ""
               }`}
             />
-            {errors.name && (
-              <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+            {errors.name?.type === "required" && (
+              <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
+            )}
+            {errors.name?.type === "minLength" && (
+              <p className="mt-1 text-sm text-yellow-500">
+                {errors.name.message}
+              </p>
             )}
           </div>
           <div className="col-start-1 col-end-2">
@@ -194,9 +212,7 @@ export default function DeliveryForm() {
               name="clientId"
               value={formData.clientId}
               onChange={handleClientChange}
-              className={`block w-full h-[34px] rounded-sm border p-1 text-scale-400 ${
-                errors.name ? "border-yellow-500" : ""
-              }`}
+              className="block w-full h-[34px] rounded-sm border p-1 text-scale-400 "
             >
               <option value="">Selecciona un cliente</option>
               {clients.map((client) => (
@@ -218,9 +234,7 @@ export default function DeliveryForm() {
               name="projectId"
               value={formData.projectId}
               onChange={handleChange}
-              className={`block w-full h-[34px] rounded-sm border p-1 text-scale-400 ${
-                errors.name ? "border-yellow-500" : ""
-              }`}
+              className="block w-full h-[34px] rounded-sm border p-1 text-scale-400"
             >
               <option value="">Selecciona un proyecto</option>
               {filteredProjects.map((project) => (
@@ -242,9 +256,7 @@ export default function DeliveryForm() {
               name="format"
               value={formData.format}
               onChange={handleFormatChange}
-              className={`block w-full h-[34px] rounded-sm border p-1 text-scale-400 ${
-                errors.name ? "border-yellow-500" : ""
-              }`}
+              className="block w-full h-[34px] rounded-sm border p-1 text-scale-400"
             >
               <option value="">Selecciona un formato</option>
               <option value="material">Material</option>
@@ -265,9 +277,7 @@ export default function DeliveryForm() {
                 name="material"
                 value={formData.material}
                 onChange={handleChange}
-                className={`block w-full rounded-sm border p-1 text-scale-400 ${
-                  errors.name ? "border-yellow-500" : ""
-                }`}
+                className="block w-full rounded-sm border p-1 text-scale-400 "
               />
               {errors.material && (
                 <p className="mt-1 text-sm text-red-500">{errors.material}</p>
@@ -285,9 +295,7 @@ export default function DeliveryForm() {
                 name="hours"
                 value={formData.hours}
                 onChange={handleChange}
-                className={`block w-full rounded-sm border p-1 text-scale-400 ${
-                  errors.name ? "border-yellow-500" : ""
-                }`}
+                className="block w-full rounded-sm border p-1 text-scale-400 "
               />
               {errors.hours && (
                 <p className="mt-1 text-sm text-red-500">{errors.hours}</p>
@@ -303,12 +311,17 @@ export default function DeliveryForm() {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className={`block w-full rounded-sm border p-1 text-scale-400 ${
-                errors.name ? "border-yellow-500" : ""
-              }`}
+              className="block w-full rounded-sm border p-1 text-scale-400"
             />
-            {errors.description && (
-              <p className="mt-1 text-sm text-red-500">{errors.description}</p>
+            {errors.description?.type === "required" && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.description.message}
+              </p>
+            )}
+            {errors.description?.type === "minLength" && (
+              <p className="mt-1 text-sm text-yellow-500">
+                {errors.description.message}
+              </p>
             )}
           </div>
           <div>
@@ -321,9 +334,7 @@ export default function DeliveryForm() {
               name="workdate"
               value={formData.workdate}
               onChange={handleChange}
-              className={`block w-full rounded-sm border p-1 text-scale-400 ${
-                errors.name ? "border-yellow-500" : ""
-              }`}
+              className="block w-full rounded-sm border p-1 text-scale-400 "
             />
             {errors.workdate && (
               <p className="mt-1 text-sm text-red-500">{errors.workdate}</p>

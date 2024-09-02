@@ -1,6 +1,4 @@
-import { Suspense } from "react";
 import Projects from "../../components/Projects";
-import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function PortalProject() {
   return (

@@ -72,7 +72,7 @@ export default function ModifyProjectById() {
         type: "success",
         visible: true,
       });
-      router.push(`/user/projects/${project._id}`);
+      router.push("/user/projects");
     } catch (error) {
       setNotification({
         text: "Error al guardar el proyecto",

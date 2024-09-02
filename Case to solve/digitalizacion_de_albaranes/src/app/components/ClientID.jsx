@@ -29,6 +29,7 @@ export default async function ClientID({ id }) {
           />
         </div>
       </div>
+
       <p>
         Calle {client.address.street} {client.address.number} -{" "}
         {client.address.city}, {client.address.province}

@@ -69,26 +69,6 @@ export default function ProjectForm() {
       }));
     }
   };
-  // Validaciones de formulario
-  // const validate = () => {
-  //   const newErrors = {};
-  //   if (!formData.name)
-  //     newErrors.name = "El nombre del proyecto es obligatorio";
-  //   if (!formData.code)
-  //     newErrors.code = "El código del proyecto es obligatorio";
-  //   if (!formData.clientId) newErrors.clientId = "Debes seleccionar un cliente";
-  //   if (!formData.email) newErrors.email = "El email es obligatorio";
-  //   if (!formData.address.street) newErrors.street = "La calle es obligatoria";
-  //   if (!formData.address.number) newErrors.number = "El número es obligatorio";
-  //   if (!formData.address.city) newErrors.city = "La ciudad es obligatoria";
-  //   if (!formData.address.province)
-  //     newErrors.province = "La provincia es obligatoria";
-  //   if (!formData.address.postal)
-  //     newErrors.postal = "El código postal es obligatorio";
-
-  //   setErrors(newErrors);
-  //   return Object.keys(newErrors).length === 0;
-  // };
   const validate = () => {
     const newErrors = {};
     if (!formData.name) newErrors.name = "Campo obligatorio *";

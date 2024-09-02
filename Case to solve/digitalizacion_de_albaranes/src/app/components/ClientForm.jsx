@@ -54,6 +54,7 @@ export default function ClientForm() {
       });
     }
   };
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="w-3/4 mx-auto">
@@ -108,7 +109,13 @@ export default function ClientForm() {
                 })}
               />
               {errors.name && (
-                <p className="mt-1 text-sm text-red-500">
+                <p
+                  className={`mt-1 text-sm ${
+                    errors.name.type === "required"
+                      ? "text-red-500"
+                      : "text-yellow-500"
+                  }`}
+                >
                   {errors.name.message}
                 </p>
               )}
@@ -126,12 +133,18 @@ export default function ClientForm() {
                   required: "Campo obligatorio *",
                   maxLength: {
                     value: 9,
-                    message: "Maximo de 9 caracteres",
+                    message: "Máximo de 9 caracteres",
                   },
                 })}
               />
               {errors.cif && (
-                <p className="mt-1 text-sm text-red-500">
+                <p
+                  className={`mt-1 text-sm ${
+                    errors.cif.type === "required"
+                      ? "text-red-500"
+                      : "text-yellow-500"
+                  }`}
+                >
                   {errors.cif.message}
                 </p>
               )}
@@ -158,7 +171,13 @@ export default function ClientForm() {
                 })}
               />
               {errors.address?.street && (
-                <p className="mt-1 text-sm text-red-500">
+                <p
+                  className={`mt-1 text-sm ${
+                    errors.address.street.type === "required"
+                      ? "text-red-500"
+                      : "text-yellow-500"
+                  }`}
+                >
                   {errors.address.street.message}
                 </p>
               )}
@@ -176,12 +195,18 @@ export default function ClientForm() {
                   valueAsNumber: true,
                   min: {
                     value: 1,
-                    message: "El numero debe ser mayor que 0",
+                    message: "El número debe ser mayor que 0",
                   },
                 })}
               />
               {errors.address?.number && (
-                <p className="mt-1 text-sm text-red-500">
+                <p
+                  className={`mt-1 text-sm ${
+                    errors.address.number.type === "required"
+                      ? "text-red-500"
+                      : "text-yellow-500"
+                  }`}
+                >
                   {errors.address.number.message}
                 </p>
               )}
@@ -199,12 +224,18 @@ export default function ClientForm() {
                   required: "Campo obligatorio *",
                   minLength: {
                     value: 5,
-                    message: "Minimo 5 caracteres",
+                    message: "Mínimo 5 caracteres",
                   },
                 })}
               />
               {errors.address?.city && (
-                <p className="mt-1 text-sm text-red-500">
+                <p
+                  className={`mt-1 text-sm ${
+                    errors.address.city.type === "required"
+                      ? "text-red-500"
+                      : "text-yellow-500"
+                  }`}
+                >
                   {errors.address.city.message}
                 </p>
               )}
@@ -222,12 +253,18 @@ export default function ClientForm() {
                   required: "Campo obligatorio *",
                   minLength: {
                     value: 5,
-                    message: "Minimo 5 caracteres",
+                    message: "Mínimo 5 caracteres",
                   },
                 })}
               />
               {errors.address?.province && (
-                <p className="mt-1 text-sm text-red-500">
+                <p
+                  className={`mt-1 text-sm ${
+                    errors.address.province.type === "required"
+                      ? "text-red-500"
+                      : "text-yellow-500"
+                  }`}
+                >
                   {errors.address.province.message}
                 </p>
               )}
@@ -241,7 +278,7 @@ export default function ClientForm() {
                 id="address.postal"
                 type="text"
                 {...register("address.postal", {
-                  required: "Campo obligatorio*",
+                  required: "Campo obligatorio *",
                   minLength: {
                     value: 5,
                     message: "El código postal debe contener 5 dígitos",
@@ -250,16 +287,12 @@ export default function ClientForm() {
                     value: 5,
                     message: "El código postal debe contener 5 dígitos",
                   },
-                  min: {
-                    value: 1,
-                    message: "El codigo postal debe ser superior a 0",
-                  },
                 })}
               />
               {errors.address?.postal && (
                 <p
                   className={`mt-1 text-sm ${
-                    errors.address.postal.message.includes("Campo obligatorio*")
+                    errors.address.postal.type === "required"
                       ? "text-red-500"
                       : "text-yellow-500"
                   }`}

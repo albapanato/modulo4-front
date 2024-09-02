@@ -1,6 +1,5 @@
 import Navbar from "../components/Navbar";
 import "../globals.css"; // Asegúrate de importar tus estilos globales
-import ImageBg from "../components/ImageBg";
 
 export const metadata = {
   title: "Mi cuenta en Bildy",

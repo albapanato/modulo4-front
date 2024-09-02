@@ -2,6 +2,8 @@
 import { getCookie } from "../utils/services";
 import { deleteClient } from "../utils/clients";
 import Image from "next/image";
+import Notification from "./Notification";
+import { useState } from "react";
 
 export default function ClientBotonDelete({ id }) {
   const [notification, setNotification] = useState({

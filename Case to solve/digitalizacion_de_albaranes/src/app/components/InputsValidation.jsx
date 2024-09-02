@@ -53,5 +53,4 @@ const InputsValidation = ({ register, errors, setCode }) => {
     </div>
   );
 };
-
 export default InputsValidation;

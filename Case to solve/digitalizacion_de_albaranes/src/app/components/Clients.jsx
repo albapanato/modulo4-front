@@ -61,15 +61,6 @@ export default async function Clients() {
                     />
                   </Link>
                   <ClientBotonDelete id={client._id} />
-                  {/* 
-                    <Image
-                      src="/img/icons/edit-white.png"
-                      alt="edit-icon"
-                      width={24}
-                      height={24}
-                    />
-                  </Link>
-                   */}
                 </div>
               </td>
             </tr>

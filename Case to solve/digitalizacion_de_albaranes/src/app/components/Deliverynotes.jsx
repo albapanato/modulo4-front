@@ -67,15 +67,6 @@ export default async function Deliverynotes() {
                       />
                     </Link>
                     <DelinoteBotonDelete id={deliverynote._id} />
-                    {/* 
-                      <Image
-                        src="/img/icons/edit-white.png"
-                        alt="edit-icon"
-                        width={24}
-                        height={24}
-                      />
-                    </Link>
-                     */}
                   </div>
                 </td>
               </tr>

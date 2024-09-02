@@ -4,7 +4,6 @@ import { deleteDeliverynote } from "../utils/deliverynotes";
 import Image from "next/image";
 import Notification from "./Notification";
 import { useState } from "react";
-// import { useRouter } from "next/navigation";
 
 export default function DelinoteBotonDelete({ id }) {
   const [notification, setNotification] = useState({
@@ -12,7 +11,7 @@ export default function DelinoteBotonDelete({ id }) {
     type: "",
     visible: false,
   });
-  // const router = useRouter();
+
   const handleDelete = async (id) => {
     const token = getCookie("jwt");
     try {
@@ -22,9 +21,6 @@ export default function DelinoteBotonDelete({ id }) {
         type: "success",
         visible: true,
       });
-      // setTimeout(() => {
-      //   router.refresh(); // O utiliza revalidatePath("/user/deliverynotes") si usas la API para revalidar rutas
-      // }, 3000);
     } catch (error) {
       setNotification({
         text: "Error al borrar el albarán",

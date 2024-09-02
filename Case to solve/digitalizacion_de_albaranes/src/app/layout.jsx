@@ -1,6 +1,5 @@
 import "./globals.css";
 import ImageBildy from "./components/ImageBildy";
-import ImageBg from "./components/ImageBg";
 export const metadata = {
   title: "Bildy",
   description: "Herramienta para generar albaranes y firmas digitales",
